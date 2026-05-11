@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { studyContent } from "@/data/studyContent";
 import { certifications } from "@/data/certifications";
 import { questions } from "@/data/questions";
 
@@ -42,18 +43,24 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
           <p className="text-sm text-gray-400 mt-1">{certQuestions.length} questions across {cert.domains.length} domains</p>
         </div>
 
-        <div className="flex gap-3 mb-8">
+        <div className="flex flex-wrap gap-3 mb-8">
           <Link
-            href={`/cert/${cert.id}/quiz`}
+            href={`/cert/${cert.id}/learn`}
             className={`px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]} hover:opacity-90 transition-opacity`}
           >
-            Start Quiz
+            Study Domains
+          </Link>
+          <Link
+            href={`/cert/${cert.id}/quiz`}
+            className={`px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
+          >
+            Practice Quiz
           </Link>
           <Link
             href={`/cert/${cert.id}/study`}
             className={`px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
           >
-            Flashcard Study
+            Flashcards
           </Link>
         </div>
 
@@ -61,8 +68,13 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
         <div className="space-y-2">
           {cert.domains.map((domain, i) => {
             const domainQCount = certQuestions.filter((q) => q.domainId === domain.id).length;
+            const hasContent = studyContent.some((c) => c.domainId === domain.id);
             return (
-              <div key={domain.id} className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between">
+              <Link
+                key={domain.id}
+                href={hasContent ? `/cert/${cert.id}/learn/${domain.id}` : `/cert/${cert.id}/learn`}
+                className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between hover:border-gray-400 transition-colors"
+              >
                 <div>
                   <span className="text-xs font-medium text-gray-400 mr-2">D{i + 1}</span>
                   <span className="text-sm font-medium text-gray-800">{domain.name}</span>
@@ -71,7 +83,7 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
                   <span>{domainQCount} questions</span>
                   <span className="font-semibold text-gray-600">{domain.weight}%</span>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
