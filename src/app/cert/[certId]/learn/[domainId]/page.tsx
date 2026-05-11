@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { certifications } from "@/data/certifications";
 import { studyContent } from "@/data/studyContent";
+import MarkReadButton from "@/components/MarkReadButton";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -107,6 +108,9 @@ export default async function DomainLearnPage(
             ))}
           </ul>
         </div>
+
+        {/* Mark as read */}
+        <MarkReadButton domainId={domainId} certColor={cert.color} />
 
         {/* Domain navigation */}
         <div className="flex gap-3">
