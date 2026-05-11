@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { certifications } from "@/data/certifications";
 import { studyContent } from "@/data/studyContent";
+import { questions } from "@/data/questions";
 import MarkReadButton from "@/components/MarkReadButton";
 
 const colorMap: Record<string, string> = {
@@ -41,6 +42,7 @@ export default async function DomainLearnPage(
   const domainIndex = cert.domains.findIndex((d) => d.id === domainId);
   const prevDomain = domainIndex > 0 ? cert.domains[domainIndex - 1] : null;
   const nextDomain = domainIndex < cert.domains.length - 1 ? cert.domains[domainIndex + 1] : null;
+  const domainQCount = questions.filter((q) => q.domainId === domainId).length;
 
   return (
     <main className="min-h-screen bg-gray-50 p-8">
@@ -109,8 +111,16 @@ export default async function DomainLearnPage(
           </ul>
         </div>
 
-        {/* Mark as read */}
+        {/* Mark as read + test CTA */}
         <MarkReadButton domainId={domainId} certColor={cert.color} />
+        {domainQCount > 0 && (
+          <Link
+            href={`/cert/${certId}/quiz?domain=${domainId}`}
+            className="flex items-center justify-center gap-1.5 w-full py-2.5 mb-6 rounded-xl border border-gray-200 text-sm text-gray-600 hover:border-gray-400 hover:text-gray-900 transition-colors"
+          >
+            Test yourself on this domain · {domainQCount} question{domainQCount !== 1 ? "s" : ""} →
+          </Link>
+        )}
 
         {/* Domain navigation */}
         <div className="flex gap-3">

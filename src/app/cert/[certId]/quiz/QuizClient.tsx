@@ -8,6 +8,7 @@ import { Question } from "@/data/questions";
 type Props = {
   cert: Certification;
   questions: Question[];
+  initialDomain?: string;
 };
 
 type Phase = "setup" | "quiz" | "done";
@@ -30,20 +31,24 @@ function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
-export default function QuizClient({ cert, questions }: Props) {
-  // Domains that actually have questions
+export default function QuizClient({ cert, questions, initialDomain }: Props) {
   const domainsWithQuestions: Domain[] = cert.domains.filter((d) =>
     questions.some((q) => q.domainId === d.id)
   );
 
   const [phase, setPhase] = useState<Phase>("setup");
-  const [selectedDomainIds, setSelectedDomainIds] = useState<Set<string>>(
-    () => new Set(domainsWithQuestions.map((d) => d.id))
-  );
+  const [selectedDomainIds, setSelectedDomainIds] = useState<Set<string>>(() => {
+    if (initialDomain && questions.some((q) => q.domainId === initialDomain)) {
+      return new Set([initialDomain]);
+    }
+    return new Set(domainsWithQuestions.map((d) => d.id));
+  });
   const [shuffled, setShuffled] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
+  const [wrongIds, setWrongIds] = useState<Set<string>>(new Set());
+  const [showMistakes, setShowMistakes] = useState(false);
 
   function toggleDomain(domainId: string) {
     setSelectedDomainIds((prev) => {
@@ -65,19 +70,26 @@ export default function QuizClient({ cert, questions }: Props) {
     }
   }
 
-  function startQuiz() {
-    const filtered = questions.filter((q) => selectedDomainIds.has(q.domainId));
-    setShuffled(shuffle(filtered));
+  function startQuiz(questionsToUse?: Question[]) {
+    const pool = questionsToUse ?? questions.filter((q) => selectedDomainIds.has(q.domainId));
+    setShuffled(shuffle(pool));
     setIndex(0);
     setSelected(null);
     setScore(0);
+    setWrongIds(new Set());
+    setShowMistakes(false);
     setPhase("quiz");
   }
 
   function choose(optIndex: number) {
     if (selected !== null) return;
     setSelected(optIndex);
-    if (optIndex === shuffled[index].correctIndex) setScore((s) => s + 1);
+    const current = shuffled[index];
+    if (optIndex === current.correctIndex) {
+      setScore((s) => s + 1);
+    } else {
+      setWrongIds((prev) => new Set(prev).add(current.id));
+    }
   }
 
   function next() {
@@ -92,6 +104,8 @@ export default function QuizClient({ cert, questions }: Props) {
   function restart() {
     setPhase("setup");
     setSelectedDomainIds(new Set(domainsWithQuestions.map((d) => d.id)));
+    setWrongIds(new Set());
+    setShowMistakes(false);
   }
 
   // ── Setup screen ──────────────────────────────────────────────────────────
@@ -120,7 +134,7 @@ export default function QuizClient({ cert, questions }: Props) {
             </div>
 
             <div className="space-y-2">
-              {domainsWithQuestions.map((domain, i) => {
+              {domainsWithQuestions.map((domain) => {
                 const qCount = questions.filter((q) => q.domainId === domain.id).length;
                 const checked = selectedDomainIds.has(domain.id);
                 const domainIndex = cert.domains.findIndex((d) => d.id === domain.id);
@@ -128,14 +142,12 @@ export default function QuizClient({ cert, questions }: Props) {
                   <label
                     key={domain.id}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 cursor-pointer transition-colors ${
-                      checked ? `border-gray-300 bg-gray-50` : "border-gray-100 hover:border-gray-200"
+                      checked ? "border-gray-300 bg-gray-50" : "border-gray-100 hover:border-gray-200"
                     }`}
                   >
                     <span
                       className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
-                        checked
-                          ? `${checkMap[cert.color]} border-transparent`
-                          : "border-gray-300 bg-white"
+                        checked ? `${checkMap[cert.color]} border-transparent` : "border-gray-300 bg-white"
                       }`}
                     >
                       {checked && (
@@ -162,7 +174,7 @@ export default function QuizClient({ cert, questions }: Props) {
           </div>
 
           <button
-            onClick={startQuiz}
+            onClick={() => startQuiz()}
             disabled={selectedCount === 0}
             className={`w-full py-3 rounded-lg text-white font-medium text-sm transition-opacity ${colorMap[cert.color]} disabled:opacity-40 disabled:cursor-not-allowed`}
           >
@@ -178,28 +190,79 @@ export default function QuizClient({ cert, questions }: Props) {
   // ── Results screen ────────────────────────────────────────────────────────
   if (phase === "done") {
     const pct = Math.round((score / shuffled.length) * 100);
+    const wrongQuestions = shuffled.filter((q) => wrongIds.has(q.id));
+
     return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-        <div className="bg-white rounded-2xl border border-gray-200 p-10 max-w-md w-full text-center">
-          <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
-          <p className="text-gray-500 mb-6">{score} / {shuffled.length} correct</p>
-          <p className="text-lg font-semibold text-gray-800 mb-8">
-            {pct >= 70 ? "Good work — keep it up!" : "Keep studying — you've got this!"}
-          </p>
-          <div className="flex gap-3 justify-center">
-            <button
-              onClick={restart}
-              className={`px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]}`}
-            >
-              New Quiz
-            </button>
-            <Link
-              href={`/cert/${cert.id}`}
-              className="px-5 py-2.5 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400"
-            >
-              Back to {cert.name}
-            </Link>
+      <main className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-lg mx-auto">
+          {/* Score card */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-10 text-center mb-4">
+            <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
+            <p className="text-gray-500 mb-4">{score} / {shuffled.length} correct</p>
+            <p className="text-base font-semibold text-gray-800 mb-8">
+              {pct >= 70 ? "Good work — keep it up!" : "Keep studying — you've got this!"}
+            </p>
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={restart}
+                className={`px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]}`}
+              >
+                New Quiz
+              </button>
+              {wrongQuestions.length > 0 && (
+                <button
+                  onClick={() => startQuiz(wrongQuestions)}
+                  className="px-5 py-2.5 rounded-lg border-2 border-orange-200 text-orange-700 font-medium text-sm hover:bg-orange-50"
+                >
+                  Retry {wrongQuestions.length} wrong
+                </button>
+              )}
+              <Link
+                href={`/cert/${cert.id}`}
+                className="px-5 py-2.5 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400"
+              >
+                Back to {cert.name}
+              </Link>
+            </div>
           </div>
+
+          {/* Missed question review */}
+          {wrongQuestions.length > 0 && (
+            <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+              <button
+                onClick={() => setShowMistakes((s) => !s)}
+                className="w-full flex items-center justify-between px-6 py-4 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                <span>Review {wrongQuestions.length} missed question{wrongQuestions.length !== 1 ? "s" : ""}</span>
+                <span className="text-gray-400">{showMistakes ? "▲" : "▼"}</span>
+              </button>
+
+              {showMistakes && (
+                <div className="px-6 pb-6 space-y-5 border-t border-gray-100 pt-4">
+                  {wrongQuestions.map((q) => (
+                    <div key={q.id}>
+                      <p className="text-sm font-semibold text-gray-800 mb-2">{q.question}</p>
+                      <div className="space-y-1 mb-2">
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            className={`text-xs px-3 py-2 rounded-lg ${
+                              i === q.correctIndex
+                                ? "bg-green-50 text-green-700 font-medium"
+                                : "text-gray-400"
+                            }`}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-gray-500 italic">{q.explanation}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </main>
     );
@@ -211,10 +274,7 @@ export default function QuizClient({ cert, questions }: Props) {
     <main className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <button
-            onClick={restart}
-            className="text-sm text-gray-500 hover:text-gray-700"
-          >
+          <button onClick={restart} className="text-sm text-gray-500 hover:text-gray-700">
             ← {cert.name}
           </button>
           <span className="text-sm text-gray-400">

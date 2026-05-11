@@ -45,23 +45,29 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
           <CertProgressBar certColor={cert.color} domainIds={cert.domains.map((d) => d.id)} />
         </div>
 
-        <div className="flex flex-wrap gap-3 mb-8">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-3">Recommended path</p>
+        <div className="flex flex-wrap items-center gap-2 mb-8">
           <Link
             href={`/cert/${cert.id}/learn`}
-            className={`px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]} hover:opacity-90 transition-opacity`}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]} hover:opacity-90 transition-opacity`}
           >
+            <span className="w-5 h-5 rounded-full bg-white/25 text-xs font-bold flex items-center justify-center">1</span>
             Study Domains
           </Link>
+          <span className="text-gray-300 text-sm select-none">→</span>
           <Link
             href={`/cert/${cert.id}/quiz`}
-            className={`px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
           >
+            <span className="w-5 h-5 rounded-full bg-gray-100 text-xs font-bold text-gray-500 flex items-center justify-center">2</span>
             Practice Quiz
           </Link>
+          <span className="text-gray-300 text-sm select-none">→</span>
           <Link
             href={`/cert/${cert.id}/study`}
-            className={`px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
           >
+            <span className="w-5 h-5 rounded-full bg-gray-100 text-xs font-bold text-gray-500 flex items-center justify-center">3</span>
             Flashcards
           </Link>
         </div>
