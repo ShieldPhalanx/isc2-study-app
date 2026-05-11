@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { certifications } from "@/data/certifications";
 import { questions } from "@/data/questions";
+import CertProgressBar from "@/components/CertProgressBar";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-50 border-blue-200 hover:border-blue-400",
@@ -39,10 +40,11 @@ export default function Home() {
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">{cert.fullName}</p>
-                <div className="flex gap-4 text-xs text-gray-500">
+                <div className="flex gap-4 text-xs text-gray-500 mb-1">
                   <span>{cert.domains.length} domains</span>
                   <span>{total} questions</span>
                 </div>
+                <CertProgressBar certColor={cert.color} domainIds={cert.domains.map((d) => d.id)} />
               </Link>
             );
           })}
