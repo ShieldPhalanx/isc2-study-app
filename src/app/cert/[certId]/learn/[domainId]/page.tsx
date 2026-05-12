@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { certifications } from "@/data/certifications";
 import { studyContent } from "@/data/studyContent";
 import MarkReadButton from "@/components/MarkReadButton";
+import VisualBlock from "@/components/VisualBlock";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -69,7 +70,13 @@ export default async function DomainLearnPage(
         <div className="space-y-6 mb-10">
           {content.sections.map((section) => (
             <div key={section.title} className="bg-white border border-gray-200 rounded-xl p-6">
-              <h2 className="text-base font-semibold text-gray-800 mb-4">{section.title}</h2>
+              <h2 className="text-base font-semibold text-gray-800 mb-3">{section.title}</h2>
+              {section.explanation && (
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">{section.explanation}</p>
+              )}
+              {section.visual && (
+                <VisualBlock visual={section.visual} certColor={cert.color} />
+              )}
               <ul className="space-y-2">
                 {section.points.map((point, i) => (
                   <li key={i} className="flex gap-3 text-sm text-gray-700">
