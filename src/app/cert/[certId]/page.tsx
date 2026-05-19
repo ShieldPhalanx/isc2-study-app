@@ -4,6 +4,7 @@ import { studyContent } from "@/data/studyContent";
 import { certifications } from "@/data/certifications";
 import { questions } from "@/data/questions";
 import CertProgressBar from "@/components/CertProgressBar";
+import DomainQuizStats from "@/components/DomainQuizStats";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -17,6 +18,13 @@ const borderMap: Record<string, string> = {
   green: "border-green-200 hover:border-green-400",
   purple: "border-purple-200 hover:border-purple-400",
   orange: "border-orange-200 hover:border-orange-400",
+};
+
+const quizBtnMap: Record<string, string> = {
+  blue: "text-blue-600 hover:bg-blue-50 border-blue-200",
+  green: "text-green-600 hover:bg-green-50 border-green-200",
+  purple: "text-purple-600 hover:bg-purple-50 border-purple-200",
+  orange: "text-orange-600 hover:bg-orange-50 border-orange-200",
 };
 
 export default async function CertPage(props: PageProps<"/cert/[certId]">) {
@@ -56,7 +64,7 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
             href={`/cert/${cert.id}/quiz`}
             className={`px-5 py-2.5 rounded-lg border-2 font-medium text-sm text-gray-700 bg-white transition-colors ${borderMap[cert.color]}`}
           >
-            Practice Quiz
+            Full Practice Quiz
           </Link>
           <Link
             href={`/cert/${cert.id}/study`}
@@ -66,26 +74,34 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
           </Link>
         </div>
 
+        {/* Per-domain quiz performance — only shows after first quiz attempt */}
+        <DomainQuizStats cert={cert} />
+
         <h2 className="text-lg font-semibold text-gray-800 mb-3">Exam Domains</h2>
         <div className="space-y-2">
           {cert.domains.map((domain, i) => {
             const domainQCount = certQuestions.filter((q) => q.domainId === domain.id).length;
             const hasContent = studyContent.some((c) => c.domainId === domain.id);
             return (
-              <Link
-                key={domain.id}
-                href={hasContent ? `/cert/${cert.id}/learn/${domain.id}` : `/cert/${cert.id}/learn`}
-                className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between hover:border-gray-400 transition-colors"
-              >
-                <div>
+              <div key={domain.id} className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between hover:border-gray-300 transition-colors">
+                <Link
+                  href={hasContent ? `/cert/${cert.id}/learn/${domain.id}` : `/cert/${cert.id}/learn`}
+                  className="flex-1 min-w-0"
+                >
                   <span className="text-xs font-medium text-gray-400 mr-2">D{i + 1}</span>
                   <span className="text-sm font-medium text-gray-800">{domain.name}</span>
-                </div>
-                <div className="flex items-center gap-4 text-xs text-gray-400">
-                  <span>{domainQCount} questions</span>
+                </Link>
+                <div className="flex items-center gap-3 text-xs text-gray-400 shrink-0 ml-4">
+                  <span>{domainQCount} q</span>
                   <span className="font-semibold text-gray-600">{domain.weight}%</span>
+                  <Link
+                    href={`/cert/${cert.id}/quiz?domain=${domain.id}`}
+                    className={`border rounded px-2 py-0.5 font-medium transition-colors ${quizBtnMap[cert.color]}`}
+                  >
+                    Quiz
+                  </Link>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>

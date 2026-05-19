@@ -4,10 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { Certification } from "@/data/certifications";
 import { Question } from "@/data/questions";
+import { useQuizHistory, QuestionResult } from "@/hooks/useQuizHistory";
 
 type Props = {
   cert: Certification;
   questions: Question[];
+  domainName?: string;
 };
 
 const colorMap: Record<string, string> = {
@@ -21,23 +23,43 @@ function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
-export default function QuizClient({ cert, questions }: Props) {
-  const [shuffled] = useState(() => shuffle(questions));
+function shuffleOptions(q: Question): Question {
+  const correct = q.options[q.correctIndex];
+  const opts = shuffle(q.options);
+  return { ...q, options: opts, correctIndex: opts.indexOf(correct) };
+}
+
+export default function QuizClient({ cert, questions, domainName }: Props) {
+  const { saveAttempt } = useQuizHistory();
+  const [shuffled] = useState(() => shuffle(questions).map(shuffleOptions));
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+  const [results, setResults] = useState<QuestionResult[]>([]);
+  const [wrongQuestions, setWrongQuestions] = useState<Question[]>([]);
 
   const current = shuffled[index];
 
   function choose(optIndex: number) {
     if (selected !== null) return;
     setSelected(optIndex);
-    if (optIndex === current.correctIndex) setScore((s) => s + 1);
+    const correct = optIndex === current.correctIndex;
+    if (correct) setScore((s) => s + 1);
+    setResults((prev) => [
+      ...prev,
+      { questionId: current.id, domainId: current.domainId, correct },
+    ]);
+    if (!correct) setWrongQuestions((prev) => [...prev, current]);
   }
 
   function next() {
     if (index + 1 >= shuffled.length) {
+      saveAttempt(cert.id, [...results, {
+        questionId: current.id,
+        domainId: current.domainId,
+        correct: selected === current.correctIndex,
+      }]);
       setDone(true);
     } else {
       setIndex((i) => i + 1);
@@ -50,32 +72,80 @@ export default function QuizClient({ cert, questions }: Props) {
     setSelected(null);
     setScore(0);
     setDone(false);
+    setResults([]);
+    setWrongQuestions([]);
   }
 
   if (done) {
+    const finalResults = [...results];
     const pct = Math.round((score / shuffled.length) * 100);
+    const missed = wrongQuestions;
+
     return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-        <div className="bg-white rounded-2xl border border-gray-200 p-10 max-w-md w-full text-center">
-          <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
-          <p className="text-gray-500 mb-6">{score} / {shuffled.length} correct</p>
-          <p className="text-lg font-semibold text-gray-800 mb-8">
-            {pct >= 70 ? "Good work — keep it up!" : "Keep studying — you've got this!"}
-          </p>
-          <div className="flex gap-3 justify-center">
-            <button
-              onClick={restart}
-              className={`px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]}`}
-            >
-              Retry
-            </button>
-            <Link
-              href={`/cert/${cert.id}`}
-              className="px-5 py-2.5 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400"
-            >
-              Back to {cert.name}
-            </Link>
+      <main className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-2xl mx-auto">
+          <Link href={`/cert/${cert.id}`} className="text-sm text-gray-500 hover:text-gray-700 mb-6 inline-block">
+            ← {cert.name}
+          </Link>
+
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center mb-6">
+            <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
+            <p className="text-gray-500 mb-2">{score} / {shuffled.length} correct</p>
+            {domainName && <p className="text-sm text-gray-400 mb-4">{domainName}</p>}
+            <p className="text-base font-semibold text-gray-800 mb-6">
+              {pct >= 80 ? "Strong — you're exam ready on this." : pct >= 65 ? "Getting there — review the misses below." : "Needs work — study the domain then retry."}
+            </p>
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={restart}
+                className={`px-5 py-2.5 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]}`}
+              >
+                Retry
+              </button>
+              <Link
+                href={`/cert/${cert.id}`}
+                className="px-5 py-2.5 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400"
+              >
+                Back to {cert.name}
+              </Link>
+            </div>
           </div>
+
+          {missed.length > 0 && (
+            <div>
+              <h2 className="text-base font-semibold text-gray-800 mb-3">
+                Review — {missed.length} missed {missed.length === 1 ? "question" : "questions"}
+              </h2>
+              <div className="space-y-4">
+                {missed.map((q) => (
+                  <div key={q.id} className="bg-white border border-gray-200 rounded-xl p-5">
+                    <p className="text-xs font-medium text-gray-400 mb-2 uppercase tracking-wide">
+                      {cert.domains.find((d) => d.id === q.domainId)?.name}
+                    </p>
+                    <p className="text-sm font-semibold text-gray-900 mb-3">{q.question}</p>
+                    <div className="space-y-1.5 mb-3">
+                      {q.options.map((opt, i) => (
+                        <div
+                          key={i}
+                          className={`px-3 py-2 rounded-lg text-sm ${
+                            i === q.correctIndex
+                              ? "bg-green-50 border border-green-300 text-green-800 font-medium"
+                              : "text-gray-400 border border-gray-100"
+                          }`}
+                        >
+                          <span className="font-bold mr-2">{String.fromCharCode(65 + i)}.</span>
+                          {opt}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-gray-600 bg-gray-50 rounded p-3 border border-gray-100">
+                      {q.explanation}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </main>
     );
@@ -88,12 +158,12 @@ export default function QuizClient({ cert, questions }: Props) {
           <Link href={`/cert/${cert.id}`} className="text-sm text-gray-500 hover:text-gray-700">
             ← {cert.name}
           </Link>
-          <span className="text-sm text-gray-400">
-            {index + 1} / {shuffled.length}
-          </span>
+          <div className="text-right">
+            <span className="text-sm text-gray-400">{index + 1} / {shuffled.length}</span>
+            {domainName && <p className="text-xs text-gray-400">{domainName}</p>}
+          </div>
         </div>
 
-        {/* Progress bar */}
         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-8">
           <div
             className={`h-1.5 rounded-full transition-all ${colorMap[cert.color].split(" ")[0]}`}
