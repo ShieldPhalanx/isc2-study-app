@@ -6,6 +6,7 @@ import { questions } from "@/data/questions";
 import CertProgressBar from "@/components/CertProgressBar";
 import QuizScoreHistory from "@/components/QuizScoreHistory";
 import StudySuggestions from "@/components/StudySuggestions";
+import ResetProgressButton from "@/components/ResetProgressButton";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -99,6 +100,12 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
               </Link>
             );
           })}
+        </div>
+        <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end">
+          <ResetProgressButton
+            cert={cert}
+            questionIds={certQuestions.map((q) => q.id)}
+          />
         </div>
       </div>
     </main>

@@ -1546,4 +1546,475 @@ export const questions: Question[] = [
     explanation:
       "Eradication removes all traces of the threat — malware, backdoors, unauthorized accounts. It must be thorough before recovery begins, or attackers may regain access through remnants left on restored systems.",
   },
+
+  // ── Additional questions (round 3) ───────────────────────────────────────
+
+  // CISSP – D1 additional
+  {
+    id: "cissp-d1-007",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "The NIST Cybersecurity Framework (CSF) organizes security activities into five functions. Which function focuses on developing and implementing appropriate safeguards to ensure delivery of critical services?",
+    options: ["Identify", "Protect", "Detect", "Respond"],
+    correctIndex: 1,
+    explanation:
+      "The Protect function covers access control, awareness training, data security, and protective technology — all aimed at limiting or containing the impact of a potential security event.",
+  },
+  {
+    id: "cissp-d1-008",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Which type of security policy defines acceptable use of organizational resources and is signed by employees?",
+    options: ["Issue-specific policy", "System-specific policy", "Organizational policy", "Acceptable Use Policy (AUP)"],
+    correctIndex: 3,
+    explanation:
+      "An AUP defines what users may and may not do with organizational systems and data. It is typically signed at onboarding and creates a legally acknowledged agreement between the employee and the organization.",
+  },
+  {
+    id: "cissp-d1-009",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "A qualitative risk analysis differs from a quantitative analysis in that it:",
+    options: [
+      "Produces exact dollar-value estimates of risk",
+      "Uses expert judgment and descriptive scales (High/Medium/Low) rather than precise numerical calculations",
+      "Requires more time and data to complete",
+      "Can only be performed by external auditors",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Qualitative analysis uses subjective ratings and is faster and less data-intensive. Quantitative analysis uses formulas (ALE = SLE × ARO) to produce dollar values — more precise but requires accurate threat frequency and asset-value data.",
+  },
+
+  // CISSP – D2 additional
+  {
+    id: "cissp-d2-006",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Under GDPR, a 'data controller' is BEST described as:",
+    options: [
+      "A technical system that manages database access",
+      "The entity that determines the purposes and means of processing personal data",
+      "The person responsible for physical security of data centers",
+      "The individual whose personal data is being processed",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The data controller decides WHY and HOW personal data is processed. The data processor acts on behalf of the controller. The data subject is the individual whose data is collected. Understanding this distinction is critical for GDPR compliance.",
+  },
+  {
+    id: "cissp-d2-007",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "A data retention policy primarily serves to:",
+    options: [
+      "Encrypt data at rest for the period it is stored",
+      "Define how long data is kept and when it must be securely destroyed",
+      "Ensure data is replicated across multiple geographic locations",
+      "Restrict access to sensitive data to authorized users only",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Retention policies balance legal hold requirements (keeping data long enough for litigation) against privacy obligations (deleting data when no longer needed). Keeping data longer than necessary increases both storage costs and breach exposure.",
+  },
+  {
+    id: "cissp-d2-008",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which concept requires that information be labeled and handled according to its level of sensitivity?",
+    options: ["Data minimization", "Data classification", "Data lineage", "Data normalization"],
+    correctIndex: 1,
+    explanation:
+      "Data classification assigns sensitivity labels (e.g., Public/Internal/Confidential/Restricted) that drive handling requirements — who can access data, how it must be stored, transmitted, and eventually destroyed.",
+  },
+
+  // CISSP – D3 additional
+  {
+    id: "cissp-d3-006",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "AES-256 is classified as which type of cryptographic algorithm?",
+    options: ["Asymmetric (public key)", "Hash function", "Symmetric (secret key)", "Stream cipher"],
+    correctIndex: 2,
+    explanation:
+      "AES (Advanced Encryption Standard) is a symmetric block cipher — the same key encrypts and decrypts data. RSA and ECC are asymmetric. SHA-256 is a hash. RC4 is a stream cipher. AES-256 uses a 256-bit key and is the current standard for bulk data encryption.",
+  },
+  {
+    id: "cissp-d3-007",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "In a public key infrastructure (PKI), a Certificate Authority (CA) is trusted because it:",
+    options: [
+      "Uses the most advanced encryption algorithm available",
+      "Digitally signs certificates, binding a public key to a verified identity",
+      "Stores all private keys for recovery purposes",
+      "Issues certificates at no charge to any requestor",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The CA's digital signature on a certificate is the root of trust — it asserts that the CA has verified the certificate holder's identity. Browser and OS trust stores contain CA root certificates that enable this chain of trust.",
+  },
+  {
+    id: "cissp-d3-008",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "Software as a Service (SaaS) differs from Infrastructure as a Service (IaaS) in that the customer:",
+    options: [
+      "Manages the operating system and runtime in SaaS",
+      "Has no responsibility for the application layer in IaaS",
+      "Only manages data and user access in SaaS; the provider manages everything else",
+      "Owns the underlying hardware in SaaS",
+    ],
+    correctIndex: 2,
+    explanation:
+      "In SaaS, the provider manages infrastructure, OS, platform, and application — the customer only configures the application and manages users and data. In IaaS, the customer manages OS upward, giving more control but more responsibility.",
+  },
+
+  // CISSP – D4 additional
+  {
+    id: "cissp-d4-006",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "WPA3 improves on WPA2 for wireless security primarily by:",
+    options: [
+      "Using a longer SSID",
+      "Replacing PSK with Simultaneous Authentication of Equals (SAE), preventing offline dictionary attacks",
+      "Eliminating the need for passwords entirely",
+      "Reducing transmission power to limit coverage area",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SAE (also called Dragonfly handshake) makes offline brute-force attacks against captured handshakes infeasible. WPA2 PSK was vulnerable to offline dictionary attacks if a weak passphrase was used.",
+  },
+  {
+    id: "cissp-d4-007",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "A man-in-the-middle (MitM) attack is BEST mitigated by:",
+    options: [
+      "Using longer passwords",
+      "Mutual authentication and encrypted communication channels (e.g., TLS with certificate validation)",
+      "Deploying an intrusion detection system",
+      "Segmenting the network with VLANs",
+    ],
+    correctIndex: 1,
+    explanation:
+      "MitM requires either impersonating one endpoint or intercepting traffic. Mutual authentication ensures both parties verify each other's identity; encryption prevents the attacker from reading or modifying the intercepted data.",
+  },
+  {
+    id: "cissp-d4-008",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "The primary purpose of network segmentation in a security architecture is to:",
+    options: [
+      "Improve network throughput",
+      "Limit lateral movement by attackers and contain the blast radius of a compromise",
+      "Reduce hardware costs by consolidating switches",
+      "Simplify network management",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Segmentation creates security zones. If an attacker compromises a device in one segment, they cannot freely reach devices in other segments — they must traverse a controlled gateway, creating additional detection and blocking opportunities.",
+  },
+
+  // CISSP – D5 additional
+  {
+    id: "cissp-d5-006",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Zero Trust Architecture (ZTA) is based on the principle of:",
+    options: [
+      "Trusting all traffic within the internal network perimeter",
+      "Never trust, always verify — no implicit trust based on network location",
+      "Granting temporary elevated access based on user requests",
+      "Eliminating all passwords in favor of biometric authentication",
+    ],
+    correctIndex: 1,
+    explanation:
+      "ZTA assumes breach and verifies every access request regardless of network origin. Users inside the corporate network receive the same scrutiny as external users. Controls include identity verification, device health checks, and least-privilege access.",
+  },
+  {
+    id: "cissp-d5-007",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Privileged Access Management (PAM) reduces risk primarily by:",
+    options: [
+      "Requiring admin accounts to use longer passwords",
+      "Controlling, monitoring, and recording use of privileged credentials to limit their exposure and detect abuse",
+      "Granting all users temporary admin access for efficiency",
+      "Blocking all administrative access from remote locations",
+    ],
+    correctIndex: 1,
+    explanation:
+      "PAM vaults privileged credentials, requires just-in-time access approval, records sessions, and alerts on anomalous behavior. Compromised admin accounts are a top attack vector — PAM dramatically limits what an attacker can do with them.",
+  },
+  {
+    id: "cissp-d5-008",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "OAuth 2.0 is primarily used for:",
+    options: [
+      "Encrypting passwords in storage",
+      "Delegated authorization — allowing an application to access resources on behalf of a user without sharing credentials",
+      "Authenticating users with username/password",
+      "Generating one-time passwords for MFA",
+    ],
+    correctIndex: 1,
+    explanation:
+      "OAuth 2.0 is an authorization framework (not authentication). It allows a user to grant a third-party application limited access to their resources without giving it their password. OpenID Connect (OIDC) builds on OAuth to add authentication.",
+  },
+
+  // CISSP – D6 additional
+  {
+    id: "cissp-d6-006",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "The Common Vulnerability Scoring System (CVSS) provides a standardized way to:",
+    options: [
+      "Track the financial cost of a vulnerability",
+      "Assign a numeric severity score to vulnerabilities to help prioritize remediation",
+      "Certify security products against a baseline",
+      "Document the history of security incidents",
+    ],
+    correctIndex: 1,
+    explanation:
+      "CVSS scores range from 0.0 to 10.0 (Critical). They consider base metrics (attack vector, complexity, impact) as well as temporal and environmental factors. Organizations use CVSS to prioritize patching — critical scores typically require faster remediation.",
+  },
+  {
+    id: "cissp-d6-007",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A compliance audit differs from a security assessment in that it:",
+    options: [
+      "Looks for unknown vulnerabilities through active testing",
+      "Verifies that specific controls required by a standard or regulation are in place",
+      "Focuses exclusively on technical controls",
+      "Is always conducted by external third parties",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Compliance audits check adherence to defined standards (PCI DSS, HIPAA, SOC 2). Security assessments may go beyond defined controls to identify undocumented risks. Both are valuable — compliance ensures a minimum baseline; assessments reveal the true risk posture.",
+  },
+  {
+    id: "cissp-d6-008",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Which testing methodology involves providing the tester with full knowledge of the system's architecture and source code?",
+    options: ["Black-box", "Gray-box", "White-box", "Red team"],
+    correctIndex: 2,
+    explanation:
+      "White-box testing gives the tester complete visibility — architecture diagrams, source code, credentials. It is the most thorough method and finds the most vulnerabilities, but doesn't simulate a realistic external attacker as well as black-box testing.",
+  },
+
+  // CISSP – D7 additional
+  {
+    id: "cissp-d7-006",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Data Loss Prevention (DLP) tools are PRIMARILY designed to:",
+    options: [
+      "Encrypt sensitive data at rest",
+      "Detect and prevent unauthorized exfiltration or transmission of sensitive data",
+      "Back up critical data to prevent loss from hardware failure",
+      "Block malware from executing on endpoints",
+    ],
+    correctIndex: 1,
+    explanation:
+      "DLP monitors data in use, in motion, and at rest — alerting or blocking when sensitive data (PII, IP, financial data) is detected moving to unauthorized destinations such as personal email, USB drives, or cloud storage.",
+  },
+  {
+    id: "cissp-d7-007",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Threat hunting is BEST described as:",
+    options: [
+      "Waiting for security alerts to trigger investigation",
+      "Proactively searching for hidden threats or adversary activity that evaded automated detection",
+      "Performing regularly scheduled vulnerability scans",
+      "Reviewing firewall logs for known malware signatures",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Threat hunting is hypothesis-driven and proactive — analysts actively search for indicators of compromise or attacker behavior that didn't trigger alerts. It's particularly valuable against advanced persistent threats (APTs) that operate stealthily.",
+  },
+  {
+    id: "cissp-d7-008",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Which principle ensures that an employee on vacation cannot single-handedly cause financial fraud?",
+    options: ["Need to know", "Mandatory vacation", "Separation of duties", "Least privilege"],
+    correctIndex: 2,
+    explanation:
+      "Separation of duties prevents any one individual from controlling an entire sensitive process. Mandatory vacation policies (a related control) force someone else to cover duties, potentially exposing hidden fraud. Together they are key fraud-prevention controls.",
+  },
+
+  // CISSP – D8 additional
+  {
+    id: "cissp-d8-006",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "A race condition vulnerability occurs when:",
+    options: [
+      "Code executes faster than the CPU can process it",
+      "A program's behavior depends on the timing or ordering of uncontrolled events, allowing an attacker to manipulate the outcome",
+      "Multiple users attempt to log in simultaneously",
+      "An application uses deprecated cryptographic algorithms",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Race conditions (time-of-check/time-of-use — TOCTOU) occur when security checks and the actions they protect are not atomic. An attacker can change the state between check and use, bypassing the check.",
+  },
+  {
+    id: "cissp-d8-007",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "The OWASP Top 10 is MOST useful as:",
+    options: [
+      "A certification standard for web developers",
+      "A regularly updated awareness document highlighting the most critical web application security risks",
+      "A legally binding standard for web application security",
+      "A set of automated testing rules for SAST tools",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The OWASP Top 10 is a community-driven awareness document, not a standard or certification. It names the most prevalent and impactful categories of web vulnerabilities (injection, broken auth, XSS, etc.) and drives developer education and tool development.",
+  },
+  {
+    id: "cissp-d8-008",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Fuzz testing (fuzzing) is used to:",
+    options: [
+      "Verify that code meets functional requirements",
+      "Detect memory corruption, crashes, and unexpected behavior by feeding random or malformed inputs to an application",
+      "Review source code for coding style violations",
+      "Test application performance under load",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Fuzzing automatically generates invalid, unexpected, or random data as program inputs. It excels at finding input-handling bugs like buffer overflows, format string errors, and unhandled exceptions — vulnerabilities that manual code review often misses.",
+  },
+
+  // CISM – D1 additional
+  {
+    id: "cism-d1-006",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "The PRIMARY purpose of an information security charter is to:",
+    options: [
+      "Document technical security configurations",
+      "Formally establish the security program's authority, scope, and objectives with executive endorsement",
+      "List all security tools and their costs",
+      "Assign security responsibilities to individual employees",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A security charter (or mandate) grants the security program organizational authority. Without executive endorsement, the security program lacks the clout to enforce policies, obtain budget, or hold business units accountable.",
+  },
+  {
+    id: "cism-d1-007",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "When implementing ISO 27001, the Statement of Applicability (SoA) is used to:",
+    options: [
+      "List all known vulnerabilities in the organization",
+      "Document which Annex A controls are applicable, implemented, and why any are excluded",
+      "Describe the organization's IT asset inventory",
+      "Define security awareness training content",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The SoA is a mandatory ISO 27001 document that justifies control selection decisions. It must address all 93 Annex A controls, explaining which are included (and how implemented) and which are excluded (and why exclusion is acceptable).",
+  },
+
+  // CISM – D2 additional
+  {
+    id: "cism-d2-006",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "Which risk response is most appropriate when a risk's cost to mitigate exceeds the value of the asset being protected?",
+    options: ["Risk avoidance", "Risk acceptance", "Risk transfer", "Risk mitigation"],
+    correctIndex: 1,
+    explanation:
+      "When mitigation cost > asset value or potential loss, accepting the risk is the economically rational decision. The acceptance must be formally documented and reviewed periodically in case circumstances change.",
+  },
+  {
+    id: "cism-d2-007",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "A vulnerability assessment reveals that 200 systems have a critical patch missing. The FIRST action the information security manager should take is:",
+    options: [
+      "Immediately patch all 200 systems",
+      "Assess the actual risk by considering exploitability, asset criticality, and existing compensating controls",
+      "Report the finding to regulators",
+      "Shut down the affected systems pending patching",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Not all critical vulnerabilities carry equal risk in context. Before acting, the manager should evaluate: Is this vulnerability exploitable from the current threat landscape? Do compensating controls reduce impact? Are all 200 systems equally critical? Prioritization avoids wasted effort.",
+  },
+
+  // CISM – D3 additional
+  {
+    id: "cism-d3-006",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "An information security program MOST effectively demonstrates value to the business by:",
+    options: [
+      "Maximizing the number of security tools deployed",
+      "Showing a reduction in risk exposure and enabling business objectives securely",
+      "Achieving zero security incidents in a year",
+      "Completing all planned security projects on schedule",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Zero incidents could reflect luck rather than effective security. Tool counts are meaningless without outcomes. Real value is demonstrated by reduced risk (quantified where possible) and by enabling the business to operate securely — not by blocking it.",
+  },
+  {
+    id: "cism-d3-007",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "When selecting security technologies for a program, the MOST important criterion is:",
+    options: [
+      "Analyst recognition in industry reports",
+      "Alignment with identified risks and integration with existing architecture",
+      "Lowest total cost of ownership",
+      "Support for the latest industry standards",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Technology should address specific, identified risks. An expensive tool that solves a low-priority risk is a poor investment. The right tool also needs to fit the environment — poor integration reduces effectiveness and increases operational complexity.",
+  },
+
+  // CISM – D4 additional
+  {
+    id: "cism-d4-006",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "During a major incident, the information security manager's PRIMARY role is to:",
+    options: [
+      "Personally perform technical forensic analysis",
+      "Coordinate response activities, ensure communication flows, and keep leadership informed",
+      "Negotiate with threat actors directly",
+      "Immediately notify all customers of the breach",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The manager's role is coordination and escalation — not hands-on technical response. They ensure teams have authority and resources, manage internal/external communications, and brief the board and executives on status and decisions needed.",
+  },
+  {
+    id: "cism-d4-007",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "Business continuity differs from disaster recovery in that business continuity:",
+    options: [
+      "Only applies to natural disasters",
+      "Focuses on maintaining all business operations without interruption during any disruptive event",
+      "Is limited to IT system recovery",
+      "Does not require executive sponsorship",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Business continuity is the broader, people-and-process-focused discipline that keeps critical operations running during disruptions. Disaster recovery is a subset focused on restoring IT systems and data after a disruption.",
+  },
 ];

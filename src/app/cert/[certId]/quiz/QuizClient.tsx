@@ -225,15 +225,23 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
           <p className="text-sm text-gray-500 mb-6">Choose domains and mode for this session.</p>
 
           {/* Exam mode toggle */}
-          <div
+          <label
             className={`flex items-start gap-3 p-4 rounded-xl border-2 mb-4 cursor-pointer transition-colors ${
               examMode ? `${bgLightMap[cert.color]} border-current` : "border-gray-200 hover:border-gray-300 bg-white"
             }`}
-            onClick={() => setExamMode((m) => !m)}
           >
-            <span className={`mt-0.5 flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center ${
-              examMode ? `${checkMap[cert.color]} border-transparent` : "border-gray-300 bg-white"
-            }`}>
+            <input
+              type="checkbox"
+              className="sr-only"
+              checked={examMode}
+              onChange={(e) => setExamMode(e.target.checked)}
+            />
+            <span
+              aria-hidden="true"
+              className={`mt-0.5 flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center ${
+                examMode ? `${checkMap[cert.color]} border-transparent` : "border-gray-300 bg-white"
+              }`}
+            >
               {examMode && (
                 <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
                   <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -246,7 +254,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
                 No feedback until the end · 90 s per question countdown · domain breakdown in results
               </p>
             </div>
-          </div>
+          </label>
 
           <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-4">
             <div className="flex items-center justify-between mb-4">
