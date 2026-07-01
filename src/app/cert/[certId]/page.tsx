@@ -4,6 +4,7 @@ import { studyContent } from "@/data/studyContent";
 import { certifications } from "@/data/certifications";
 import { questions } from "@/data/questions";
 import CertProgressBar from "@/components/CertProgressBar";
+import QuizScoreHistory from "@/components/QuizScoreHistory";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -43,6 +44,7 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
           <p className="text-gray-600">{cert.fullName}</p>
           <p className="text-sm text-gray-400 mt-1">{certQuestions.length} questions across {cert.domains.length} domains</p>
           <CertProgressBar certColor={cert.color} domainIds={cert.domains.map((d) => d.id)} />
+          <QuizScoreHistory certId={cert.id} certColor={cert.color} />
         </div>
 
         <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-3">Recommended path</p>
