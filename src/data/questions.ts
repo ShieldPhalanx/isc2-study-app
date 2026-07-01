@@ -2411,4 +2411,308 @@ export const questions: Question[] = [
     explanation:
       "The first canon of the (ISC)² Code of Ethics — 'Protect society, the common good, necessary public trust and confidence, and the infrastructure' — takes precedence over all other canons. When employer interests conflict with public safety, professionals must prioritize the public interest.",
   },
+
+  // ── CGRC additional questions (round 5) ────────────────────────────────────
+  {
+    id: "cgrc-d1-007",
+    certId: "cgrc",
+    domainId: "cgrc-d1",
+    question: "The Prepare step added to NIST SP 800-37 Rev 2 is intended to:",
+    options: [
+      "Replace the Categorize and Select steps",
+      "Establish the context and priorities for managing security and privacy risk organization-wide before system-level activities",
+      "Document lessons learned after authorization",
+      "Conduct the initial security control assessment",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SP 800-37 Rev 2 added Prepare as a precursor to the traditional six RMF steps. Its purpose is to establish organizational roles, risk management strategy, mission priorities, and enterprise architecture context — ensuring organizations are ready to execute the RMF consistently across systems.",
+  },
+  {
+    id: "cgrc-d2-007",
+    certId: "cgrc",
+    domainId: "cgrc-d2",
+    question: "An Interconnection Security Agreement (ISA) is required when:",
+    options: [
+      "An organization purchases commercial off-the-shelf software",
+      "Two organizations connect their IT systems to share data",
+      "A system is classified at the Moderate impact level",
+      "An ATO is granted for more than three years",
+    ],
+    correctIndex: 1,
+    explanation:
+      "An ISA documents the technical and security requirements for a connection between two organizations' IT systems. It defines data flows, security controls, responsibilities, and acceptable use. ISAs are distinct from Memoranda of Understanding (MOUs) and are required for federal system interconnections under OMB and FISMA guidance.",
+  },
+  {
+    id: "cgrc-d3-006",
+    certId: "cgrc",
+    domainId: "cgrc-d3",
+    question: "Control parameter values (assignment values) in NIST SP 800-53 are:",
+    options: [
+      "Fixed government-wide defaults that cannot be changed",
+      "Organization- or system-defined values that complete a control's specification",
+      "Values set by the control assessor during testing",
+      "Automatically populated by security scanning tools",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Many SP 800-53 controls include parameters that organizations must specify — for example, 'the organization reviews account activity every [Assignment: organization-defined time period].' Organizations define these values based on risk, mission needs, and regulations. Defined parameter values must be documented in the SSP.",
+  },
+  {
+    id: "cgrc-d3-007",
+    certId: "cgrc",
+    domainId: "cgrc-d3",
+    question: "Which baseline in NIST SP 800-53B corresponds to systems where the loss of confidentiality, integrity, or availability would have a severe or catastrophic effect on operations?",
+    options: [
+      "Low baseline",
+      "Moderate baseline",
+      "High baseline",
+      "Critical baseline",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The High impact baseline applies to systems where a breach would cause severe or catastrophic adverse effects on organizational operations, assets, individuals, or national security. High baseline includes the most controls and the most stringent parameter values. Low baseline is for limited adverse effects; Moderate for serious adverse effects.",
+  },
+  {
+    id: "cgrc-d4-006",
+    certId: "cgrc",
+    domainId: "cgrc-d4",
+    question: "A security baseline configuration establishes:",
+    options: [
+      "The minimum number of users allowed on a system",
+      "A documented, approved set of settings that defines the secure state of a system",
+      "The maximum classification level of data stored on a system",
+      "The vendor's default factory settings",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A security baseline configuration (or secure baseline) documents the approved, secure settings for an information system or device — hardened OS, disabled services, patching state, etc. It becomes the reference point for configuration management. Deviations from the baseline must go through the change control process.",
+  },
+  {
+    id: "cgrc-d4-007",
+    certId: "cgrc",
+    domainId: "cgrc-d4",
+    question: "When a security incident occurs on an authorized system, the ISO should first:",
+    options: [
+      "Immediately revoke the ATO",
+      "Notify the AO and follow the incident response plan while assessing the impact on the authorization",
+      "Shut down the system without notifying the AO",
+      "Wait for the annual assessment to evaluate the impact",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Incidents must be handled per the IR plan, and the AO must be notified because the incident may affect the residual risk accepted in the ATO. Depending on severity, the AO may impose conditions, require immediate remediation, or revoke the authorization — but the AO makes that determination, not the ISO unilaterally.",
+  },
+  {
+    id: "cgrc-d5-006",
+    certId: "cgrc",
+    domainId: "cgrc-d5",
+    question: "Ongoing assessments in an ISCM program differ from initial authorization assessments in that they:",
+    options: [
+      "Require a full retest of all security controls annually",
+      "Focus on a subset of controls based on risk, volatility, and ISCM strategy rather than the entire control set",
+      "Are conducted by the AO rather than an independent assessor",
+      "Only apply to HIGH-impact systems",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Ongoing assessments take a risk-based, continuous approach: high-volatility controls (patch status, account management, configurations) are checked frequently while more stable architectural controls may be assessed less often. This contrasts with an initial comprehensive assessment of all controls required for an authorization decision.",
+  },
+  {
+    id: "cgrc-d5-007",
+    certId: "cgrc",
+    domainId: "cgrc-d5",
+    question: "Vulnerability scanning as part of ISCM primarily serves to:",
+    options: [
+      "Replace the need for penetration testing",
+      "Provide automated, ongoing identification of known vulnerabilities across system components",
+      "Generate the final Security Assessment Report",
+      "Validate that all SP 800-53 controls are implemented",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Vulnerability scanning tools continuously identify known weaknesses (missing patches, misconfigurations, default credentials) in an automated, repeatable way. Scan results feed the POA&M and ISCM dashboard. They do not replace manual pen testing or formal assessments, which check broader control effectiveness.",
+  },
+  {
+    id: "cgrc-d6-006",
+    certId: "cgrc",
+    domainId: "cgrc-d6",
+    question: "An authorization package submitted to the AO must include at minimum:",
+    options: [
+      "SSP, SAR, and POA&M",
+      "Only the SSP and penetration test report",
+      "Risk Executive (Function) approval memo and POA&M only",
+      "Vulnerability scan results and signed NDA",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Per NIST SP 800-37, the core authorization package consists of: the System Security Plan (SSP), the Security Assessment Report (SAR), and the Plan of Action and Milestones (POA&M). The AO reviews these to make an authorization decision. Additional documents (e.g., privacy impact assessment) may be required depending on system type.",
+  },
+  {
+    id: "cgrc-d6-007",
+    certId: "cgrc",
+    domainId: "cgrc-d6",
+    question: "The primary purpose of risk acceptance in the authorization process is to:",
+    options: [
+      "Document that the system is free of vulnerabilities",
+      "Formally acknowledge that identified residual risks are acceptable given the mission need",
+      "Transfer liability for security incidents to the ISO",
+      "Prove compliance with all applicable regulations",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Authorization is a risk management decision, not a guarantee of security. The AO's signature on the ATO formally acknowledges the residual risk remaining after controls are applied, and accepts that risk on behalf of the organization for the stated period under the stated conditions. Risk never reaches zero; it is accepted at a tolerable level.",
+  },
+  {
+    id: "cgrc-d7-006",
+    certId: "cgrc",
+    domainId: "cgrc-d7",
+    question: "Key performance indicators (KPIs) in an ISCM program measure:",
+    options: [
+      "Only the number of incidents per quarter",
+      "The effectiveness of security controls and the health of the security posture over time",
+      "Employee satisfaction with security policies",
+      "The total cost of the security program",
+    ],
+    correctIndex: 1,
+    explanation:
+      "ISCM KPIs quantify security posture health — e.g., % of systems with current patches, % of controls meeting defined thresholds, mean time to remediate high vulnerabilities. They enable trend analysis and inform risk decisions. NIST SP 800-137 emphasizes that metrics must be actionable and tied to organizational risk tolerance.",
+  },
+  {
+    id: "cgrc-d7-007",
+    certId: "cgrc",
+    domainId: "cgrc-d7",
+    question: "The frequency of security status reporting in an ISCM program should be based on:",
+    options: [
+      "A fixed government-wide standard of quarterly reports",
+      "The volatility of the control, the risk tolerance of the AO, and organizational mission needs",
+      "Whatever schedule the security assessor recommends",
+      "Annual calendar aligned with the fiscal year",
+    ],
+    correctIndex: 1,
+    explanation:
+      "NIST SP 800-137 establishes that reporting frequency is risk-based: more volatile controls (e.g., patch status, account management) need higher-frequency reporting; architectural controls may require less frequent review. The ISCM strategy aligns frequency with what AOs and senior leaders need to make timely risk decisions.",
+  },
+
+  // ── ISSMP additional questions (round 5) ───────────────────────────────────
+  {
+    id: "issmp-d1-007",
+    certId: "issmp",
+    domainId: "issmp-d1",
+    question: "The CISO's primary role in enterprise governance is to:",
+    options: [
+      "Own all security decisions and personally approve all firewall changes",
+      "Advise senior leadership on security risk, align security strategy with business objectives, and ensure accountability",
+      "Conduct hands-on incident response for all critical incidents",
+      "Manage the help desk and end-user security training",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The CISO is a strategic advisor and governance leader, not an operational manager for every security function. Their role is to translate security risk into business terms, influence investment priorities, and ensure the organization has accountable, well-governed security capabilities — delegating operational execution to security managers and analysts.",
+  },
+  {
+    id: "issmp-d2-007",
+    certId: "issmp",
+    domainId: "issmp-d2",
+    question: "When a software system reaches end-of-life (EOL), the security-driven response is to:",
+    options: [
+      "Continue using it indefinitely since vulnerabilities are unlikely",
+      "Document the risk and plan an orderly migration to a supported alternative",
+      "Immediately shut down the system without a migration plan",
+      "Request the vendor to restart support for free",
+    ],
+    correctIndex: 1,
+    explanation:
+      "EOL software no longer receives security patches, creating unmitigated vulnerability exposure. Best practice is to: document the residual risk (POA&M or risk register), accept it as a time-limited exception, and execute a migration or replacement project within a defined timeline. Immediate shutdown without a migration plan disrupts business operations.",
+  },
+  {
+    id: "issmp-d3-006",
+    certId: "issmp",
+    domainId: "issmp-d3",
+    question: "Quantitative risk assessment differs from qualitative risk assessment in that quantitative analysis:",
+    options: [
+      "Relies entirely on expert opinion and subjective ratings",
+      "Uses numerical values and financial figures to express risk in monetary terms",
+      "Is faster and cheaper to perform",
+      "Is only appropriate for low-impact systems",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Quantitative risk analysis assigns numeric values — annual loss expectancy (ALE = ARO × SLE), asset value, and threat probability — to express risk in financial terms. This enables direct cost-benefit comparison of controls. Qualitative analysis uses relative scales (High/Medium/Low) and is faster but less precise for ROI decisions.",
+  },
+  {
+    id: "issmp-d3-007",
+    certId: "issmp",
+    domainId: "issmp-d3",
+    question: "Single Loss Expectancy (SLE) is calculated as:",
+    options: [
+      "Asset Value × Annual Rate of Occurrence",
+      "Asset Value × Exposure Factor",
+      "Annualized Loss Expectancy ÷ Annual Rate of Occurrence",
+      "Threat Probability × Control Effectiveness",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SLE = Asset Value (AV) × Exposure Factor (EF), where EF is the percentage of asset value lost in a single incident. For example, if a $1M server has a 40% EF for a specific threat, SLE = $400K. Annual Loss Expectancy (ALE) = SLE × Annual Rate of Occurrence (ARO).",
+  },
+  {
+    id: "issmp-d4-006",
+    certId: "issmp",
+    domainId: "issmp-d4",
+    question: "Chain of custody in digital forensics is critical because:",
+    options: [
+      "It speeds up the investigation timeline",
+      "It ensures evidence integrity and admissibility by documenting who handled evidence, when, and how",
+      "It allows investigators to modify evidence to make it more readable",
+      "It replaces the need for technical analysis",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Chain of custody documents every person who has handled a piece of evidence, the time and date of transfers, and the storage conditions. Breaks in chain of custody can render digital evidence inadmissible in court proceedings and undermine the credibility of the investigation. Maintaining it is a foundational forensic discipline.",
+  },
+  {
+    id: "issmp-d4-007",
+    certId: "issmp",
+    domainId: "issmp-d4",
+    question: "When responding to a suspected insider threat incident, what principle should guide evidence collection?",
+    options: [
+      "Collect all evidence as quickly as possible without authorization",
+      "Follow legal authorization, preserve original evidence, and maintain chain of custody",
+      "Only preserve evidence that definitively proves guilt",
+      "Destroy potential evidence to protect the organization from liability",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Even for internal investigations, legal authorization (employment agreements, policies, warrants if needed), proper evidence preservation (bit-for-bit copies, hashing), and chain of custody documentation are required. Improperly collected evidence may be inadmissible and could expose the organization to legal liability.",
+  },
+  {
+    id: "issmp-d5-007",
+    certId: "issmp",
+    domainId: "issmp-d5",
+    question: "Maximum Tolerable Downtime (MTD) defines:",
+    options: [
+      "The desired backup frequency for critical data",
+      "The longest a business process can be disrupted before causing unacceptable harm to the organization",
+      "The time required to restore from backup",
+      "The financial cost of one hour of downtime",
+    ],
+    correctIndex: 1,
+    explanation:
+      "MTD (also called Maximum Tolerable Period of Disruption) is the threshold beyond which downtime causes irreversible harm — lost customers, regulatory violation, mission failure. The RTO (Recovery Time Objective) must be less than the MTD. If recovery takes longer than the MTD, the organization may not survive the disruption.",
+  },
+  {
+    id: "issmp-d6-007",
+    certId: "issmp",
+    domainId: "issmp-d6",
+    question: "The Computer Fraud and Abuse Act (CFAA) primarily addresses:",
+    options: [
+      "Physical theft of computer hardware",
+      "Unauthorized access to protected computers and computer fraud",
+      "Software licensing violations",
+      "Employment disputes involving technology workers",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The CFAA (18 U.S.C. § 1030) is the primary US federal law against computer crime. It criminalizes unauthorized access or exceeding authorized access to protected computers, accessing government computers without authorization, fraud using computers, and introducing malicious code. It applies to both external attackers and malicious insiders who exceed their access.",
+  },
 ];

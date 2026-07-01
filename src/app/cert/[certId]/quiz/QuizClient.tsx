@@ -75,6 +75,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
 
   const [phase, setPhase] = useState<Phase>("setup");
   const [examMode, setExamMode] = useState(false);
+  const [questionLimit, setQuestionLimit] = useState<number | null>(null);
   const [selectedDomainIds, setSelectedDomainIds] = useState<Set<string>>(() => {
     if (initialDomain && questions.some((q) => q.domainId === initialDomain)) {
       return new Set([initialDomain]);
@@ -86,6 +87,12 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [wrongIds, setWrongIds] = useState<Set<string>>(new Set());
+  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(`quiz-flags-${cert.id}`) ?? "[]");
+      return new Set<string>(Array.isArray(stored) ? stored : []);
+    } catch { return new Set<string>(); }
+  });
   const [showMistakes, setShowMistakes] = useState(false);
   const [domainScores, setDomainScores] = useState<Record<string, { score: number; total: number }>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
@@ -136,7 +143,12 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
   }
 
   function startQuiz(questionsToUse?: Question[]) {
-    const pool = questionsToUse ?? questions.filter((q) => selectedDomainIds.has(q.domainId));
+    let pool = questionsToUse ?? questions.filter((q) => selectedDomainIds.has(q.domainId));
+    // Apply question limit (only when not retrying a specific set)
+    if (!questionsToUse && questionLimit !== null) {
+      const s = shuffle([...pool]);
+      pool = s.slice(0, Math.min(questionLimit, s.length));
+    }
     const deck = withShuffledOptions(pool);
     setShuffled(deck);
     setIndex(0);
@@ -152,6 +164,18 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
       setTimeLeft(null);
     }
     setPhase("quiz");
+  }
+
+  function toggleFlag(questionId: string) {
+    setFlaggedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(questionId)) next.delete(questionId);
+      else next.add(questionId);
+      try {
+        localStorage.setItem(`quiz-flags-${cert.id}`, JSON.stringify([...next]));
+      } catch {}
+      return next;
+    });
   }
 
   function choose(optIndex: number) {
@@ -212,8 +236,11 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
 
   // ── Setup screen ──────────────────────────────────────────────────────────
   if (phase === "setup") {
-    const selectedCount = questions.filter((q) => selectedDomainIds.has(q.domainId)).length;
+    const poolSize = questions.filter((q) => selectedDomainIds.has(q.domainId)).length;
+    const effectiveCount = questionLimit !== null ? Math.min(questionLimit, poolSize) : poolSize;
     const allSelected = selectedDomainIds.size === domainsWithQuestions.length;
+    const limits = [10, 25, 50];
+    const flaggedInPool = questions.filter((q) => selectedDomainIds.has(q.domainId) && flaggedIds.has(q.id));
 
     return (
       <main id="main-content" className="min-h-screen bg-gray-50 p-8">
@@ -300,16 +327,56 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
             </div>
           </div>
 
+          {/* Question count selector */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-4">
+            <p className="text-sm font-semibold text-gray-700 mb-3">Questions per session</p>
+            <div className="flex gap-2 flex-wrap">
+              {limits.map((n) => (
+                <button
+                  key={n}
+                  onClick={() => setQuestionLimit(n >= poolSize ? null : n)}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium border-2 transition-colors ${
+                    (questionLimit === n || (n >= poolSize && questionLimit === null))
+                      ? `${bgLightMap[cert.color]} border-current`
+                      : "border-gray-200 text-gray-600 hover:border-gray-400"
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+              <button
+                onClick={() => setQuestionLimit(null)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium border-2 transition-colors ${
+                  questionLimit === null
+                    ? `${bgLightMap[cert.color]} border-current`
+                    : "border-gray-200 text-gray-600 hover:border-gray-400"
+                }`}
+              >
+                All ({poolSize})
+              </button>
+            </div>
+          </div>
+
+          {/* Flagged question shortcut */}
+          {flaggedInPool.length > 0 && (
+            <button
+              onClick={() => startQuiz(flaggedInPool)}
+              className="w-full py-2.5 rounded-xl border-2 border-yellow-300 bg-yellow-50 text-yellow-800 font-medium text-sm hover:bg-yellow-100 transition-colors mb-4"
+            >
+              ⚑ Practice {flaggedInPool.length} flagged question{flaggedInPool.length !== 1 ? "s" : ""}
+            </button>
+          )}
+
           <button
             onClick={() => startQuiz()}
-            disabled={selectedCount === 0}
+            disabled={poolSize === 0}
             className={`w-full py-3 rounded-lg text-white font-medium text-sm transition-opacity ${colorMap[cert.color]} disabled:opacity-40 disabled:cursor-not-allowed`}
           >
-            {selectedCount === 0
+            {poolSize === 0
               ? "Select at least one domain"
               : examMode
-              ? `Start Exam · ${selectedCount}q · ${formatTime(selectedCount * 90)}`
-              : `Start Quiz · ${selectedCount} question${selectedCount !== 1 ? "s" : ""}`}
+              ? `Start Exam · ${effectiveCount}q · ${formatTime(effectiveCount * 90)}`
+              : `Start Quiz · ${effectiveCount} question${effectiveCount !== 1 ? "s" : ""}`}
           </button>
         </div>
       </main>
@@ -323,7 +390,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
     const timedOut = timeLeft === 0;
 
     return (
-      <main className="min-h-screen bg-gray-50 p-8">
+      <main id="main-content" className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-lg mx-auto">
           <div className="bg-white rounded-2xl border border-gray-200 p-10 text-center mb-4">
             {timedOut && (
@@ -344,6 +411,18 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
                   className="px-5 py-2.5 rounded-lg border-2 border-orange-200 text-orange-700 font-medium text-sm hover:bg-orange-50"
                 >
                   Retry {wrongQuestions.length} wrong
+                </button>
+              )}
+              {flaggedIds.size > 0 && (
+                <button
+                  onClick={() => {
+                    const flagged = shuffled.filter((q) => flaggedIds.has(q.id));
+                    if (flagged.length > 0) startQuiz(flagged);
+                    else restart();
+                  }}
+                  className="px-5 py-2.5 rounded-lg border-2 border-yellow-300 text-yellow-800 font-medium text-sm hover:bg-yellow-50"
+                >
+                  ⚑ Flagged ({flaggedIds.size})
                 </button>
               )}
               <Link href={`/cert/${cert.id}`} className="px-5 py-2.5 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400">
@@ -468,9 +547,20 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
         </div>
 
         <div className="bg-white rounded-2xl border border-gray-200 p-8">
-          <p className="text-xs font-medium text-gray-400 mb-3 uppercase tracking-wide">
-            {cert.domains.find((d) => d.id === current.domainId)?.name}
-          </p>
+          <div className="flex items-start justify-between mb-3">
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">
+              {cert.domains.find((d) => d.id === current.domainId)?.name}
+            </p>
+            <button
+              onClick={() => toggleFlag(current.id)}
+              aria-label={flaggedIds.has(current.id) ? "Remove flag from this question" : "Flag this question for review"}
+              className={`text-base leading-none transition-colors ${
+                flaggedIds.has(current.id) ? "text-yellow-500 hover:text-yellow-400" : "text-gray-200 hover:text-yellow-400"
+              }`}
+            >
+              ⚑
+            </button>
+          </div>
           <p className="text-lg font-semibold text-gray-900 mb-6">{current.question}</p>
 
           <div className="space-y-3 mb-6">
