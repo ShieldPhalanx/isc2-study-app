@@ -4,6 +4,7 @@ import { certifications } from "@/data/certifications";
 import { studyContent } from "@/data/studyContent";
 import { questions } from "@/data/questions";
 import MarkReadButton from "@/components/MarkReadButton";
+import DomainQuizBadge from "@/components/DomainQuizBadge";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -58,10 +59,11 @@ export default async function DomainLearnPage(
 
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
             <span className={`text-xs font-bold text-white px-2 py-0.5 rounded ${colorMap[cert.color]}`}>
               D{domainIndex + 1} · {domain.weight}% of exam
             </span>
+            <DomainQuizBadge certId={certId} domainId={domainId} />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-3">{domain.name}</h1>
           <p className="text-gray-600 leading-relaxed">{content.overview}</p>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useProgress } from "@/hooks/useProgress";
+import { useScoreHistory } from "@/hooks/useScoreHistory";
 import type { Certification, Domain } from "@/data/certifications";
 import type { DomainStudyContent } from "@/data/studyContent";
 
@@ -34,7 +35,10 @@ type Props = {
 
 export default function DomainProgressList({ cert, domains, contentMap }: Props) {
   const { progress } = useProgress();
+  const { getDomainStats } = useScoreHistory();
+
   const readCount = domains.filter((d) => progress[d.id]).length;
+  const domainStats = getDomainStats(cert.id);
 
   return (
     <>
@@ -57,12 +61,16 @@ export default function DomainProgressList({ cert, domains, contentMap }: Props)
         {domains.map((domain, i) => {
           const content = contentMap[domain.id];
           const isRead = !!progress[domain.id];
+          const stats = domainStats[domain.id];
+          const quizWeak = stats && stats.lastPct < 70;
 
           return (
             <Link
               key={domain.id}
               href={`/cert/${cert.id}/learn/${domain.id}`}
-              className={`flex items-start justify-between bg-white border border-gray-200 ring-2 ring-transparent rounded-xl px-5 py-4 transition-all ${ringMap[cert.color]}`}
+              className={`flex items-start justify-between bg-white border rounded-xl px-5 py-4 transition-all ring-2 ring-transparent ${ringMap[cert.color]} ${
+                quizWeak ? "border-orange-200" : "border-gray-200"
+              }`}
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
@@ -70,6 +78,11 @@ export default function DomainProgressList({ cert, domains, contentMap }: Props)
                     D{i + 1}
                   </span>
                   <span className="text-sm font-semibold text-gray-900">{domain.name}</span>
+                  {quizWeak && (
+                    <span className="text-xs font-medium text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
+                      Review
+                    </span>
+                  )}
                 </div>
                 {content && (
                   <p className="text-xs text-gray-500 line-clamp-2 mt-1">{content.overview}</p>
@@ -81,7 +94,13 @@ export default function DomainProgressList({ cert, domains, contentMap }: Props)
                 ) : (
                   <span className="text-lg text-gray-200">○</span>
                 )}
-                <p className="text-xs text-gray-400">{domain.weight}%</p>
+                {stats ? (
+                  <span className={`text-xs font-semibold tabular-nums ${stats.lastPct >= 70 ? "text-green-600" : "text-red-500"}`}>
+                    {stats.lastPct}%
+                  </span>
+                ) : (
+                  <p className="text-xs text-gray-400">{domain.weight}%</p>
+                )}
                 <p className="text-xs text-gray-400">{domain.qCount} q</p>
               </div>
             </Link>

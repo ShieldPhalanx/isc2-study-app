@@ -18,11 +18,19 @@ const badgeMap: Record<string, string> = {
 };
 
 export default function Home() {
+  const totalQuestions = questions.length;
+  const totalDomains = certifications.reduce((sum, c) => sum + c.domains.length, 0);
+
   return (
     <main className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-1">Security Cert Study</h1>
-        <p className="text-gray-500 mb-8">ISC² &amp; ISACA certification prep — pick a cert to start</p>
+        <p className="text-gray-500 mb-1">
+          ISC² &amp; ISACA certification prep — study notes, practice quizzes, and flashcards.
+        </p>
+        <p className="text-xs text-gray-400 mb-8">
+          {certifications.length} certifications · {totalDomains} domains · {totalQuestions} practice questions
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {certifications.map((cert) => {

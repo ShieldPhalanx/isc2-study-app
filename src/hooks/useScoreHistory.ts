@@ -48,5 +48,27 @@ export function useScoreHistory() {
     [history]
   );
 
-  return { addResult, getHistory };
+  // Returns the most-recent quiz score per domain for a given cert.
+  // history is stored newest-first, so the first occurrence of each domainId
+  // is always the most recent result.
+  const getDomainStats = useCallback(
+    (certId: string): Record<string, { lastPct: number; attempts: number }> => {
+      const certHistory = history.filter((r) => r.certId === certId);
+      const stats: Record<string, { lastPct: number; attempts: number }> = {};
+      for (const result of certHistory) {
+        for (const [domainId, ds] of Object.entries(result.domainScores ?? {})) {
+          const pct = Math.round((ds.score / ds.total) * 100);
+          if (!stats[domainId]) {
+            stats[domainId] = { lastPct: pct, attempts: 1 };
+          } else {
+            stats[domainId].attempts++;
+          }
+        }
+      }
+      return stats;
+    },
+    [history]
+  );
+
+  return { addResult, getHistory, getDomainStats };
 }
