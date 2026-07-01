@@ -11,11 +11,14 @@ export default function CismRiskHeatMap() {
   }
 
   const cellW = 80, cellH = 38, labelW = 100, topH = 44;
+  const legendY0 = topH + cellH * 5 + 10;
+  const legendRowH = 18;
+  const tipY = legendY0 + legendRowH * 2 + 6;
 
   return (
     <div className="w-full overflow-x-auto">
       <svg
-        viewBox={`0 0 ${labelW + cellW * 5 + 10} ${topH + cellH * 5 + 70}`}
+        viewBox={`0 0 ${labelW + cellW * 5 + 10} ${tipY + 30}`}
         className="w-full max-w-2xl mx-auto block"
         aria-label="Risk heat map showing 5x5 likelihood vs impact matrix"
       >
@@ -74,21 +77,27 @@ export default function CismRiskHeatMap() {
           </g>
         ))}
 
-        {/* Legend */}
+        {/* Legend — 2x2 grid so longer labels don't collide */}
         {[
           { c: "#22c55e", l: "Low — Accept" },
           { c: "#eab308", l: "Medium — Reduce/Monitor" },
           { c: "#f97316", l: "High — Treat" },
           { c: "#dc2626", l: "Critical — Avoid/Transfer" },
-        ].map((item, i) => (
-          <g key={i}>
-            <rect x={labelW + i * (cellW + 26)} y={topH + cellH * 5 + 12} width="12" height="12" fill={item.c} rx="2"/>
-            <text x={labelW + i * (cellW + 26) + 16} y={topH + cellH * 5 + 22} fill="#374151" fontSize="9">{item.l}</text>
-          </g>
-        ))}
+        ].map((item, i) => {
+          const col = i % 2;
+          const row = Math.floor(i / 2);
+          const x = labelW + col * 250;
+          const y = legendY0 + row * legendRowH;
+          return (
+            <g key={i}>
+              <rect x={x} y={y} width="12" height="12" fill={item.c} rx="2"/>
+              <text x={x + 16} y={y + 10} fill="#374151" fontSize="9">{item.l}</text>
+            </g>
+          );
+        })}
 
-        <rect x={labelW} y={topH + cellH * 5 + 38} width={cellW * 5} height="22" rx="4" fill="#f1f5f9"/>
-        <text x={labelW + (cellW * 5) / 2} y={topH + cellH * 5 + 53} textAnchor="middle" fill="#64748b" fontSize="10">
+        <rect x={labelW} y={tipY} width={cellW * 5} height="22" rx="4" fill="#f1f5f9"/>
+        <text x={labelW + (cellW * 5) / 2} y={tipY + 15} textAnchor="middle" fill="#64748b" fontSize="10">
           CISM: Risk = Likelihood × Impact. Treatment decisions flow from this matrix.
         </text>
       </svg>

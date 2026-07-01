@@ -8,12 +8,12 @@ export default function CismProgramLifecycle() {
     { label: "Improve", sub: "Iterate & update", color: "#92400e" },
   ];
 
-  const cx = 290, cy = 160, r = 112, labelR = 155;
+  const cx = 290, cy = 190, r = 112, labelR = 155;
   const total = phases.length;
 
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 580 360" className="w-full max-w-xl mx-auto block" aria-label="Security program lifecycle: Assess, Design, Implement, Operate, Monitor, Improve">
+      <svg viewBox="0 0 580 424" className="w-full max-w-xl mx-auto block" aria-label="Security program lifecycle: Assess, Design, Implement, Operate, Monitor, Improve">
         {/* Center circle */}
         <circle cx={cx} cy={cy} r="66" fill="#1e293b"/>
         <text x={cx} y={cy - 12} textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">Security</text>
@@ -50,9 +50,9 @@ export default function CismProgramLifecycle() {
           );
         })}
 
-        <rect x="10" y="316" width="560" height="38" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
-        <text x="290" y="330" textAnchor="middle" fill="#475569" fontSize="10" fontWeight="bold">Key concept: The lifecycle is continuous — not a one-time project.</text>
-        <text x="290" y="346" textAnchor="middle" fill="#64748b" fontSize="10">Each cycle improves maturity. Monitor findings feed directly back into Assess.</text>
+        <rect x="10" y="376" width="560" height="38" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+        <text x="290" y="390" textAnchor="middle" fill="#475569" fontSize="10" fontWeight="bold">Key concept: The lifecycle is continuous — not a one-time project.</text>
+        <text x="290" y="406" textAnchor="middle" fill="#64748b" fontSize="10">Each cycle improves maturity. Monitor findings feed directly back into Assess.</text>
       </svg>
     </div>
   );
