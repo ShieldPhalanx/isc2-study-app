@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Certification, Domain } from "@/data/certifications";
 import { Question } from "@/data/questions";
@@ -28,7 +28,12 @@ const checkMap: Record<string, string> = {
 };
 
 function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5);
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
 export default function QuizClient({ cert, questions, initialDomain }: Props) {
@@ -107,6 +112,27 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
     setWrongIds(new Set());
     setShowMistakes(false);
   }
+
+  // Stable refs so keyboard handler never closes over stale state
+  const chooseRef = useRef(choose);
+  const nextRef = useRef(next);
+  useEffect(() => { chooseRef.current = choose; });
+  useEffect(() => { nextRef.current = next; });
+
+  // Keyboard: 1–4 pick answer, Enter/Space advance when answered
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (phase !== "quiz") return;
+      if (selected === null) {
+        const pick = ["1", "2", "3", "4"].indexOf(e.key);
+        if (pick !== -1) { e.preventDefault(); chooseRef.current(pick); }
+      } else {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nextRef.current(); }
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [phase, selected]);
 
   // ── Setup screen ──────────────────────────────────────────────────────────
   if (phase === "setup") {
@@ -312,6 +338,9 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
                 <button key={i} className={cls} onClick={() => choose(i)}>
                   <span className="font-bold mr-2">{String.fromCharCode(65 + i)}.</span>
                   {opt}
+                  {selected === null && (
+                    <span className="hidden md:inline ml-2 text-xs opacity-40 font-normal">({i + 1})</span>
+                  )}
                 </button>
               );
             })}
@@ -330,6 +359,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
               className={`w-full py-3 rounded-lg text-white font-medium text-sm ${colorMap[cert.color]}`}
             >
               {index + 1 >= shuffled.length ? "See Results" : "Next Question →"}
+              <span className="hidden md:inline ml-2 text-xs opacity-60 font-normal">Enter</span>
             </button>
           )}
         </div>

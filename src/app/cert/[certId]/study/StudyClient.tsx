@@ -40,7 +40,12 @@ const textColorMap: Record<string, string> = {
 };
 
 function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5);
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
 function initCards(questions: Question[]): CardState[] {
@@ -174,7 +179,7 @@ export default function StudyClient({ cert, questions }: Props) {
         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-8">
           <div
             className={`h-1.5 rounded-full transition-all ${colorMap[cert.color].split(" ")[0]}`}
-            style={{ width: `${(index / totalCount) * 100}%` }}
+            style={{ width: `${((index + 1) / totalCount) * 100}%` }}
           />
         </div>
 
