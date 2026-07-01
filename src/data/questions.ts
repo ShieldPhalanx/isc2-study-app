@@ -193,14 +193,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "Which of the following BEST describes information security governance?",
     options: [
-      "Implementing firewalls and intrusion detection systems",
-      "The system by which an organization directs and controls information security",
-      "Conducting annual penetration tests",
-      "Training employees on phishing awareness",
+      "Deploying firewalls, encryption, and intrusion detection systems",
+      "Conducting annual penetration tests and vulnerability scans",
+      "The framework of leadership and accountability that directs security",
+      "Delivering phishing-awareness training across the workforce",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Information security governance is the overarching framework of leadership, accountability, and decision-making that ensures security supports business objectives.",
+      "Governance is the leadership and accountability framework — who decides, who is accountable — that directs and oversees security. It is distinct from operational activities like patching, testing, or training, which are management functions carried out under that governance.",
   },
   {
     id: "cism-d1-002",
@@ -208,14 +208,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "An information security strategy should PRIMARILY be aligned with:",
     options: [
-      "The latest NIST publications",
-      "The IT department's roadmap",
-      "Organizational business objectives",
-      "Regulatory requirements only",
+      "The organization's business objectives and strategy",
+      "The technology roadmap maintained by IT",
+      "The latest published NIST or ISO guidance",
+      "The minimum applicable regulatory requirements",
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation:
-      "Security strategy must enable and protect business objectives first; compliance and technology choices flow from that alignment.",
+      "Strategy exists to protect and enable the organization's business objectives. Frameworks, IT roadmaps, and compliance requirements are inputs that support alignment — they don't substitute for it.",
   },
   // CISM – D2: Information Security Risk Management
   {
@@ -223,10 +223,15 @@ export const questions: Question[] = [
     certId: "cism",
     domainId: "cism-d2",
     question: "Which term describes the amount of risk an organization is willing to accept in pursuit of its objectives?",
-    options: ["Risk threshold", "Risk appetite", "Risk tolerance", "Residual risk"],
-    correctIndex: 1,
+    options: [
+      "Risk tolerance",
+      "Risk threshold",
+      "Risk appetite",
+      "Residual risk",
+    ],
+    correctIndex: 2,
     explanation:
-      "Risk appetite is the high-level statement of how much risk the organization will accept. Risk tolerance is the acceptable deviation from that appetite in practice.",
+      "Risk appetite is the high-level statement of how much risk the organization will accept. Risk tolerance is the acceptable deviation from that appetite in day-to-day practice, and residual risk is what remains after controls are applied.",
   },
   // CISSP – D2: Asset Security
   {
@@ -619,12 +624,12 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "When building an information security program, the FIRST step should be to:",
     options: [
-      "Select and deploy security technologies",
-      "Hire additional security staff",
       "Understand the business context, objectives, and risk tolerance",
-      "Conduct a penetration test",
+      "Begin deploying security technologies across the estate",
+      "Bring on additional security staff to begin the work",
+      "Commission a penetration test of the key systems first",
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation:
       "A security program must be grounded in business context. Without understanding organizational objectives and acceptable risk levels, technology and staffing decisions will be misaligned and difficult to justify.",
   },
@@ -634,14 +639,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "Security metrics used to report program effectiveness to senior management should PRIMARILY demonstrate:",
     options: [
-      "Technical vulnerability counts",
-      "Number of security tools deployed",
-      "Business risk reduction and alignment with organizational objectives",
-      "Number of security policies in force",
+      "A running count of technical vulnerabilities found",
+      "The total number of security tools now deployed",
+      "Business risk reduction aligned to organizational goals",
+      "How many security policies are currently in force",
     ],
     correctIndex: 2,
     explanation:
-      "Executives care about business outcomes, not technical details. Metrics should translate security activities into business value — reduced risk exposure, avoided losses, and compliance posture.",
+      "Executives care about business outcomes, not technical details. Metrics should translate security activities into business value — reduced risk exposure, avoided losses, and compliance posture — rather than raw activity counts.",
   },
   // CISM – D4: Incident Management
   {
@@ -649,10 +654,15 @@ export const questions: Question[] = [
     certId: "cism",
     domainId: "cism-d4",
     question: "Which phase of incident response focuses on limiting the spread of an attack?",
-    options: ["Identification", "Containment", "Eradication", "Recovery"],
+    options: [
+      "Identification",
+      "Containment",
+      "Eradication",
+      "Recovery",
+    ],
     correctIndex: 1,
     explanation:
-      "Containment stops an incident from spreading to additional systems before eradication (removal of the threat) and recovery (restoring services) begin.",
+      "Containment stops an incident from spreading to additional systems before eradication (removing the threat) and recovery (restoring services) begin.",
   },
   {
     id: "cism-d4-002",
@@ -660,14 +670,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "A post-incident review is MOST valuable because it:",
     options: [
-      "Assigns blame to responsible parties",
-      "Satisfies regulatory requirements",
-      "Identifies lessons learned to improve future response",
-      "Documents the attack for law enforcement",
+      "It documents the attack in detail for law enforcement",
+      "It formally assigns blame to the responsible parties",
+      "It satisfies a specific regulatory reporting requirement",
+      "It identifies lessons learned to improve future response",
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation:
-      "The primary value of a post-incident review (lessons learned) is continuous improvement of the incident response capability.",
+      "The primary value of a post-incident review (lessons learned) is continuous improvement of the incident response capability — not assigning blame, satisfying a specific regulator, or building a law-enforcement case, though it may support all three indirectly.",
   },
 
   // ── Additional questions (round 2) ───────────────────────────────────────
@@ -1365,10 +1375,15 @@ export const questions: Question[] = [
     certId: "cism",
     domainId: "cism-d1",
     question: "Which governance framework provides a control objectives model specifically designed for IT management and governance?",
-    options: ["NIST CSF", "COBIT", "ISO 27001", "ITIL"],
-    correctIndex: 1,
+    options: [
+      "NIST CSF",
+      "ISO 27001",
+      "ITIL",
+      "COBIT",
+    ],
+    correctIndex: 3,
     explanation:
-      "COBIT (Control Objectives for IT) provides a framework for IT governance and management, aligning IT activities with business objectives. ISO 27001 is an information security management standard; ITIL covers IT service management.",
+      "COBIT (Control Objectives for Information and Related Technologies) provides a framework of governance and management objectives purpose-built for IT. NIST CSF is a risk-based cybersecurity framework, ISO 27001 is an ISMS certification standard, and ITIL covers IT service management — none is a dedicated IT governance control-objectives model.",
   },
   {
     id: "cism-d1-004",
@@ -1376,14 +1391,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "An information security steering committee's PRIMARY purpose is to:",
     options: [
-      "Perform technical security reviews of systems",
-      "Provide cross-functional oversight, prioritize security investments, and ensure security aligns with business strategy",
-      "Manage the security operations center",
-      "Conduct employee security awareness training",
+      "Perform hands-on technical reviews of production systems",
+      "Directly manage day-to-day security operations center activities",
+      "Give cross-functional oversight that aligns security with strategy",
+      "Deliver security-awareness training to the workforce",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "The steering committee brings together business leaders, IT, legal, and security to govern the security program — making strategic investment decisions, reviewing risk posture, and championing security as a business enabler.",
+      "The steering committee is a governance body — it sets direction and priorities across business units. Day-to-day technical work such as system reviews, SOC operations, or training delivery is management's job, carried out under that direction.",
   },
   {
     id: "cism-d1-005",
@@ -1391,14 +1406,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "A security policy that is not enforced is MOST likely to result in:",
     options: [
-      "Increased efficiency in operations",
-      "A false sense of security and uncontrolled risk exposure",
-      "Regulatory compliance",
-      "Reduced administrative overhead",
+      "A false sense of security while real risk goes unmanaged",
+      "Smoother operations due to fewer enforcement checks",
+      "Stronger regulatory standing since the policy exists",
+      "Lower administrative cost from reduced oversight",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Unenforced policies create a gap between documented intent and actual practice. Employees may believe they are protected by policies that are not followed, while real vulnerabilities go unaddressed. Enforcement is what gives a policy security value.",
+      "An unenforced policy creates a gap between documented intent and actual practice. Employees may assume protections are in place, and auditors may see a policy on paper, while real risk goes unmanaged. Enforcement is what converts a written policy into actual risk reduction.",
   },
 
   // CISM – D2: Information Security Risk Management (additional)
@@ -1408,24 +1423,29 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Inherent risk is best defined as:",
     options: [
-      "Risk remaining after all controls are applied",
-      "The level of risk that exists before any controls are implemented",
-      "Risk that cannot be mitigated under any circumstances",
-      "Risk transferred to a third party through insurance",
+      "The level of risk in place before any controls are applied",
+      "Risk that remains in place after all controls are applied",
+      "Risk that cannot be mitigated under any circumstances at all",
+      "Risk that has been shifted to a third party via insurance",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Inherent risk is the raw, uncontrolled risk level. Residual risk is what remains after controls are applied. Understanding inherent risk helps prioritize where controls provide the most value.",
+      "Inherent risk is the raw, uncontrolled risk level before treatment. Residual risk is what remains after controls are applied. Understanding inherent risk helps prioritize where controls provide the most value.",
   },
   {
     id: "cism-d2-003",
     certId: "cism",
     domainId: "cism-d2",
     question: "Which risk treatment option involves completely discontinuing a risky activity?",
-    options: ["Risk transfer", "Risk acceptance", "Risk avoidance", "Risk mitigation"],
-    correctIndex: 2,
+    options: [
+      "Risk mitigation",
+      "Risk acceptance",
+      "Risk transfer",
+      "Risk avoidance",
+    ],
+    correctIndex: 3,
     explanation:
-      "Risk avoidance eliminates the activity or condition that creates the risk entirely (e.g., deciding not to collect certain categories of sensitive data). It eliminates the risk but also eliminates the associated business opportunity.",
+      "Risk avoidance eliminates the activity or condition that creates the risk entirely — for example, deciding not to collect certain categories of sensitive data. It removes the risk but also the associated business opportunity.",
   },
   {
     id: "cism-d2-004",
@@ -1433,14 +1453,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Risk tolerance and risk appetite differ in that:",
     options: [
-      "Risk appetite is the high-level strategic willingness to accept risk; risk tolerance is the acceptable deviation from that appetite in practice",
-      "Risk tolerance is set by executives; risk appetite is set by the board",
-      "Risk appetite applies to financial risk; risk tolerance applies to operational risk",
-      "They are interchangeable terms with no meaningful distinction",
+      "Executives set risk tolerance while the board sets risk appetite",
+      "Appetite governs financial risk only; tolerance governs operational risk",
+      "Appetite is the strategic risk-acceptance level; tolerance is the practical variance",
+      "The two terms are interchangeable with no meaningful distinction",
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation:
-      "Risk appetite is the overall amount and type of risk an organization is willing to accept in pursuit of its objectives. Risk tolerance is the acceptable variance from that appetite at the operational level — the practical limits.",
+      "Risk appetite is the overall amount and type of risk an organization is willing to accept in pursuit of its objectives. Risk tolerance is the acceptable variance from that appetite at the operational level — the practical day-to-day limits.",
   },
   {
     id: "cism-d2-005",
@@ -1448,14 +1468,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "A threat vector is BEST described as:",
     options: [
-      "The financial impact of a security incident",
-      "The path or method an attacker uses to gain unauthorized access to a system",
+      "The path an attacker uses to reach and access a system",
+      "The financial impact resulting from a security incident",
+      "The full list of threats an organization has identified",
       "The probability that a vulnerability will be exploited",
-      "The list of identified threats facing an organization",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "A threat vector is the attack path — how an adversary delivers a payload or reaches a target (e.g., phishing email, exposed RDP port, supply chain compromise). Understanding vectors helps prioritize defensive controls.",
+      "A threat vector is the attack path — how an adversary delivers a payload or reaches a target, such as a phishing email, an exposed RDP port, or a supply-chain compromise. Understanding vectors helps prioritize defensive controls.",
   },
 
   // CISM – D3: Information Security Program (additional)
@@ -1465,12 +1485,12 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "Security awareness training is MOST effective when it:",
     options: [
-      "Is delivered once during employee onboarding",
-      "Is role-specific, regularly updated, and includes practical exercises such as simulated phishing",
-      "Covers all security policies in a single annual session",
-      "Is delivered only to IT staff",
+      "Role-specific, refreshed regularly, with simulated phishing drills",
+      "Delivered a single time during new-employee onboarding",
+      "Covering every security policy in one long annual session",
+      "Delivered exclusively to the IT department's staff",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
       "Effective awareness programs are continuous, targeted to specific roles and risks, and reinforced through practical exercises. Simulated phishing, for example, measures real behavior change rather than just knowledge retention.",
   },
@@ -1480,14 +1500,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "Which element is MOST important when establishing a security program's resource requirements?",
     options: [
-      "The number of security certifications held by the team",
-      "Alignment of resource requests with identified and quantified business risks",
-      "Benchmarking against competitor security budgets",
-      "The age and complexity of existing security tools",
+      "The number of certifications held by the security team",
+      "A direct benchmark against competitor security budgets",
+      "The age and complexity of the tools already deployed",
+      "Requests aligned with identified, quantified business risk",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Resource requests grounded in risk data are far more persuasive to business leaders. Quantifying risk exposure (in financial terms where possible) directly ties security investment to business outcomes.",
+      "Resource requests grounded in risk data are far more persuasive to business leaders. Quantifying risk exposure in financial terms where possible directly ties security investment to business outcomes, rather than to team credentials, peer spending, or tool inventory.",
   },
   {
     id: "cism-d3-005",
@@ -1495,10 +1515,10 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "A third-party security assessment of a vendor is MOST critical when:",
     options: [
-      "The vendor provides office supplies",
-      "The vendor has access to or processes the organization's sensitive data",
-      "The vendor is located in a different country",
-      "The vendor is a public company",
+      "The vendor supplies office stationery and supplies",
+      "The vendor can access or process sensitive company data",
+      "The vendor happens to be based in another country",
+      "The vendor is a large, publicly traded company",
     ],
     correctIndex: 1,
     explanation:
@@ -1512,14 +1532,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "During an incident, the decision to notify customers about a data breach is PRIMARILY governed by:",
     options: [
-      "The CISO's personal judgement",
-      "Legal and regulatory breach notification requirements, typically triggered by defined thresholds",
-      "The marketing department's communications strategy",
-      "The organization's insurance carrier",
+      "Legal and regulatory thresholds for breach notification",
+      "Whatever the CISO personally judges to be right",
+      "The marketing department's public communications plan",
+      "Guidance issued by the organization's insurance carrier",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Breach notification obligations are defined by laws such as GDPR (72 hours to regulator), US state laws, HIPAA, and others — triggered by specific data types and thresholds. Failing to comply can result in significant fines.",
+      "Breach notification obligations are defined by laws such as GDPR (72 hours to the regulator), US state laws, and HIPAA — triggered by specific data types and thresholds, not by any one department's judgment or preference.",
   },
   {
     id: "cism-d4-004",
@@ -1527,22 +1547,27 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "An incident response retainer with a third-party firm is MOST valuable because it:",
     options: [
-      "Eliminates the need for an internal security team",
-      "Pre-establishes a relationship and contract terms so expert help is immediately available during a crisis",
-      "Guarantees the incident will be resolved within a defined timeframe",
-      "Transfers all legal liability to the third party",
+      "It removes any need to keep an internal security team",
+      "It guarantees resolution within a fixed, set timeframe",
+      "It pre-agrees terms so expert help is available immediately",
+      "It shifts all legal liability onto the retained firm",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "During a breach, every hour matters. A retainer avoids contract negotiations under pressure and ensures legal/investigative terms are pre-agreed. The firm also gains familiarity with the organization's environment in advance.",
+      "During a breach, every hour matters. A retainer avoids contract negotiations under pressure and ensures legal and investigative terms are pre-agreed, so expert help is available immediately — it doesn't replace an internal team, guarantee an outcome, or transfer liability.",
   },
   {
     id: "cism-d4-005",
     certId: "cism",
     domainId: "cism-d4",
     question: "Which incident response phase involves rebuilding systems, removing malware, and revoking compromised credentials?",
-    options: ["Identification", "Containment", "Eradication", "Recovery"],
-    correctIndex: 2,
+    options: [
+      "Identification",
+      "Eradication",
+      "Containment",
+      "Recovery",
+    ],
+    correctIndex: 1,
     explanation:
       "Eradication removes all traces of the threat — malware, backdoors, unauthorized accounts. It must be thorough before recovery begins, or attackers may regain access through remnants left on restored systems.",
   },
@@ -1902,14 +1927,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "The PRIMARY purpose of an information security charter is to:",
     options: [
-      "Document technical security configurations",
-      "Formally establish the security program's authority, scope, and objectives with executive endorsement",
-      "List all security tools and their costs",
-      "Assign security responsibilities to individual employees",
+      "Catalog technical configurations applied across security tools",
+      "Establish the program's authority and scope with executive backing",
+      "Itemize security tools currently deployed and their costs",
+      "Assign specific security duties to individual staff members",
     ],
     correctIndex: 1,
     explanation:
-      "A security charter (or mandate) grants the security program organizational authority. Without executive endorsement, the security program lacks the clout to enforce policies, obtain budget, or hold business units accountable.",
+      "A charter is the founding governance document — signed by executive leadership — that grants the security program its authority, scope, and mandate. Without it, the program lacks standing to enforce policy or hold business units accountable. Cataloging tools, configurations, or individual duties are operational outputs, not the charter's purpose.",
   },
   {
     id: "cism-d1-007",
@@ -1917,14 +1942,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "When implementing ISO 27001, the Statement of Applicability (SoA) is used to:",
     options: [
-      "List all known vulnerabilities in the organization",
-      "Document which Annex A controls are applicable, implemented, and why any are excluded",
-      "Describe the organization's IT asset inventory",
-      "Define security awareness training content",
+      "Catalog every known technical vulnerability across the organization's systems",
+      "Describe the complete IT asset inventory and ownership records",
+      "Define the scope and content of the awareness training program",
+      "Record which Annex A controls apply, are implemented, or are excluded",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "The SoA is a mandatory ISO 27001 document that justifies control selection decisions. It must address all 93 Annex A controls, explaining which are included (and how implemented) and which are excluded (and why exclusion is acceptable).",
+      "The SoA is the mandatory ISO 27001 document that justifies control selection — addressing all Annex A controls with a rationale for inclusion or exclusion. It is distinct from a vulnerability list, an asset inventory, or a training curriculum, though it may reference all three as supporting evidence.",
   },
 
   // CISM – D2 additional
@@ -1933,10 +1958,15 @@ export const questions: Question[] = [
     certId: "cism",
     domainId: "cism-d2",
     question: "Which risk response is most appropriate when a risk's cost to mitigate exceeds the value of the asset being protected?",
-    options: ["Risk avoidance", "Risk acceptance", "Risk transfer", "Risk mitigation"],
-    correctIndex: 1,
+    options: [
+      "Risk mitigation",
+      "Risk avoidance",
+      "Risk acceptance",
+      "Risk transfer",
+    ],
+    correctIndex: 2,
     explanation:
-      "When mitigation cost > asset value or potential loss, accepting the risk is the economically rational decision. The acceptance must be formally documented and reviewed periodically in case circumstances change.",
+      "When mitigation cost exceeds asset value or potential loss, accepting the risk is the economically rational decision. The acceptance must be formally documented and reviewed periodically in case circumstances change.",
   },
   {
     id: "cism-d2-007",
@@ -1944,14 +1974,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "A vulnerability assessment reveals that 200 systems have a critical patch missing. The FIRST action the information security manager should take is:",
     options: [
-      "Immediately patch all 200 systems",
-      "Assess the actual risk by considering exploitability, asset criticality, and existing compensating controls",
-      "Report the finding to regulators",
-      "Shut down the affected systems pending patching",
+      "Patch all 200 systems immediately without further analysis",
+      "Report the finding to regulators before any internal review",
+      "Take the affected systems offline pending a patch",
+      "Weigh exploitability, criticality, and compensating controls first",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Not all critical vulnerabilities carry equal risk in context. Before acting, the manager should evaluate: Is this vulnerability exploitable from the current threat landscape? Do compensating controls reduce impact? Are all 200 systems equally critical? Prioritization avoids wasted effort.",
+      "Not all critical vulnerabilities carry equal risk in context. Before acting, the manager should evaluate whether the vulnerability is exploitable from the current threat landscape, whether compensating controls reduce impact, and whether all 200 systems are equally critical. Prioritization avoids wasted effort.",
   },
 
   // CISM – D3 additional
@@ -1961,14 +1991,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "An information security program MOST effectively demonstrates value to the business by:",
     options: [
-      "Maximizing the number of security tools deployed",
-      "Showing a reduction in risk exposure and enabling business objectives securely",
-      "Achieving zero security incidents in a year",
-      "Completing all planned security projects on schedule",
+      "Reducing risk exposure while enabling the business securely",
+      "Maximizing the number of security tools in use",
+      "Reaching zero reported security incidents in a year",
+      "Completing every planned security project on schedule",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Zero incidents could reflect luck rather than effective security. Tool counts are meaningless without outcomes. Real value is demonstrated by reduced risk (quantified where possible) and by enabling the business to operate securely — not by blocking it.",
+      "Zero incidents could reflect luck rather than effective security, and tool counts are meaningless without outcomes. Real value is demonstrated by reduced risk, quantified where possible, and by enabling the business to operate securely rather than blocking it.",
   },
   {
     id: "cism-d3-007",
@@ -1976,14 +2006,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "When selecting security technologies for a program, the MOST important criterion is:",
     options: [
-      "Analyst recognition in industry reports",
-      "Alignment with identified risks and integration with existing architecture",
-      "Lowest total cost of ownership",
-      "Support for the latest industry standards",
+      "Being highly rated in analyst industry reports",
+      "Having the single lowest total cost of ownership",
+      "Support for the newest published industry standards",
+      "Alignment with risk and fit with existing architecture",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Technology should address specific, identified risks. An expensive tool that solves a low-priority risk is a poor investment. The right tool also needs to fit the environment — poor integration reduces effectiveness and increases operational complexity.",
+      "Technology should address specific, identified risks. An expensive tool that solves a low-priority risk is a poor investment, and the right tool also needs to fit the environment — poor integration reduces effectiveness and increases operational complexity.",
   },
 
   // CISM – D4 additional
@@ -1993,14 +2023,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "During a major incident, the information security manager's PRIMARY role is to:",
     options: [
-      "Personally perform technical forensic analysis",
-      "Coordinate response activities, ensure communication flows, and keep leadership informed",
-      "Negotiate with threat actors directly",
-      "Immediately notify all customers of the breach",
+      "Coordinate the response and keep leadership informed",
+      "Personally carry out the technical forensic analysis",
+      "Negotiate face-to-face with the threat actor directly",
+      "Immediately notify every single customer affected",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "The manager's role is coordination and escalation — not hands-on technical response. They ensure teams have authority and resources, manage internal/external communications, and brief the board and executives on status and decisions needed.",
+      "The manager's role is coordination and escalation, not hands-on technical response. They ensure teams have authority and resources, manage communications, and brief executives on status and decisions needed.",
   },
   {
     id: "cism-d4-007",
@@ -2008,14 +2038,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "Business continuity differs from disaster recovery in that business continuity:",
     options: [
-      "Only applies to natural disasters",
-      "Focuses on maintaining all business operations without interruption during any disruptive event",
-      "Is limited to IT system recovery",
-      "Does not require executive sponsorship",
+      "It applies only to disasters of a natural origin",
+      "It is limited strictly to recovering IT systems alone",
+      "It can proceed without needing executive sponsorship",
+      "It keeps critical operations running through any disruption",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Business continuity is the broader, people-and-process-focused discipline that keeps critical operations running during disruptions. Disaster recovery is a subset focused on restoring IT systems and data after a disruption.",
+      "Business continuity is the broader, people-and-process-focused discipline that keeps critical operations running during any disruption, natural or otherwise. Disaster recovery is the narrower subset focused on restoring IT systems and data.",
   },
 
   // ── CGRC additional questions (round 4) ────────────────────────────────────
@@ -2723,14 +2753,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "Which of the following BEST demonstrates alignment between information security and business objectives?",
     options: [
-      "The security team selects controls independently based on technical best practices",
-      "Security risk metrics are mapped to business impact indicators and reported to leadership",
-      "The CISO attends all IT project meetings",
-      "The organization passes its annual compliance audit",
+      "Security risk metrics are mapped to business-impact indicators for leadership",
+      "The security team selects controls using technical best practice alone",
+      "The organization passes its scheduled annual compliance audit",
+      "The CISO is included as an attendee at every IT project meeting",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Alignment means security decisions are driven by business objectives and communicated in business terms. Mapping security metrics to business impact (revenue risk, regulatory exposure, customer trust) demonstrates to leadership that security investments protect the mission — passing a compliance audit demonstrates compliance, not necessarily alignment.",
+      "Alignment is demonstrated when security communicates in the business's own language — mapping risk to business-impact indicators for leadership decision-making. Selecting controls on technical merit alone, attending meetings, or passing a compliance audit can all happen without alignment ever being demonstrated.",
   },
   {
     id: "cism-d1-009",
@@ -2738,14 +2768,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "A security manager discovers that a key business unit has deployed a cloud service without IT or security review. The BEST first action is to:",
     options: [
-      "Shut down the cloud service immediately",
-      "Conduct a risk assessment of the service and engage the business unit to understand the need",
-      "Report the business unit to senior management as a policy violation",
-      "Ignore it since the service is already in production",
+      "Shut the cloud service down immediately to stop unmanaged risk",
+      "Escalate the business unit to senior management as a violation",
+      "Assess the risk and engage the unit to understand its business need",
+      "Leave it running since it is already in production use",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Shadow IT reflects unmet business needs. The CISM approach is to assess the actual risk, engage the business unit as a partner, and address the underlying need through appropriate channels. Immediate shutdown disrupts operations and damages relationships; ignoring it creates unmanaged risk; escalating before understanding the context misses the chance to solve the root cause.",
+      "Shadow IT usually reflects an unmet business need. The CISM approach assesses actual risk and partners with the business unit to address the underlying need. Shutting the service down disrupts operations and damages trust, escalating punitively before understanding context misses the root cause, and ignoring it leaves risk unmanaged.",
   },
   {
     id: "cism-d2-008",
@@ -2753,14 +2783,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Which statement BEST describes the relationship between threats, vulnerabilities, and risk?",
     options: [
-      "Risk exists only when a threat is confirmed to be active",
-      "Risk arises when a threat has the potential to exploit a vulnerability, resulting in potential impact",
-      "A vulnerability alone constitutes risk regardless of whether threats exist",
-      "Threats and vulnerabilities are interchangeable terms",
+      "Risk exists only once a threat is confirmed to be actively exploiting",
+      "Risk arises when a threat could exploit a vulnerability, causing impact",
+      "A vulnerability alone is risk, whether or not a threat exists",
+      "Threats and vulnerabilities are simply interchangeable terms",
     ],
     correctIndex: 1,
     explanation:
-      "Risk is the intersection of threat (the agent or event that could cause harm), vulnerability (a weakness that can be exploited), and impact (the consequence). A vulnerability without a plausible threat agent (or vice versa) typically yields lower risk. CISM candidates must understand this relationship to prioritize risk treatment effectively.",
+      "Risk is the intersection of threat (the agent or event that could cause harm), vulnerability (a weakness that can be exploited), and impact (the consequence). A vulnerability without a plausible threat, or vice versa, typically yields lower risk. CISM candidates must understand this relationship to prioritize risk treatment effectively.",
   },
   {
     id: "cism-d2-009",
@@ -2768,14 +2798,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "The PRIMARY purpose of a risk register in an information security program is to:",
     options: [
-      "Store audit findings for the external auditor",
-      "Provide a centralized record of identified risks, their ratings, owners, and treatment status",
-      "Replace the need for a risk assessment",
-      "Document completed security projects",
+      "Store audit findings on behalf of the external auditor",
+      "Centrally record identified risks, ratings, owners, and treatment",
+      "Replace the need to ever perform a risk assessment",
+      "Document completed security projects for the archive",
     ],
     correctIndex: 1,
     explanation:
-      "A risk register is the authoritative record of an organization's identified information risks. It tracks risk descriptions, likelihood and impact ratings, risk owners, treatment decisions (mitigate/accept/transfer/avoid), and status of controls or remediation. It is a living document used by leadership for ongoing risk decision-making.",
+      "A risk register is the authoritative record of an organization's identified information risks. It tracks descriptions, likelihood and impact ratings, risk owners, treatment decisions, and control status. It is a living document used by leadership for ongoing risk decision-making.",
   },
   {
     id: "cism-d3-008",
@@ -2783,14 +2813,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "A newly appointed CISM is building an information security program from scratch. The BEST starting point is to:",
     options: [
-      "Purchase a SIEM tool to detect threats immediately",
-      "Conduct a current-state assessment to understand the organization's risk profile and existing controls",
-      "Hire additional security staff before planning",
-      "Implement full ISO 27001 certification in the first year",
+      "Purchase a SIEM right away to start detecting threats",
+      "Run a current-state assessment of risk profile and controls",
+      "Hire additional security staff before any planning",
+      "Pursue full ISO 27001 certification within year one",
     ],
     correctIndex: 1,
     explanation:
-      "A current-state assessment (gap analysis) establishes a baseline: what assets exist, what risks are present, what controls are in place, and what gaps remain. Without this understanding, investments in tools or certifications may not address the highest-priority risks. The assessment output drives the roadmap and business case for the security program.",
+      "A current-state assessment (gap analysis) establishes a baseline: what assets exist, what risks are present, what controls are in place, and what gaps remain. Without this understanding, investments in tools or certifications may not address the highest-priority risks.",
   },
   {
     id: "cism-d3-009",
@@ -2798,14 +2828,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "A security manager wants to demonstrate ROI on a new security control. The MOST credible approach is to:",
     options: [
-      "Show that the control satisfies a compliance requirement",
-      "Calculate the reduction in expected annual loss from the threat the control mitigates versus the control's cost",
-      "Cite industry averages for security spending as a percentage of IT budget",
-      "Count the number of alerts the control generates per month",
+      "Compare loss reduced by the control against its cost",
+      "Point out that the control satisfies a compliance box",
+      "Cite industry-average security spend as a share of IT budget",
+      "Count how many alerts the control produces each month",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Demonstrating ROI uses quantitative risk analysis: compare the annualized loss expectancy (ALE) before the control versus after, and weigh against the total cost of ownership. If the ALE reduction exceeds the control cost, the investment is justified. Compliance satisfaction and alert counts don't express financial value to business decision-makers.",
+      "Demonstrating ROI uses quantitative risk analysis: compare the annualized loss expectancy before the control versus after, and weigh that against the total cost of ownership. Compliance satisfaction and alert counts don't express financial value to business decision-makers.",
   },
   {
     id: "cism-d4-008",
@@ -2813,14 +2843,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "The PRIMARY objective of an incident containment strategy is to:",
     options: [
-      "Identify the root cause of the incident immediately",
-      "Limit the spread and impact of the incident while preserving evidence and maintaining operations",
-      "Eradicate the attacker from all systems before any other action",
-      "Notify all affected customers as the first priority",
+      "Pin down the root cause the moment it's discovered",
+      "Remove the attacker from every system straight away",
+      "Limit spread while preserving evidence and operations",
+      "Notify every affected customer as the very first step",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Containment stops the incident from spreading further and limits damage, while also preserving evidence for investigation and forensics. It is the second phase of incident response (after identification). Eradication and recovery come after containment, not simultaneously. Notification timelines are governed by regulation and occur after the incident is understood.",
+      "Containment stops the incident from spreading further and limits damage, while preserving evidence for investigation. It is the phase after identification — eradication, full attacker removal, and customer notification all follow once the situation is contained.",
   },
   {
     id: "cism-d4-009",
@@ -2828,14 +2858,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "Which metric BEST measures the effectiveness of an incident response program over time?",
     options: [
-      "Number of security tools deployed",
-      "Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR) trends",
-      "Total number of incidents reported",
-      "Size of the incident response team",
+      "How many security tools the team has deployed",
+      "Trends in Mean Time to Detect and Mean Time to Respond",
+      "The total number of incidents reported that year",
+      "The current headcount of the incident response team",
     ],
     correctIndex: 1,
     explanation:
-      "MTTD and MTTR are the gold-standard incident response KPIs. Decreasing MTTD means threats are detected faster (reducing attacker dwell time); decreasing MTTR means the organization responds more efficiently. Total incident count reflects threat volume, not program effectiveness. Number of tools and team size are inputs, not outcomes.",
+      "MTTD and MTTR are the gold-standard incident response KPIs: falling MTTD means threats are caught faster, and falling MTTR means the organization responds more efficiently. Incident counts, tool counts, and team size are inputs or byproducts, not outcome measures.",
   },
 
   // ── CGRC additional questions (round 6) ────────────────────────────────────
@@ -3043,14 +3073,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "A CISM is preparing a security budget request for the board. The MOST effective approach is to:",
     options: [
-      "List all planned security tools and their costs",
-      "Present technical threat statistics and vulnerability counts",
-      "Frame the request in terms of business risk reduction and expected loss avoided",
-      "Show a comparison to competitor security budgets",
+      "List every planned security tool alongside its cost",
+      "Present technical vulnerability counts and threat statistics",
+      "Compare the proposed budget to competitor security spending",
+      "Frame the request around business risk reduced and loss avoided",
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation:
-      "Boards make decisions based on business value and risk. Framing security spending as risk reduction — expected loss avoided, regulatory fines prevented, reputational harm mitigated — resonates with executive decision-making. Technical metrics (CVE counts, tool costs) lack business context and are less persuasive to non-technical leadership.",
+      "Boards fund what they understand: risk reduced and loss avoided, expressed in business terms. Tool lists, vulnerability counts, and peer comparisons lack that business framing and are far less persuasive in a budget conversation with non-technical executives.",
   },
   {
     id: "cism-d1-011",
@@ -3058,14 +3088,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "An employee requests a policy exception to use a personal cloud storage service for work files. The security manager should FIRST:",
     options: [
-      "Deny the exception immediately as policy violations cannot be tolerated",
-      "Approve the exception to avoid impeding productivity",
-      "Assess the risk the exception introduces and document it with compensating controls if approved",
-      "Escalate to legal before any decision is made",
+      "Deny the request outright since policy violations are never tolerated",
+      "Assess the risk and document compensating controls if it is approved",
+      "Approve the request right away to avoid slowing the employee down",
+      "Refer the decision to legal counsel before doing anything else",
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation:
-      "Policy exceptions are a normal governance mechanism. The correct process is to assess the risk introduced, determine whether compensating controls can bring it to an acceptable level, obtain appropriate management approval, and document the exception with a review date. Flat denials impede business agility; unconditional approvals undermine governance.",
+      "Policy exceptions are a normal governance mechanism, not a binary allow/deny decision. The correct process assesses the risk introduced, applies compensating controls if the exception is approved, secures appropriate sign-off, and documents a review date. Flat denial impedes the business, and blanket approval undermines governance.",
   },
   {
     id: "cism-d1-012",
@@ -3073,14 +3103,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "Separation of duties in information security governance PRIMARILY serves to:",
     options: [
-      "Ensure redundancy in case a key employee leaves",
-      "Reduce the risk that a single individual can commit and conceal fraud or error",
-      "Speed up security approvals by distributing workload",
-      "Meet regulatory requirements regardless of actual risk",
+      "Provide redundancy so operations continue if staff leave",
+      "Distribute workload so approvals move through faster",
+      "Prevent one individual from both committing and hiding fraud",
+      "Satisfy regulatory checklists irrespective of actual risk",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Separation of duties (SoD) requires two or more people to complete a sensitive transaction, preventing a single actor from both committing and concealing fraud or error. Examples: the person who approves access should not be the one who grants it; the auditor should not review their own work.",
+      "Separation of duties requires two or more people to complete a sensitive transaction so no single person can both commit and conceal fraud or error — for example, the person who approves access should not be the one who grants it. Redundancy, faster approvals, and checklist compliance may be side effects, but they are not the control's purpose.",
   },
   {
     id: "cism-d2-010",
@@ -3088,14 +3118,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Risk scenarios are MOST useful in information security risk management because they:",
     options: [
-      "Replace the need for quantitative risk calculations",
-      "Provide narrative context that helps management understand how a risk could materialize and its potential impact",
-      "Eliminate subjectivity from risk assessments",
-      "Are required by ISO 27001",
+      "They give narrative context so leaders grasp how a risk could unfold",
+      "They eliminate the need for any quantitative risk calculation",
+      "They eliminate all subjectivity from the risk assessment process",
+      "They are a document mandated specifically by ISO 27001",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Risk scenarios translate abstract threats into concrete stories: 'A ransomware attack encrypts our ERP system, preventing order processing for five days, costing $2M.' This narrative approach helps non-technical executives grasp consequences and make informed decisions. Scenarios complement rather than replace quantitative analysis.",
+      "Risk scenarios translate abstract threats into concrete stories — for example, a ransomware attack encrypting the ERP system and halting order processing for days. This narrative approach helps non-technical executives grasp consequences and make informed decisions. Scenarios complement rather than replace quantitative analysis.",
   },
   {
     id: "cism-d2-011",
@@ -3103,14 +3133,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Control effectiveness testing is BEST described as:",
     options: [
-      "Verifying that controls are documented in policy",
-      "Confirming that controls are operating as designed and actually reducing risk",
-      "Determining the cost of implementing a control",
-      "Comparing controls to industry benchmarks",
+      "Confirming controls are merely documented in policy text",
+      "Determining how much a control costs to implement",
+      "Confirming controls operate as designed and actually reduce risk",
+      "Comparing a control to industry benchmark practices",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "A control can exist on paper but fail in practice. Control effectiveness testing verifies that controls are functioning as intended — e.g., confirming access reviews complete on schedule, or that patches are applied within the SLA. Design adequacy (the control exists) and operating effectiveness (it works) are two distinct and both necessary audit concepts.",
+      "A control can exist on paper but fail in practice. Effectiveness testing verifies that controls are functioning as intended — for example, confirming access reviews complete on schedule or patches are applied within SLA. Design adequacy and operating effectiveness are distinct, and both necessary, audit concepts.",
   },
   {
     id: "cism-d2-012",
@@ -3118,14 +3148,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "An organization has formally accepted a risk. The security manager's ongoing responsibility is to:",
     options: [
-      "Nothing — risk acceptance ends security's responsibility for that risk",
-      "Monitor the risk and reassess if the threat environment or asset value changes",
-      "Transfer the risk to a third party immediately",
-      "Implement additional controls to reduce it further",
+      "Nothing further — acceptance closes out the risk permanently",
+      "Keep monitoring and reassess if conditions materially change",
+      "Transfer the risk to an insurer as soon as possible",
+      "Add further controls regardless of any added cost",
     ],
     correctIndex: 1,
     explanation:
-      "Risk acceptance is not permanent. The security manager must monitor accepted risks and reassess when conditions change — new threat actors, regulatory changes, increased asset value, or near-miss incidents may push a previously acceptable risk above tolerance. Accepted risks should be documented in the risk register with review dates.",
+      "Risk acceptance is not permanent. The security manager must monitor accepted risks and reassess when conditions change — new threat actors, regulatory changes, increased asset value, or near-miss incidents may push a previously acceptable risk above tolerance. Accepted risks should carry review dates in the risk register.",
   },
   {
     id: "cism-d3-010",
@@ -3133,14 +3163,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "A Capability Maturity Model (CMM) is used in information security programs to:",
     options: [
-      "Calculate the financial return on security investments",
-      "Assess the current maturity of security processes and guide improvement planning",
-      "Certify individual security professionals",
-      "Determine the number of security staff needed",
+      "Calculating the financial return on a security investment",
+      "Certifying the competence of individual professionals",
+      "Determining exactly how many security staff are needed",
+      "Assessing current process maturity to guide improvement",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "CMM-based models evaluate process maturity on a scale (typically 1–5: Initial → Optimizing). They help organizations understand current security program capability, identify gaps, and build improvement roadmaps. Maturity assessments are common inputs to security strategy and resource planning discussions with leadership.",
+      "CMM-based models evaluate process maturity on a scale, typically Initial through Optimizing. They help organizations understand current security program capability, identify gaps, and build improvement roadmaps used in strategy and resource planning discussions.",
   },
   {
     id: "cism-d3-011",
@@ -3148,14 +3178,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "When is the BEST time to integrate security requirements into a new application?",
     options: [
-      "During acceptance testing before deployment",
-      "After deployment, via a penetration test",
+      "During acceptance testing, right before deployment",
+      "Only after deployment, through a penetration test",
       "During the requirements and design phases of the SDLC",
-      "When the first security incident involving the application occurs",
+      "Only once the first related security incident occurs",
     ],
     correctIndex: 2,
     explanation:
-      "The 'shift-left' principle: security requirements identified during design cost a fraction of those found in testing or post-deployment. Fixing a flaw in design costs ~6× less than fixing it in testing and ~100× less than fixing it after release. This is the foundation of Secure SDLC and DevSecOps.",
+      "The 'shift-left' principle holds that security requirements identified during design cost a fraction of those found in testing or after release. This is the foundation of Secure SDLC and DevSecOps.",
   },
   {
     id: "cism-d3-012",
@@ -3163,14 +3193,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "An organization's security awareness program shows high training completion rates, yet phishing incidents continue at the same rate. The MOST likely explanation is:",
     options: [
-      "The phishing attacks are too sophisticated to prevent through training",
-      "The training content is not translating into behavior change",
-      "Employees are completing the training dishonestly",
-      "Security awareness programs cannot reduce phishing success rates",
+      "The attacks are simply too sophisticated to ever prevent",
+      "The training isn't translating into real behavior change",
+      "Employees are completing the training modules dishonestly",
+      "Awareness programs can't meaningfully reduce phishing rates",
     ],
     correctIndex: 1,
     explanation:
-      "Completion rates measure activity, not behavior change. A program with high completion but no reduction in phishing click rates has failed its purpose. Effective awareness programs use targeted content, simulated phishing exercises, and reinforcement to change behavior. Completion rate is a vanity metric; click rate, report rate, and incident trends are the real KPIs.",
+      "Completion rates measure activity, not behavior change. A program with high completion but no reduction in phishing click rates has failed its purpose. Completion rate is a vanity metric; click rate, report rate, and incident trends are the real KPIs.",
   },
   {
     id: "cism-d4-010",
@@ -3178,14 +3208,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "During a major data breach, the decision to publicly notify affected customers is PRIMARILY driven by:",
     options: [
-      "The security manager's assessment of reputational risk",
-      "Legal and regulatory breach notification requirements",
-      "The marketing team's communications strategy",
-      "Whether the breach has already appeared in media reports",
+      "The security manager's personal read on reputational risk",
+      "Whatever the marketing team's communications plan says",
+      "Legal and regulatory breach-notification requirements",
+      "Whether the breach has already surfaced in media reports",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Notification timelines and triggers are defined by law — GDPR requires supervisory authority notification within 72 hours; US state breach laws vary but mandate notification. The security manager must understand these requirements and coordinate with legal counsel. Basing decisions on reputational concerns alone creates regulatory liability.",
+      "Notification timelines and triggers are defined by law — GDPR requires supervisory-authority notification within 72 hours, and US state breach laws mandate notification on their own schedules. The security manager coordinates with legal counsel rather than leaving the call to marketing or reputational instinct.",
   },
   {
     id: "cism-d4-011",
@@ -3193,14 +3223,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "Preserving forensic evidence during an incident investigation is MOST important for:",
     options: [
-      "Speeding up the eradication phase",
-      "Ensuring the evidence is admissible in legal proceedings and supporting root cause analysis",
-      "Reducing the organization's cyber insurance premiums",
-      "Satisfying documentation requirements for the incident log",
+      "Keeping evidence admissible and supporting root-cause analysis",
+      "Speeding up how quickly eradication can be completed",
+      "Lowering the organization's cyber insurance premiums",
+      "Meeting documentation requirements for the incident log",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Forensic evidence preservation — chain of custody, write-blocked storage, cryptographic hashing — ensures integrity and admissibility in civil or criminal proceedings. Even when litigation isn't anticipated, preserved evidence supports thorough root cause analysis and regulatory investigations. Failure to preserve evidence can expose the organization to obstruction claims.",
+      "Forensic evidence preservation — chain of custody, write-blocked storage, cryptographic hashing — ensures integrity and admissibility in legal proceedings and supports thorough root-cause analysis, beyond any effect on insurance premiums or routine logging.",
   },
   {
     id: "cism-d4-012",
@@ -3208,14 +3238,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "Which criterion is MOST important when classifying the severity of a security incident?",
     options: [
-      "The technical sophistication of the attack",
-      "The actual or potential business impact and scope of the incident",
-      "The cost of the tools used by the attacker",
-      "Whether the incident was caused by an insider or external threat",
+      "How technically sophisticated the attack appears to be",
+      "How expensive the attacker's tooling happens to be",
+      "Whether the actor was an insider or external party",
+      "The actual or potential business impact and scope",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Incident severity should be based on business impact — data sensitivity, systems/users affected, regulatory implications, financial exposure, and operational disruption. Technical factors are secondary. A simple phishing email compromising the CFO's account is more severe than a complex attack on a test system. Severity drives response priority and resource allocation.",
+      "Incident severity should be based on business impact — data sensitivity, systems and users affected, regulatory implications, and operational disruption. Technical sophistication, attacker tooling cost, and insider-versus-external origin are secondary factors.",
   },
   // ── CISSP additional questions ───────────────────────────────────────────
   {
@@ -3466,14 +3496,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "Which statement BEST describes the difference between information security governance and information security management?",
     options: [
-      "Governance is performed by the security team; management is performed by executives",
-      "Governance provides direction and oversight; management executes the direction and operationalizes it",
-      "Governance is technical; management is administrative",
-      "There is no meaningful difference — the terms are interchangeable",
+      "Governance sits with the security team; management sits with executives",
+      "Governance directs and oversees; management executes that direction",
+      "Governance concerns technical matters; management concerns administrative ones",
+      "The two terms describe the same activity with no real distinction",
     ],
     correctIndex: 1,
     explanation:
-      "Governance and management are distinct but complementary. Governance is the system by which the Board and senior leadership direct and oversee security — setting objectives, approving risk appetite, and holding management accountable. Management (the CISO and security team) executes that direction through programs, controls, and processes. On the CISM exam, always ask: 'Is this directing (governance) or doing (management)?'",
+      "Governance and management are complementary but distinct: governance (the Board and senior leadership) sets direction, approves risk appetite, and holds management accountable; management (the CISO and team) executes that direction through programs and controls. The split isn't about which team is involved or whether the work is 'technical,' and the two terms are never interchangeable — always ask whether an activity is directing or doing.",
   },
   {
     id: "cism-d1-014",
@@ -3481,14 +3511,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "An organization's internal audit function identifies a significant control weakness in the security program. Who should internal audit report this finding to FIRST?",
     options: [
-      "The CISO, so the security team can fix it immediately",
-      "The Board Audit Committee, maintaining independence from the function being audited",
-      "The CIO, since the weakness involves IT systems",
-      "The security steering committee",
+      "The CISO, so the security team can begin remediation right away",
+      "The Board Audit Committee, to preserve independence from what's audited",
+      "The CIO, because the weakness relates to IT systems overall",
+      "The security steering committee, at its next scheduled meeting",
     ],
     correctIndex: 1,
     explanation:
-      "Internal audit (the 3rd line of defense) must maintain independence to provide objective assurance. Reporting security program findings directly to the CISO (2nd line) undermines this independence — the CISO has a vested interest in the finding. Internal audit reports significant findings to the Board Audit Committee or equivalent governing body that has oversight authority over the security function.",
+      "Internal audit (the 3rd line of defense) must preserve independence to give objective assurance. Reporting straight to the CISO or CIO — the 2nd line functions being audited — undermines that independence; significant findings on the security program go to the Board Audit Committee or an equivalent independent governing body.",
   },
   {
     id: "cism-d1-015",
@@ -3496,14 +3526,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "A KRI that measures the number of critical vulnerabilities unpatched beyond the SLA is MOST useful because it:",
     options: [
-      "Tells management how many vulnerabilities were found this year",
-      "Provides an early warning signal that the patch management program may be failing before an incident occurs",
-      "Demonstrates compliance with PCI-DSS patch requirements",
-      "Shows the security team's workload",
+      "It tallies how many vulnerabilities were discovered this year",
+      "It demonstrates compliance with PCI-DSS patching requirements",
+      "It reflects how heavy the security team's current workload is",
+      "It warns early that patch management may be failing before an incident",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "KRIs (Key Risk Indicators) are forward-looking — they signal that a risk is trending upward before it materializes as an incident. An increasing count of overdue critical patches is an early warning that the patch management control is degrading. This allows management to intervene proactively. KPIs measure past performance; KRIs warn about future risk. Both are needed in a governance dashboard.",
+      "KRIs are forward-looking: a rising count of overdue critical patches signals that the patch-management control is degrading before it results in an incident, letting management intervene proactively. A simple vulnerability count, a compliance checkbox, or a workload measure are backward-looking and don't warn of anything.",
   },
   {
     id: "cism-d1-016",
@@ -3511,14 +3541,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "The information security steering committee should PRIMARILY include which members?",
     options: [
-      "CISO and direct security team members only",
-      "Cross-functional business leaders, the CISO, legal, compliance, and representatives from key business units",
-      "Only C-suite executives (CEO, CFO, CTO)",
-      "The Board of Directors and external auditors",
+      "The CISO and the immediate security team, exclusively",
+      "Cross-functional leaders: CISO, legal, compliance, business units",
+      "Only C-suite executives such as the CEO, CFO, and CTO",
+      "The Board of Directors together with external auditors",
     ],
     correctIndex: 1,
     explanation:
-      "The security steering committee is a governance body that ensures security decisions reflect business priorities across the organization. It should include cross-functional representation: CISO (security perspective), business unit leaders (risk owners), legal (regulatory expertise), compliance, finance, and HR. This ensures security decisions are made with full organizational context and business buy-in.",
+      "The steering committee is a governance body ensuring security decisions reflect priorities from across the organization — CISO, legal, compliance, and business-unit leaders, not just the security team, only the C-suite, or the Board/audit function, which sit at a different governance level.",
   },
   {
     id: "cism-d1-017",
@@ -3526,14 +3556,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "Which governance framework would be MOST appropriate for an organization seeking to align IT and security governance with enterprise governance objectives?",
     options: [
-      "NIST SP 800-53 — because it provides the most comprehensive control catalogue",
-      "COBIT 2019 — because it explicitly links IT governance to enterprise governance and business objectives",
-      "ISO 27001 — because it is an internationally recognized certification",
-      "PCI-DSS — because it provides clear compliance requirements",
+      "COBIT 2019 — it explicitly links IT governance to enterprise governance",
+      "NIST SP 800-53 — it offers the most comprehensive control catalogue",
+      "ISO 27001 — it carries international certification recognition",
+      "PCI-DSS — it sets clear, specific compliance requirements",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "COBIT 2019 (developed by ISACA, the same body that administers CISM) is specifically designed to align IT governance with enterprise governance objectives. It provides governance and management objectives, performance management, and a design guide for tailoring the framework to organizational context. NIST 800-53 is a control catalogue; ISO 27001 is an ISMS standard; PCI-DSS is a compliance framework for payment data.",
+      "COBIT 2019, developed by ISACA, is purpose-built to link IT governance and management objectives to enterprise governance and business goals. NIST 800-53 is a control catalogue, ISO 27001 an ISMS certification standard, and PCI-DSS a payment-data compliance framework — each valuable, but none designed specifically as an enterprise-to-IT governance bridge.",
   },
   {
     id: "cism-d1-018",
@@ -3541,14 +3571,14 @@ export const questions: Question[] = [
     domainId: "cism-d1",
     question: "When is a security policy considered effective from a governance perspective?",
     options: [
-      "When it is drafted and approved by the CISO",
-      "When it is communicated to all relevant parties, understood, enforced, and reviewed periodically",
-      "When it matches the policies of industry peers",
-      "When it satisfies an external auditor's requirements",
+      "Once it has been drafted and formally approved by the CISO",
+      "Once it satisfies whatever an external auditor asks for",
+      "Once it is communicated, understood, enforced, and reviewed regularly",
+      "Once it broadly matches the security policies of industry peers",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Policy effectiveness requires more than document approval. A policy is effective only when it is: communicated to all who must comply; understood (not just acknowledged); enforced (violations have consequences); and periodically reviewed and updated. A policy that exists on paper but is not enforced creates a false sense of security and may actually increase liability by demonstrating awareness without action.",
+      "A policy is effective only when it moves beyond paper approval: communicated to everyone who must comply, genuinely understood, enforced with real consequences, and periodically reviewed. Matching peer policies, an auditor's checklist, or CISO sign-off alone can all be true while the policy still has zero real-world effect.",
   },
   // ── CISM D2 additional (013–018) ─────────────────────────────────────────
   {
@@ -3557,14 +3587,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "An information security manager wants to communicate a newly identified risk to senior leadership. The MOST effective approach is to:",
     options: [
-      "Send a technical vulnerability scan report",
-      "Present the risk as a business scenario with estimated financial impact and recommended treatment options",
-      "Request an immediate budget increase to address all vulnerabilities",
-      "Wait until the risk materializes before escalating",
+      "Present it as a business scenario with cost estimate and options",
+      "Send over the raw technical vulnerability scan report",
+      "Request an immediate budget increase for all findings",
+      "Hold off escalating until the risk actually materializes",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Senior leaders make decisions based on business impact, not technical severity scores. Risk scenarios translate technical risks into business language: 'If this vulnerability is exploited, we estimate a 30% probability of a $5M regulatory fine and 2-week service outage.' Presenting treatment options with cost-benefit analysis empowers leadership to make informed risk decisions. CVE scores and scan reports don't provide the business context executives need.",
+      "Senior leaders make decisions based on business impact, not technical severity scores. Risk scenarios translate technical risk into business language — estimated probability, financial exposure, and recommended treatment options — empowering leadership to make informed decisions. Raw scan reports don't provide the business context executives need.",
   },
   {
     id: "cism-d2-014",
@@ -3572,14 +3602,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "A risk register is MOST valuable when it:",
     options: [
-      "Contains every risk ever identified, regardless of status",
-      "Is a living document actively maintained with current ratings, owners, treatment status, and review dates",
-      "Is completed once during the initial risk assessment and filed for reference",
-      "Is used exclusively by the security team for technical risk tracking",
+      "It contains every risk ever logged, regardless of status",
+      "It was completed once during the first assessment and filed",
+      "It stays a living document with current owners and status",
+      "It is used only by the security team to track technical items",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "A risk register is only valuable if it reflects the current state of the organization's risk posture. It must be actively maintained — risks added, retired, reclassified, and updated as controls are implemented or removed. Each risk should have a named business owner, not a security team owner. A stale risk register gives a false sense of control and misleads governance decisions.",
+      "A risk register is only valuable if it reflects the current state of the organization's risk posture — actively maintained as risks are added, retired, reclassified, and updated. Each risk should have a named business owner, not a security-team owner. A stale register gives a false sense of control and misleads governance decisions.",
   },
   {
     id: "cism-d2-015",
@@ -3587,14 +3617,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Risk aggregation refers to the practice of:",
     options: [
-      "Adding up all risk scores to get a total organizational risk number",
-      "Identifying how individually acceptable risks may combine to create a risk that exceeds the organization's tolerance",
-      "Transferring multiple risks to a single insurance policy",
-      "Grouping similar risks to simplify the risk register",
+      "Adding every risk score together for one total figure",
+      "Seeing how acceptable risks can combine into one that isn't",
+      "Transferring several risks under one insurance policy",
+      "Grouping alike risks to simplify the risk register",
     ],
     correctIndex: 1,
     explanation:
-      "Risk aggregation addresses the fact that multiple individually acceptable risks may combine into an unacceptable total exposure. Example: five systems each with a 'Low' risk of breach may collectively represent a 'High' portfolio risk if they all share the same vulnerability. Sophisticated risk management requires viewing risks both individually and in aggregate to avoid the 'blind spots' created by silo-based risk assessment.",
+      "Risk aggregation addresses the fact that multiple individually acceptable risks may combine into an unacceptable total exposure. For example, five systems each with a 'Low' breach risk may collectively represent a 'High' portfolio risk if they share the same vulnerability. Viewing risks both individually and in aggregate avoids blind spots created by silo-based assessment.",
   },
   {
     id: "cism-d2-016",
@@ -3602,14 +3632,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Before implementing a new security control, a security manager should FIRST:",
     options: [
-      "Research available vendors and pricing",
-      "Confirm the control addresses an identified risk and that the cost is proportionate to the risk reduction",
-      "Check whether competitor organizations use the same control",
-      "Implement the control and measure its effectiveness retrospectively",
+      "Research the available vendors and compare pricing",
+      "Check whether competitor firms use a similar control",
+      "Implement it first and measure effectiveness afterward",
+      "Confirm the control addresses a real risk at proportionate cost",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Controls must be justified by risk assessment. The correct sequence is: identify the risk → quantify its likelihood and impact → determine acceptable risk treatment → select controls that address the risk → confirm the control cost is proportionate to the risk reduction achieved. Implementing controls without a clear risk linkage wastes resources and may not actually reduce the most important risks.",
+      "Controls must be justified by risk assessment: identify the risk, quantify likelihood and impact, determine treatment, then select controls that address the risk at a cost proportionate to the reduction achieved. Implementing controls without a clear risk linkage wastes resources and may not address the most important risks.",
   },
   {
     id: "cism-d2-017",
@@ -3617,14 +3647,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "An information security manager identifies a high-severity risk that exceeds the organization's risk tolerance. After mitigation, the residual risk is still above tolerance. The BEST next step is to:",
     options: [
-      "Accept the residual risk since all reasonable controls have been applied",
-      "Escalate to senior management for a risk treatment decision — accept, avoid, or transfer the excess risk",
-      "Implement additional controls regardless of cost",
-      "Reclassify the risk as medium to bring it within tolerance",
+      "Accept the leftover risk since controls were already applied",
+      "Escalate to management for a decision — accept, avoid, or transfer",
+      "Keep adding controls without regard to their cost",
+      "Reclassify the risk as medium so it fits within tolerance",
     ],
     correctIndex: 1,
     explanation:
-      "When residual risk exceeds tolerance after mitigation, the security manager cannot unilaterally accept it — that decision belongs to senior management or the Board. The security manager's role is to escalate with a clear recommendation: document the residual risk, the options available (further mitigation, avoidance, transfer), and the associated costs. Management then makes an informed risk acceptance decision.",
+      "When residual risk exceeds tolerance after mitigation, the security manager cannot unilaterally accept it — that decision belongs to senior management or the Board. The manager's role is to escalate with a clear recommendation, documenting the residual risk, the options available, and their costs, so management can make an informed decision.",
   },
   {
     id: "cism-d2-018",
@@ -3632,14 +3662,14 @@ export const questions: Question[] = [
     domainId: "cism-d2",
     question: "Which is MOST important when selecting a risk assessment methodology for an organization?",
     options: [
-      "Using the methodology that produces the most detailed technical reports",
-      "Selecting a methodology that aligns with the organization's risk appetite, culture, and decision-making needs",
-      "Using the same methodology as the largest company in the industry",
-      "Choosing the most complex quantitative model available",
+      "Whichever produces the most detailed technical report",
+      "Whichever methodology the largest industry player uses",
+      "The most complex quantitative model that's available",
+      "One that fits the organization's appetite, culture, and needs",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "No single risk assessment methodology is universally best. The choice depends on organizational context: an organization with mature financial modeling capability may benefit from FAIR (quantitative); a smaller organization may find qualitative heat-map approaches more practical. The key criterion is whether the methodology produces actionable outputs that support the organization's risk decisions and governance reporting needs.",
+      "No single risk assessment methodology is universally best. An organization with mature financial modeling capability may benefit from a quantitative model like FAIR; a smaller organization may find qualitative heat-map approaches more practical. The key criterion is whether the methodology produces actionable outputs supporting the organization's risk decisions and governance needs.",
   },
   // ── CISM D3 additional (013–018) ─────────────────────────────────────────
   {
@@ -3648,14 +3678,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "A security manager is building a new information security program. After completing the risk assessment, the NEXT logical step is to:",
     options: [
-      "Immediately purchase the latest security technology stack",
-      "Develop a security roadmap that prioritizes control implementation based on risk assessment findings",
-      "Hire additional security staff to manage the identified risks",
-      "Present the risk assessment to the board and wait for approval on all actions",
+      "Build a roadmap that sequences controls by risk priority",
+      "Buy the latest security technology stack right away",
+      "Hire extra security staff to manage the identified risks",
+      "Brief the board and wait for sign-off on every action",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "After risk assessment, the security manager has a prioritized view of what needs to be addressed. The next step is a roadmap — a multi-year plan that sequences control implementation from highest to lowest risk, balancing quick wins with long-term program improvements. Technology purchases and staff additions should flow from the roadmap, not precede it. The roadmap also provides a communication vehicle for the board.",
+      "After risk assessment, the next step is a roadmap — a multi-year plan sequencing control implementation from highest to lowest risk, balancing quick wins with long-term improvements. Technology purchases and staffing should flow from the roadmap, not precede it.",
   },
   {
     id: "cism-d3-014",
@@ -3663,14 +3693,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "Which of the following BEST demonstrates a security program's value to the business?",
     options: [
-      "The number of security tools deployed",
-      "The number of vulnerabilities found and closed",
-      "Reduction in risk exposure, supported by metrics that link security outcomes to business objectives",
-      "Compliance with all applicable regulations",
+      "The sheer number of security tools currently deployed",
+      "The count of vulnerabilities that were found and closed",
+      "Lower risk exposure, tied to metrics leadership cares about",
+      "Full compliance with every applicable regulation in force",
     ],
     correctIndex: 2,
     explanation:
-      "Security value is demonstrated through business outcomes, not activity metrics. The most compelling demonstration is showing reduced risk exposure, fewer incidents, faster response times, and avoided costs — all expressed in terms that resonate with business leaders. Vulnerability counts and tool inventories are inputs; risk reduction and business continuity outcomes are the value. Compliance is a floor, not a ceiling.",
+      "Security value is demonstrated through business outcomes, not activity metrics. The most compelling demonstration is reduced risk exposure and business-relevant metrics. Vulnerability counts and tool inventories are inputs; compliance is a floor, not a ceiling.",
   },
   {
     id: "cism-d3-015",
@@ -3678,14 +3708,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "The PRIMARY purpose of a security architecture review in the SDLC is to:",
     options: [
-      "Perform penetration testing before production deployment",
-      "Ensure that security requirements are incorporated into system design before implementation begins",
-      "Validate that the development team has completed security training",
-      "Check that the system meets minimum compliance requirements",
+      "Run a penetration test right before production release",
+      "Confirm the development team finished its security training",
+      "Check that the system meets the minimum compliance bar",
+      "Fold security requirements into the design before coding starts",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Security architecture reviews (threat modeling, security design review) occur during the design phase of the SDLC — before code is written. Their purpose is to identify security requirements and design flaws while changes are cheapest. Identifying that an architecture lacks proper authentication during design costs virtually nothing to fix; finding the same issue post-deployment may require fundamental re-engineering.",
+      "Security architecture reviews occur during the design phase of the SDLC, before code is written, to identify security requirements and design flaws while changes are cheapest to make. Finding the same issue post-deployment may require fundamental re-engineering.",
   },
   {
     id: "cism-d3-016",
@@ -3693,14 +3723,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "An organization has a compensating control in place for a PCI-DSS requirement it cannot directly satisfy. To remain compliant, the organization MUST:",
     options: [
-      "Remove the requirement from the scope of the assessment",
-      "Document the compensating control, demonstrate it provides equivalent protection, and have it assessed by a qualified assessor",
-      "Request a formal waiver from the PCI Security Standards Council",
-      "Accept non-compliance for that specific requirement",
+      "Simply remove that requirement from the assessment scope",
+      "Document the control, show equivalence, and get it assessed by a QSA",
+      "Request a formal waiver directly from the PCI Security Council",
+      "Accept non-compliance for just that one requirement",
     ],
     correctIndex: 1,
     explanation:
-      "PCI-DSS allows compensating controls when an organization has a legitimate technical or business constraint preventing direct implementation of a requirement. However, compensating controls must: meet the intent of the original requirement; provide a similar level of defense; be 'above and beyond' other PCI-DSS requirements; and be documented and validated by a Qualified Security Assessor (QSA). This principle — equivalence through alternative means — applies beyond PCI-DSS to many compliance frameworks.",
+      "PCI-DSS allows compensating controls when a legitimate constraint prevents direct implementation of a requirement. The compensating control must meet the intent of the original requirement, provide a similar level of defense, and be documented and validated by a Qualified Security Assessor.",
   },
   {
     id: "cism-d3-017",
@@ -3708,14 +3738,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "Which action BEST reduces the risk of shadow IT (unauthorized technology use) in an organization?",
     options: [
-      "Implementing DLP tools to block unauthorized cloud services",
-      "Publishing a list of approved and prohibited applications",
-      "Engaging with business units to understand their needs and provide secure, approved alternatives",
-      "Disciplining employees who use unauthorized services",
+      "Deploy DLP tooling to block unsanctioned cloud services",
+      "Publish a list of approved and prohibited applications",
+      "Learn business units' needs and offer secure alternatives",
+      "Discipline employees found using unauthorized services",
     ],
     correctIndex: 2,
     explanation:
-      "Shadow IT typically emerges when approved tools don't meet business needs. Technical blocking (DLP) and punitive measures treat symptoms without addressing the root cause. The most effective approach is to engage business units, understand the unmet need, and provide approved alternatives that are both secure and functional. This builds a security culture of partnership rather than opposition, and reduces the motivation to circumvent controls.",
+      "Shadow IT typically emerges when approved tools don't meet business needs. Technical blocking and punitive measures treat symptoms without addressing the root cause. Engaging business units and offering secure, functional alternatives builds a culture of partnership and reduces the motivation to circumvent controls.",
   },
   {
     id: "cism-d3-018",
@@ -3723,14 +3753,14 @@ export const questions: Question[] = [
     domainId: "cism-d3",
     question: "A security manager is evaluating a new cloud service provider. After reviewing the vendor's SOC 2 Type II report, the MOST important next step is to:",
     options: [
-      "Accept the SOC 2 report as complete assurance and proceed with the engagement",
-      "Review the report's scope, exceptions noted, and whether the audited controls cover the organization's specific risk concerns",
-      "Request an ISO 27001 certificate instead, as it is more rigorous",
-      "Conduct a full penetration test of the vendor's infrastructure",
+      "Treat the report as complete assurance and move forward",
+      "Ask for an ISO 27001 certificate as a substitute instead",
+      "Run a full penetration test of the vendor's infrastructure",
+      "Check the report's scope, exceptions, and fit to our concerns",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "A SOC 2 Type II report is valuable but not a blanket assurance. The security manager must verify: (1) the report period and whether it is current; (2) the system boundaries — does it cover the specific services being procured; (3) the exceptions or qualifications noted by the auditor; (4) whether the controls tested address the organization's specific risk concerns. A clean SOC 2 report for services A and B provides no assurance about service C.",
+      "A SOC 2 Type II report is valuable but not a blanket assurance. The security manager must verify the report period, the system boundaries covered, any exceptions noted by the auditor, and whether the tested controls address the organization's specific risk concerns.",
   },
   // ── CISM D4 additional (013–018) ─────────────────────────────────────────
   {
@@ -3740,13 +3770,13 @@ export const questions: Question[] = [
     question: "During a ransomware incident, the FIRST action the incident response team should take after confirming the infection is to:",
     options: [
       "Wipe and rebuild the affected systems immediately",
-      "Isolate affected systems from the network to prevent lateral spread while preserving evidence",
-      "Pay the ransom to minimize business disruption",
-      "Notify all customers immediately",
+      "Isolate the systems from the network, preserving evidence",
+      "Pay the ransom to keep business disruption minimal",
+      "Notify every customer immediately about the incident",
     ],
     correctIndex: 1,
     explanation:
-      "Containment is the first active response priority — stop the spread before attempting any other action. Isolating affected systems prevents the ransomware from encrypting additional files or moving to backup systems. Wiping systems before forensic imaging destroys evidence needed for root cause analysis. Customer notification and ransom considerations come after containment and initial assessment. Evidence preservation is critical during isolation.",
+      "Containment is the first active response priority: isolating affected systems prevents ransomware from encrypting additional files or spreading to backups, while preserving evidence for later analysis. Wiping systems first destroys that evidence, and ransom or notification decisions come later.",
   },
   {
     id: "cism-d4-014",
@@ -3754,14 +3784,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "The incident response team composition should PRIMARILY include:",
     options: [
-      "Only security engineers and threat analysts",
-      "Cross-functional members including technical, legal, communications, and management representation",
-      "External incident response consultants only, to maintain objectivity",
-      "IT operations staff, since all incidents are technical in nature",
+      "Cross-functional staff: technical, legal, comms, management",
+      "Only security engineers and dedicated threat analysts",
+      "External IR consultants only, to stay fully objective",
+      "IT operations staff, since incidents are always technical",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Incident response requires more than technical expertise. A mature IR team includes: technical leads (security engineers, forensics), legal counsel (regulatory obligations, evidence handling), communications (internal and external messaging), HR (insider threat scenarios, employee matters), finance (incident cost tracking), and management representation for escalation decisions. Major incidents are business crises, not just technical events.",
+      "Incident response requires more than technical expertise. A mature IR team includes technical leads, legal counsel, communications, and management representation for escalation decisions — major incidents are business crises, not just technical events.",
   },
   {
     id: "cism-d4-015",
@@ -3769,14 +3799,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "A tabletop exercise is MOST valuable for testing:",
     options: [
-      "Whether backup systems actually restore correctly under load",
-      "The completeness of the IR plan, clarity of roles, and communication flows without system disruption",
-      "The technical capabilities of the security operations center",
-      "Whether employees follow security policies in real-time",
+      "Whether backups actually restore correctly under load",
+      "The technical capability of the security operations center",
+      "How complete the plan is and how clear roles and comms are",
+      "Whether staff actually follow security policy in real time",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "A tabletop exercise is a discussion-based simulation where participants verbally walk through a scenario. It excels at identifying gaps in the IR plan (missing roles, unclear escalation paths, untested communication channels) without the risk or cost of a full exercise. It does NOT test technical capabilities or actual system recovery — those require a simulation or full-scale exercise. Tabletops are the most frequent and low-cost IR testing method.",
+      "A tabletop exercise is a discussion-based simulation that excels at identifying gaps in the IR plan — missing roles, unclear escalation paths, untested communication channels — without the cost or risk of a full exercise. It does not test actual system recovery or technical capability; that requires a full-scale simulation.",
   },
   {
     id: "cism-d4-016",
@@ -3784,14 +3814,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "When an incident requires law enforcement involvement, the security manager should FIRST:",
     options: [
-      "Immediately contact law enforcement and hand over all evidence",
-      "Consult legal counsel to understand obligations, evidence handling requirements, and the impact on the investigation",
-      "Wipe systems to protect the organization from liability",
-      "Delay law enforcement involvement until after the organization has completed its own investigation",
+      "Contact law enforcement right away and hand over evidence",
+      "Wipe the systems to limit the organization's liability",
+      "Hold off law enforcement until the internal probe concludes",
+      "Consult legal counsel on obligations and evidence handling",
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation:
-      "Law enforcement involvement has significant legal and operational implications. Legal counsel must be consulted first to: understand any mandatory reporting obligations; ensure evidence is collected and handled in a way that preserves admissibility; understand what the organization is required vs permitted to share; and protect privilege. Premature or uncoordinated evidence sharing can compromise the investigation or expose the organization to liability.",
+      "Law enforcement involvement carries legal and operational implications. Legal counsel must be consulted first to clarify reporting obligations, ensure evidence is handled in a way that preserves admissibility, and protect privilege — premature evidence sharing can compromise the investigation.",
   },
   {
     id: "cism-d4-017",
@@ -3799,14 +3829,14 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "The PRIMARY purpose of a post-incident review (lessons learned) is to:",
     options: [
-      "Assign blame to the individuals responsible for the incident",
-      "Identify improvements to people, process, and technology to prevent recurrence and improve future response",
-      "Satisfy regulatory audit requirements",
-      "Provide evidence for cyber insurance claims",
+      "Formally assign blame to those found responsible",
+      "Find improvements to people, process, and technology",
+      "Satisfy a specific regulatory audit requirement fully",
+      "Provide supporting evidence for an insurance claim",
     ],
     correctIndex: 1,
     explanation:
-      "Lessons learned is the mechanism for continuous improvement of the IR capability. It should be a blameless, constructive process that answers: What happened? What was the timeline? What worked well? What didn't? What would we do differently? The outputs — updated playbooks, new controls, training improvements — represent the return on investment from the incident. Organizations that skip lessons learned are doomed to repeat the same incidents.",
+      "Lessons learned is the mechanism for continuous improvement of the IR capability — a blameless process that identifies concrete improvements to people, process, and technology. Regulatory audits and insurance claims may consume its output, but they are not its purpose.",
   },
   {
     id: "cism-d4-018",
@@ -3814,13 +3844,13 @@ export const questions: Question[] = [
     domainId: "cism-d4",
     question: "An organization experiences a data breach affecting 50,000 EU residents' personal data. Under GDPR, the FIRST notification obligation is to:",
     options: [
-      "Notify all 50,000 affected individuals within 72 hours",
-      "Notify the relevant supervisory authority within 72 hours of becoming aware of the breach",
-      "Notify the supervisory authority only if the breach results in financial harm",
-      "Notify both the supervisory authority and affected individuals simultaneously within 72 hours",
+      "Notify all 50,000 individuals directly within 72 hours",
+      "Notify the authority only if real financial harm results",
+      "Notify the supervisory authority within 72 hours of awareness",
+      "Notify both the authority and individuals at the same time",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "GDPR Article 33 requires notification to the supervisory authority (data protection authority) within 72 hours of the controller becoming aware of a breach that is likely to result in risk to individuals' rights and freedoms. Notification to affected individuals (Article 34) is required 'without undue delay' when the breach is likely to result in HIGH risk — not all breaches require individual notification. The 72-hour obligation is to the regulator first.",
+      "GDPR Article 33 requires notification to the supervisory authority within 72 hours of the controller becoming aware of a breach. Notification to affected individuals (Article 34) is required only when the breach is likely to result in high risk to their rights — not automatically or simultaneously in every case.",
   },
 ];
