@@ -2,8 +2,8 @@ export default function CismRiskTreatment() {
   const quadrants = [
     { label: "TRANSFER", sub: "High Impact · Low Likelihood", tip: "Insurance, contracts, outsourcing", color: "#2563eb", textColor: "#fff" },
     { label: "AVOID", sub: "High Impact · High Likelihood", tip: "Stop the activity entirely", color: "#dc2626", textColor: "#fff" },
-    { label: "ACCEPT", sub: "Low Impact · Low Likelihood", tip: "Document & monitor; cost > benefit to fix", color: "#16a34a", textColor: "#fff" },
-    { label: "REDUCE", sub: "Low Impact · High Likelihood", tip: "Implement controls to lower likelihood/impact", color: "#d97706", textColor: "#fff" },
+    { label: "ACCEPT", sub: "Low Impact · Low Likelihood", tip: "Document & monitor residual risk", color: "#16a34a", textColor: "#fff" },
+    { label: "REDUCE", sub: "Low Impact · High Likelihood", tip: "Add controls to reduce risk", color: "#d97706", textColor: "#fff" },
   ];
 
   return (

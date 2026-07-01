@@ -7,6 +7,7 @@ import { questions } from "@/data/questions";
 import MarkReadButton from "@/components/MarkReadButton";
 import DomainQuizBadge from "@/components/DomainQuizBadge";
 import { diagramRegistry } from "@/components/diagrams";
+import KeyTermCard from "@/components/KeyTermCard";
 
 export async function generateMetadata(props: PageProps<"/cert/[certId]/learn/[domainId]">): Promise<Metadata> {
   const { certId, domainId } = await props.params;
@@ -101,14 +102,18 @@ export default async function DomainLearnPage(
 
         {/* Key Terms */}
         <div className="mb-10">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">Key Terms</h2>
-          <div className="grid grid-cols-1 gap-3">
+          <h2 className="text-lg font-semibold text-gray-800 mb-1">Key Terms</h2>
+          <p className="text-xs text-gray-400 mb-4">Tap a term to expand details and see a real-world example.</p>
+          <div className="grid grid-cols-1 gap-2">
             {content.keyTerms.map((kt) => (
-              <div key={kt.term} className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-                <span className="text-sm font-semibold text-gray-900">{kt.term}</span>
-                <span className="text-gray-400 mx-2">—</span>
-                <span className="text-sm text-gray-600">{kt.definition}</span>
-              </div>
+              <KeyTermCard
+                key={kt.term}
+                term={kt.term}
+                definition={kt.definition}
+                detail={kt.detail}
+                example={kt.example}
+                color={cert.color}
+              />
             ))}
           </div>
         </div>

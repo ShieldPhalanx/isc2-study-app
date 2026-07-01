@@ -23,7 +23,7 @@ export default function CismIRLifecycle() {
     {
       label: "Recover",
       color: "#15803d",
-      points: ["Restore from backup", "Validate functionality", "Monitor closely", "Declare recovery"],
+      points: ["Restore from backup", "Validate systems", "Monitor closely", "Declare recovery"],
     },
     {
       label: "Review",
@@ -32,7 +32,7 @@ export default function CismIRLifecycle() {
     },
   ];
 
-  const boxW = 108, boxH = 106, gap = 10;
+  const boxW = 120, boxH = 106, gap = 10;
   const totalW = phases.length * (boxW + gap) - gap;
   const svgW = totalW + 20;
 
@@ -66,7 +66,7 @@ export default function CismIRLifecycle() {
 
         <rect x="10" y="172" width={svgW - 20} height="14" rx="4" fill="#f1f5f9"/>
         <text x={svgW / 2} y="183" textAnchor="middle" fill="#64748b" fontSize="9">
-          CISM exam: Containment preserves evidence. Eradication removes root cause. Never skip Prepare or Review.
+          CISM: Containment preserves evidence. Eradication removes root cause. Never skip Prepare or Review.
         </text>
 
         <defs>

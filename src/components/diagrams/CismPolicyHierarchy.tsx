@@ -1,9 +1,9 @@
 export default function CismPolicyHierarchy() {
   const levels = [
-    { label: "Policy", sub: "WHY — Management intent & direction", color: "#1e40af", light: "#dbeafe", width: 200, desc: "Broad, long-lived. Signed by executive. 'We will protect customer data.'" },
-    { label: "Standard", sub: "WHAT — Mandatory requirements", color: "#0369a1", light: "#e0f2fe", width: 310, desc: "Specific, measurable. 'Passwords must be 12+ chars with complexity.'" },
+    { label: "Policy", sub: "WHY — Management intent & direction", color: "#1e40af", light: "#dbeafe", width: 200, desc: "Executive intent. Broad, long-lived." },
+    { label: "Standard", sub: "WHAT — Mandatory requirements", color: "#0369a1", light: "#e0f2fe", width: 310, desc: "Specific, measurable. '12+ char passwords required.'" },
     { label: "Guideline", sub: "HOW — Recommended approaches", color: "#0891b2", light: "#ecfeff", width: 440, desc: "Advisory, flexible. 'Consider using a password manager.'" },
-    { label: "Procedure", sub: "HOW EXACTLY — Step-by-step instructions", color: "#0f766e", light: "#f0fdfa", width: 580, desc: "Detailed, operational. Step 1: Open…  Step 2: Enter…" },
+    { label: "Procedure", sub: "HOW EXACTLY — Step-by-step instructions", color: "#0f766e", light: "#f0fdfa", width: 580, desc: "Detailed steps. 'Step 1: Open vault. Step 2: Enter credentials.'" },
   ];
 
   return (
