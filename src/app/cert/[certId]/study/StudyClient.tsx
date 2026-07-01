@@ -72,6 +72,12 @@ export default function StudyClient({ cert, questions }: Props) {
   const [cards, setCards] = useState<CardState[]>(() => prioritizedDeck(questions));
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(`quiz-flags-${cert.id}`) ?? "[]");
+      return new Set<string>(Array.isArray(stored) ? stored : []);
+    } catch { return new Set<string>(); }
+  });
 
   const current = cards[index];
   const domain = cert.domains.find((d) => d.id === current.question.domainId);
@@ -90,6 +96,18 @@ export default function StudyClient({ cert, questions }: Props) {
     const records = loadFlashcardRecords();
     return records[current.question.id]?.streak ?? 0;
   })();
+
+  function toggleFlag(questionId: string) {
+    setFlaggedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(questionId)) next.delete(questionId);
+      else next.add(questionId);
+      try {
+        localStorage.setItem(`quiz-flags-${cert.id}`, JSON.stringify([...next]));
+      } catch {}
+      return next;
+    });
+  }
 
   function rate(rating: Rating) {
     updateCard(current.question.id, rating === "mastered");
@@ -177,6 +195,17 @@ export default function StudyClient({ cert, questions }: Props) {
                 Review {reviewCount} missed card{reviewCount !== 1 ? "s" : ""} →
               </button>
             )}
+            {flaggedIds.size > 0 && (
+              <Link
+                href={`/cert/${cert.id}/quiz?domain=all`}
+                onClick={() => {
+                  // Navigate to quiz — flagged questions are accessible via quiz setup
+                }}
+                className="w-full py-3 rounded-lg text-center border-2 border-yellow-300 bg-yellow-50 text-yellow-800 font-medium text-sm hover:bg-yellow-100 transition-colors"
+              >
+                ⚑ {flaggedIds.size} flagged — practice in quiz →
+              </Link>
+            )}
             <button
               onClick={restart}
               className="w-full py-3 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400"
@@ -243,7 +272,16 @@ export default function StudyClient({ cert, questions }: Props) {
         >
           <div className={`flashcard ${flipped ? "flashcard--flipped" : ""}`}>
             {/* Front face */}
-            <div className="flashcard-face flashcard-face--front bg-white rounded-2xl border-2 border-gray-200 p-8 flex flex-col items-center justify-center text-center hover:border-gray-300 transition-colors">
+            <div className="flashcard-face flashcard-face--front bg-white rounded-2xl border-2 border-gray-200 p-8 flex flex-col items-center justify-center text-center hover:border-gray-300 transition-colors relative">
+              <button
+                onClick={(e) => { e.stopPropagation(); toggleFlag(current.question.id); }}
+                aria-label={flaggedIds.has(current.question.id) ? "Remove flag" : "Flag for review"}
+                className={`absolute top-4 right-4 text-base transition-colors ${
+                  flaggedIds.has(current.question.id) ? "text-yellow-500 hover:text-yellow-400" : "text-gray-200 hover:text-yellow-400"
+                }`}
+              >
+                ⚑
+              </button>
               {currentStreak >= 2 && (
                 <span className={`text-xs font-medium px-2 py-0.5 rounded-full mb-3 ${bgLightMap[cert.color]}`}>
                   Mastered ×{currentStreak}

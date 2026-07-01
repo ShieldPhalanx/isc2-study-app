@@ -2837,4 +2837,203 @@ export const questions: Question[] = [
     explanation:
       "MTTD and MTTR are the gold-standard incident response KPIs. Decreasing MTTD means threats are detected faster (reducing attacker dwell time); decreasing MTTR means the organization responds more efficiently. Total incident count reflects threat volume, not program effectiveness. Number of tools and team size are inputs, not outcomes.",
   },
+
+  // ── CGRC additional questions (round 6) ────────────────────────────────────
+  {
+    id: "cgrc-d1-008",
+    certId: "cgrc",
+    domainId: "cgrc-d1",
+    question: "The Risk Executive (Function) in NIST SP 800-37 is responsible for:",
+    options: [
+      "Conducting all security assessments personally",
+      "Providing an organization-wide perspective on risk to help ensure consistent risk decisions across systems",
+      "Signing each individual system's Authorization to Operate",
+      "Maintaining the SSP for all organizational systems",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The Risk Executive (Function) — often the CISO or a risk management board — views risk across the entire organization, not just individual systems. They ensure that risk decisions made by individual AOs are consistent with organizational risk tolerance and strategy. This prevents one system's acceptance of high risk from undermining the overall security posture.",
+  },
+  {
+    id: "cgrc-d2-008",
+    certId: "cgrc",
+    domainId: "cgrc-d2",
+    question: "Common controls in the RMF are security controls that:",
+    options: [
+      "Must be implemented identically on every information system",
+      "Are inherited by multiple systems from a shared provider, reducing per-system implementation burden",
+      "Are selected only for Moderate-impact systems",
+      "Require a separate ATO for each organizational component",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Common controls (e.g., physical security, incident response program, personnel security) are implemented once and inherited by multiple systems, reducing cost and duplication. The common control provider maintains its own authorization; inheriting systems reference the provider's controls in their SSP rather than implementing them independently.",
+  },
+  {
+    id: "cgrc-d3-008",
+    certId: "cgrc",
+    domainId: "cgrc-d3",
+    question: "Overlays in NIST SP 800-53 are used to:",
+    options: [
+      "Override all baseline controls for a specific system type",
+      "Provide tailored guidance for specific technologies, environments, or communities of interest",
+      "Replace the need for a security categorization",
+      "Document deviations approved by the AO",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Overlays extend or tailor SP 800-53 baselines for specific contexts — such as cloud computing, industrial control systems, mobile devices, or privacy programs. They add, remove, or modify controls and parameter values appropriate for that context. Overlays do not override categorization; they refine control selection after categorization.",
+  },
+  {
+    id: "cgrc-d4-008",
+    certId: "cgrc",
+    domainId: "cgrc-d4",
+    question: "A security impact analysis (SIA) is conducted when:",
+    options: [
+      "A new employee joins the organization",
+      "A proposed change to an authorized system could affect its security posture",
+      "The ATO is about to expire",
+      "A vulnerability scanner identifies new findings",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Before implementing any change to an authorized system, a security impact analysis (CM-4 in SP 800-53) determines whether the change could introduce new risks or affect existing controls. If the SIA reveals significant impact, the change may require AO notification, SSP updates, or even a re-authorization decision.",
+  },
+  {
+    id: "cgrc-d5-008",
+    certId: "cgrc",
+    domainId: "cgrc-d5",
+    question: "Which of the following BEST describes the purpose of an independent assessor in the RMF?",
+    options: [
+      "To approve the ATO on behalf of the AO",
+      "To provide an objective evaluation of control implementation and effectiveness without conflicts of interest",
+      "To write the SSP with the system owner",
+      "To conduct penetration testing on behalf of the ISO",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Independence is critical to a credible assessment. An independent assessor has no direct involvement in system development or operation, reducing bias. They evaluate whether controls are implemented correctly and operating as intended, producing a SAR the AO can rely on for the authorization decision. The AO — not the assessor — makes the authorization decision.",
+  },
+  {
+    id: "cgrc-d6-008",
+    certId: "cgrc",
+    domainId: "cgrc-d6",
+    question: "An Ongoing Authorization approach differs from a traditional periodic authorization in that:",
+    options: [
+      "It requires more frequent full assessments of all controls",
+      "It uses continuous monitoring data to maintain an up-to-date risk picture, enabling faster authorization decisions",
+      "It eliminates the need for an AO",
+      "It can only be used for Low-impact systems",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Ongoing Authorization (OA) leverages the ISCM program's real-time monitoring data to keep the AO continuously informed of the system's security posture. Instead of waiting for a fixed-period re-authorization, the AO reviews monitoring dashboards and only triggers a formal re-authorization when risk exceeds acceptable thresholds — making the authorization process more agile.",
+  },
+  {
+    id: "cgrc-d7-008",
+    certId: "cgrc",
+    domainId: "cgrc-d7",
+    question: "The ISCM strategy for an organization should be based on:",
+    options: [
+      "The most aggressive monitoring frequency technically achievable",
+      "Organizational risk tolerance, mission priorities, and the cost-benefit of monitoring activities",
+      "The vendor's default monitoring configuration",
+      "A single government-wide monitoring standard applicable to all systems",
+    ],
+    correctIndex: 1,
+    explanation:
+      "An effective ISCM strategy is risk-based and mission-driven. SP 800-137 directs organizations to define monitoring frequencies, metrics, and reporting based on what is needed to maintain situational awareness aligned with organizational risk tolerance — not to monitor everything maximally, which is cost-prohibitive, but to monitor what matters most.",
+  },
+
+  // ── ISSMP additional questions (round 6) ───────────────────────────────────
+  {
+    id: "issmp-d1-008",
+    certId: "issmp",
+    domainId: "issmp-d1",
+    question: "Effective security metrics reported to senior leadership should be:",
+    options: [
+      "As technically detailed as possible to demonstrate expertise",
+      "Tied to business risk, actionable, and trended over time",
+      "Focused on the number of vulnerabilities identified each month",
+      "Limited to compliance pass/fail status",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Leadership metrics must answer 'What is the risk to the business?' not 'What tools are running?' Good security metrics are business-relevant (revenue at risk, regulatory exposure), actionable (decision support), and trended (improving or worsening). Raw vulnerability counts without business context are operational data, not leadership metrics.",
+  },
+  {
+    id: "issmp-d2-008",
+    certId: "issmp",
+    domainId: "issmp-d2",
+    question: "DevSecOps integrates security into the software development pipeline by:",
+    options: [
+      "Requiring a separate security team to approve all releases",
+      "Embedding security activities (SAST, DAST, dependency scanning) into CI/CD automation throughout development",
+      "Conducting a single security review at the end of each sprint",
+      "Replacing traditional code review with automated deployment",
+    ],
+    correctIndex: 1,
+    explanation:
+      "DevSecOps shifts security left by automating security testing within the CI/CD pipeline — Static Application Security Testing (SAST) on code check-in, Software Composition Analysis (SCA) on dependencies, Dynamic Application Security Testing (DAST) on deployed builds. Developers receive immediate feedback, catching vulnerabilities early when they are cheapest to fix.",
+  },
+  {
+    id: "issmp-d3-008",
+    certId: "issmp",
+    domainId: "issmp-d3",
+    question: "A risk that has been accepted with no compensating controls should be:",
+    options: [
+      "Removed from the risk register after acceptance",
+      "Documented in the risk register with the acceptance rationale and monitored for changes in likelihood or impact",
+      "Escalated to the board immediately",
+      "Automatically escalated to a higher risk level in the next assessment",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Accepted risks do not disappear — they remain on the risk register with documentation of who accepted them, why, and when the decision should be re-evaluated. Threat landscapes and business contexts change; a risk acceptable today may become unacceptable if the likelihood increases or the potential impact grows. Regular review of accepted risks is a best practice.",
+  },
+  {
+    id: "issmp-d4-008",
+    certId: "issmp",
+    domainId: "issmp-d4",
+    question: "Cyber threat intelligence sharing between organizations is primarily governed by:",
+    options: [
+      "Mandatory government regulations in all sectors",
+      "Information Sharing and Analysis Centers (ISACs) and formal sharing agreements like TLP or MOU",
+      "Social media platforms dedicated to security professionals",
+      "Individual company security policies without external frameworks",
+    ],
+    correctIndex: 1,
+    explanation:
+      "ISACs (Financial Services ISAC, Health-ISAC, etc.) are sector-specific bodies that facilitate structured threat intelligence sharing. The Traffic Light Protocol (TLP) provides a standard classification for sharing sensitivity (TLP:RED = recipient only, TLP:GREEN = community, etc.). Formal agreements establish trust, liability protections, and handling requirements for shared intelligence.",
+  },
+  {
+    id: "issmp-d5-008",
+    certId: "issmp",
+    domainId: "issmp-d5",
+    question: "A warm site in a BC/DR context provides:",
+    options: [
+      "A fully operational duplicate environment ready to switch over immediately",
+      "A partially equipped facility that requires some setup time before becoming operational",
+      "Only power and network connectivity with no pre-installed systems",
+      "Remote cloud access only, with no physical presence",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A warm site has infrastructure and systems pre-installed but not fully operational — data may need to be restored and applications started. Recovery time is measured in hours to days. Hot sites are fully operational with near-zero RTO; cold sites (empty shell) require days to weeks of setup. Warm sites balance cost (cheaper than hot) with recovery speed (faster than cold).",
+  },
+  {
+    id: "issmp-d6-008",
+    certId: "issmp",
+    domainId: "issmp-d6",
+    question: "The principle of due care in information security means that:",
+    options: [
+      "Organizations must implement perfect security to avoid liability",
+      "Organizations must take reasonable precautions expected of a prudent person to protect information assets",
+      "Only regulated industries have security obligations",
+      "Security is solely the responsibility of the technical team",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Due care is the legal and ethical standard requiring organizations to exercise reasonable, prudent precautions to protect assets and reduce risk to stakeholders. It is not a standard of perfection — it asks what a reasonable, prudent organization would do. Failure to exercise due care can result in negligence liability if harm occurs.",
+  },
 ];
