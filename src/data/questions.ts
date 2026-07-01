@@ -2017,4 +2017,398 @@ export const questions: Question[] = [
     explanation:
       "Business continuity is the broader, people-and-process-focused discipline that keeps critical operations running during disruptions. Disaster recovery is a subset focused on restoring IT systems and data after a disruption.",
   },
+
+  // ── CGRC additional questions (round 4) ────────────────────────────────────
+  {
+    id: "cgrc-d1-005",
+    certId: "cgrc",
+    domainId: "cgrc-d1",
+    question: "Which NIST RMF step is responsible for determining a system's security categorization?",
+    options: [
+      "Select",
+      "Categorize",
+      "Implement",
+      "Assess",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The Categorize step (Task C-1 in SP 800-60) uses FIPS 199 criteria to assign impact levels (Low/Moderate/High) for confidentiality, integrity, and availability. This categorization drives all downstream control selection and authorization decisions.",
+  },
+  {
+    id: "cgrc-d1-006",
+    certId: "cgrc",
+    domainId: "cgrc-d1",
+    question: "The Information System Owner (ISO) is primarily responsible for:",
+    options: [
+      "Signing the authorization to operate",
+      "Conducting security control assessments",
+      "Ensuring the system is operated, maintained, and disposed of in accordance with security requirements",
+      "Developing the organizational risk management strategy",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The ISO owns the mission/business process supported by the system and is responsible for its security throughout its life cycle. The AO signs the authorization to operate; the assessor conducts assessments; the CISO/risk executive develops the organizational strategy.",
+  },
+  {
+    id: "cgrc-d2-005",
+    certId: "cgrc",
+    domainId: "cgrc-d2",
+    question: "A System Security Plan (SSP) primarily serves to:",
+    options: [
+      "Document the results of penetration testing",
+      "Provide an overview of security requirements and describe how controls are implemented",
+      "List all known vulnerabilities and their remediation status",
+      "Define the disaster recovery procedures for the system",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Per NIST SP 800-18, the SSP describes the system environment, categorization, applicable controls, and how each control is implemented or planned. It is the central authoritative document for the authorization package — not a vulnerability list or pentest report.",
+  },
+  {
+    id: "cgrc-d2-006",
+    certId: "cgrc",
+    domainId: "cgrc-d2",
+    question: "When defining the authorization boundary of a system, what is the primary consideration?",
+    options: [
+      "The physical location of all servers",
+      "The set of resources under the direct control of the authorizing official",
+      "All systems that share the same network segment",
+      "All commercial cloud services used by the organization",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The authorization boundary defines what is included in and excluded from the ATO. It encompasses the system components—hardware, software, firmware, data, and services—that are under the control of and the responsibility of a specific authorizing official.",
+  },
+  {
+    id: "cgrc-d3-004",
+    certId: "cgrc",
+    domainId: "cgrc-d3",
+    question: "Tailoring controls in NIST SP 800-53 allows organizations to:",
+    options: [
+      "Remove all controls that are not mandated by law",
+      "Add, modify, or remove controls based on operational and environmental factors",
+      "Replace NIST controls with vendor-recommended defaults",
+      "Apply only the minimum baseline without any customization",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Tailoring includes applying scoping guidance, substituting equivalent controls, compensating for technically infeasible controls, and adding supplemental controls. Tailoring is documented in the SSP and must be approved by the AO — it does not mean simply removing controls.",
+  },
+  {
+    id: "cgrc-d3-005",
+    certId: "cgrc",
+    domainId: "cgrc-d3",
+    question: "Which NIST publication provides the control catalog used in federal information system authorizations?",
+    options: [
+      "NIST SP 800-37",
+      "NIST SP 800-53",
+      "NIST SP 800-60",
+      "FIPS 199",
+    ],
+    correctIndex: 1,
+    explanation:
+      "NIST SP 800-53 (Security and Privacy Controls for Information Systems and Organizations) is the control catalog. SP 800-37 is the RMF guide, SP 800-60 maps information types to impact levels, and FIPS 199 defines the categorization standards.",
+  },
+  {
+    id: "cgrc-d4-004",
+    certId: "cgrc",
+    domainId: "cgrc-d4",
+    question: "Supply Chain Risk Management (SCRM) in the RMF context is primarily addressed in which control family?",
+    options: [
+      "Access Control (AC)",
+      "Supply Chain Risk Management (SR)",
+      "Program Management (PM)",
+      "System and Services Acquisition (SA)",
+    ],
+    correctIndex: 1,
+    explanation:
+      "NIST SP 800-53 Rev 5 introduced the SR (Supply Chain Risk Management) control family specifically to address risks from suppliers, developers, and external service providers. SA controls address acquisition requirements but SR is the primary SCRM family.",
+  },
+  {
+    id: "cgrc-d4-005",
+    certId: "cgrc",
+    domainId: "cgrc-d4",
+    question: "Configuration management in the RMF ensures that:",
+    options: [
+      "Only approved and documented changes are made to an authorized system",
+      "Users can install any software needed for their work",
+      "Systems are backed up after every change",
+      "Security controls are tested annually",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Configuration management (CM controls in SP 800-53) maintains the security posture of an authorized system by controlling changes through a formal process — baseline configuration, change control board review, security impact analysis, and documentation. Unauthorized changes can invalidate the ATO.",
+  },
+  {
+    id: "cgrc-d5-004",
+    certId: "cgrc",
+    domainId: "cgrc-d5",
+    question: "A Plan of Action and Milestones (POA&M) documents:",
+    options: [
+      "The overall security architecture of the information system",
+      "Known weaknesses and the planned corrective actions with target dates",
+      "The results of penetration testing only",
+      "Approved exceptions to security policy",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A POA&M (per NIST SP 800-37 and OMB M-02-01) tracks security weaknesses identified during assessments, the resources required, milestones and completion dates, and responsible individuals. It is a living document maintained throughout the system life cycle.",
+  },
+  {
+    id: "cgrc-d5-005",
+    certId: "cgrc",
+    domainId: "cgrc-d5",
+    question: "During a security assessment, the assessor discovers an undocumented compensating control that effectively mitigates a HIGH-rated finding. The assessor should:",
+    options: [
+      "Ignore it since it is not in the SSP",
+      "Document the compensating control and its effectiveness in the Security Assessment Report",
+      "Immediately report it to law enforcement",
+      "Treat the weakness as fully unmitigated",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Assessors document the actual implementation state, including compensating controls, in the SAR. If a compensating control adequately addresses a weakness, that finding should reflect the reduced residual risk. The ISO then decides whether to formally add the compensating control to the SSP.",
+  },
+  {
+    id: "cgrc-d6-004",
+    certId: "cgrc",
+    domainId: "cgrc-d6",
+    question: "An Authorization to Operate (ATO) represents:",
+    options: [
+      "A guarantee that the system has no vulnerabilities",
+      "An official management decision to accept the residual risk of operating a system",
+      "Approval to develop a new information system",
+      "A security clearance for system operators",
+    ],
+    correctIndex: 1,
+    explanation:
+      "An ATO is the authorizing official's explicit acceptance of the residual risk associated with operating the system under specified conditions. It is not a certification that the system is perfectly secure — risk always remains; the ATO documents that it has been reviewed and accepted.",
+  },
+  {
+    id: "cgrc-d6-005",
+    certId: "cgrc",
+    domainId: "cgrc-d6",
+    question: "Which authorization decision allows a system to operate despite outstanding security issues, provided they are actively tracked?",
+    options: [
+      "Authorization to Operate (ATO)",
+      "Authorization to Operate under Conditions (ATOC)",
+      "Denial of Authorization to Operate (DATO)",
+      "Common Control Authorization",
+    ],
+    correctIndex: 1,
+    explanation:
+      "An ATOC (ATO with conditions) permits operation while requiring the ISO to remediate specified weaknesses by a defined date. If conditions are not met, the AO may rescind the authorization. A DATO denies operation entirely. A standard ATO has no outstanding conditions.",
+  },
+  {
+    id: "cgrc-d7-004",
+    certId: "cgrc",
+    domainId: "cgrc-d7",
+    question: "Continuous monitoring in the ISCM program primarily enables:",
+    options: [
+      "Replacing all periodic assessments",
+      "Near real-time situational awareness of organizational security posture",
+      "Automated remediation of all vulnerabilities",
+      "Elimination of the need for an annual ATO review",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The goal of Information Security Continuous Monitoring (ISCM), per NIST SP 800-137, is to maintain ongoing awareness of information security, vulnerabilities, and threats to support organizational risk management decisions. It complements — but does not replace — periodic formal assessments.",
+  },
+  {
+    id: "cgrc-d7-005",
+    certId: "cgrc",
+    domainId: "cgrc-d7",
+    question: "Security status reporting in ISCM should primarily be directed to:",
+    options: [
+      "Only the security operations center",
+      "Authorizing officials and senior leadership to support risk decisions",
+      "The system development team for remediation tracking",
+      "External auditors on a quarterly basis",
+    ],
+    correctIndex: 1,
+    explanation:
+      "ISCM reports must reach decision-makers — AOs and senior leaders — so they can make informed risk acceptance or escalation decisions. Operational teams also receive reports, but the key audience for ISCM status is organizational leadership because they hold risk acceptance authority.",
+  },
+
+  // ── ISSMP additional questions (round 4) ───────────────────────────────────
+  {
+    id: "issmp-d1-005",
+    certId: "issmp",
+    domainId: "issmp-d1",
+    question: "A security leader presenting to the board of directors should emphasize:",
+    options: [
+      "Technical vulnerability counts and patch levels",
+      "Risk to business objectives expressed in business terms",
+      "Detailed firewall rule changes from the past quarter",
+      "Staff certification and training completion rates",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Board-level communication must connect security to mission, strategy, and financial risk. Boards govern; they need risk exposure in dollar terms, regulatory exposure, and trend lines — not technical metrics. Patch counts and rule changes belong in operational reports.",
+  },
+  {
+    id: "issmp-d1-006",
+    certId: "issmp",
+    domainId: "issmp-d1",
+    question: "An information security steering committee's primary governance function is to:",
+    options: [
+      "Conduct daily security operations reviews",
+      "Approve security policies, prioritize investments, and resolve cross-functional security issues",
+      "Perform hands-on incident response",
+      "Manage vendor security certifications",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A steering committee is a governance body that provides strategic direction — approving policies, adjudicating resource conflicts, prioritizing security roadmap investments, and ensuring security aligns with business objectives. Day-to-day operations and incident response remain with the security operations function.",
+  },
+  {
+    id: "issmp-d2-005",
+    certId: "issmp",
+    domainId: "issmp-d2",
+    question: "Security requirements should ideally be incorporated into the SDLC:",
+    options: [
+      "Only during the testing phase",
+      "Starting from the requirements and design phases",
+      "After the system has gone into production",
+      "Only when handling sensitive data",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Shifting security left — integrating requirements, threat modeling, and security design during the requirements and design phases — is far cheaper than retrofitting controls in testing or post-production. ISSMP candidates must understand that 'bolt-on' security is both costly and less effective.",
+  },
+  {
+    id: "issmp-d2-006",
+    certId: "issmp",
+    domainId: "issmp-d2",
+    question: "Third-party software acquisition security practices should include:",
+    options: [
+      "Trusting vendor security assurances without independent verification",
+      "Reviewing SBOMs, conducting security due diligence, and including security requirements in contracts",
+      "Evaluating only price and feature set",
+      "Requiring source code escrow for all commercial products",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Due diligence for third-party software includes reviewing Software Bills of Materials (SBOMs), evaluating the vendor's security posture, contractually requiring security requirements, and reviewing vulnerability disclosure programs. Relying solely on vendor assurances creates unmanaged supply chain risk.",
+  },
+  {
+    id: "issmp-d3-004",
+    certId: "issmp",
+    domainId: "issmp-d3",
+    question: "Enterprise Risk Management (ERM) integrates information security risk by:",
+    options: [
+      "Treating IT risk as separate from business risk",
+      "Expressing security risk in business terms within the organization's overall risk portfolio",
+      "Delegating all risk decisions to the CISO",
+      "Focusing exclusively on financial and compliance risks",
+    ],
+    correctIndex: 1,
+    explanation:
+      "ERM views risk holistically across the enterprise. Information security risk must be expressed in business impact terms — revenue loss, regulatory fines, reputational damage — so it can be compared and prioritized against operational, strategic, and financial risks in a unified risk register.",
+  },
+  {
+    id: "issmp-d3-005",
+    certId: "issmp",
+    domainId: "issmp-d3",
+    question: "When a risk treatment option of 'transfer' is chosen, the organization:",
+    options: [
+      "Eliminates the risk entirely",
+      "Accepts the risk with no mitigating action",
+      "Shifts the financial impact to a third party, such as through cyber insurance",
+      "Reduces the risk to an acceptable level through controls",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Risk transfer (or sharing) moves the financial consequence to another party — typically through insurance or contractual agreements. It does not eliminate the technical risk or the likelihood of an incident; it only changes who bears the financial burden if the risk materializes.",
+  },
+  {
+    id: "issmp-d4-004",
+    certId: "issmp",
+    domainId: "issmp-d4",
+    question: "Strategic threat intelligence is most useful for:",
+    options: [
+      "Blocking specific malicious IP addresses in real time",
+      "Informing long-term security investment and capability decisions",
+      "Automating firewall rule updates",
+      "Identifying individual malware samples",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Strategic intelligence covers actor intent, geopolitical context, and industry-wide trends. It helps executives and security leaders understand emerging threats to prioritize security programs and investments. Tactical/operational intelligence handles IOCs, IPs, and malware signatures.",
+  },
+  {
+    id: "issmp-d4-005",
+    certId: "issmp",
+    domainId: "issmp-d4",
+    question: "The primary purpose of a post-incident lessons-learned review is to:",
+    options: [
+      "Assign blame and disciplinary action to responsible parties",
+      "Identify process gaps and improve detection, response, and recovery capabilities",
+      "Create an official record for legal proceedings",
+      "Satisfy regulatory mandatory reporting requirements",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Post-incident reviews (also called after-action reviews) are blameless analyses focused on improving the organization's capabilities. The output is actionable improvements to playbooks, tools, training, and processes — not a blame assignment exercise.",
+  },
+  {
+    id: "issmp-d5-005",
+    certId: "issmp",
+    domainId: "issmp-d5",
+    question: "A Business Impact Analysis (BIA) produces which key outputs used in BC/DR planning?",
+    options: [
+      "Firewall rules and network diagrams",
+      "Recovery Time Objectives (RTOs) and Recovery Point Objectives (RPOs) for critical processes",
+      "Vendor contract terms and SLA details",
+      "Employee emergency contact lists",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The BIA quantifies the impact of disruptions over time and determines the maximum tolerable downtime for each critical process. RTOs and RPOs flow directly from BIA results and become the primary design targets for BC/DR strategies, alternate site selection, and backup frequency.",
+  },
+  {
+    id: "issmp-d5-006",
+    certId: "issmp",
+    domainId: "issmp-d5",
+    question: "Which BC/DR test provides the highest confidence that recovery procedures work in a real disaster?",
+    options: [
+      "Checklist review",
+      "Tabletop exercise",
+      "Parallel test",
+      "Full interruption test",
+    ],
+    correctIndex: 3,
+    explanation:
+      "A full interruption test actually shuts down the primary environment and requires recovery from the alternate site — it is the most realistic and highest-confidence test. Its high risk and cost mean it is rarely performed; parallel and tabletop tests are more common in practice.",
+  },
+  {
+    id: "issmp-d6-005",
+    certId: "issmp",
+    domainId: "issmp-d6",
+    question: "Under the EU General Data Protection Regulation (GDPR), a personal data breach must be notified to the supervisory authority within:",
+    options: [
+      "7 days",
+      "30 days",
+      "72 hours",
+      "14 business days",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Article 33 of GDPR requires controllers to notify the competent supervisory authority within 72 hours of becoming aware of a personal data breach, where feasible. If notification cannot be made within 72 hours, the reasons for the delay must be provided alongside the notification.",
+  },
+  {
+    id: "issmp-d6-006",
+    certId: "issmp",
+    domainId: "issmp-d6",
+    question: "The (ISC)² Code of Ethics canon that takes highest precedence requires professionals to:",
+    options: [
+      "Always prioritize the employer's financial interests",
+      "Protect society, the common good, necessary public trust and confidence, and the infrastructure",
+      "Never disclose security vulnerabilities to competitors",
+      "Follow only the laws of the jurisdiction where the employer is located",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The first canon of the (ISC)² Code of Ethics — 'Protect society, the common good, necessary public trust and confidence, and the infrastructure' — takes precedence over all other canons. When employer interests conflict with public safety, professionals must prioritize the public interest.",
+  },
 ];

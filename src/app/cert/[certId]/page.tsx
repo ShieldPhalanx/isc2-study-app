@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { studyContent } from "@/data/studyContent";
@@ -7,6 +8,16 @@ import CertProgressBar from "@/components/CertProgressBar";
 import QuizScoreHistory from "@/components/QuizScoreHistory";
 import StudySuggestions from "@/components/StudySuggestions";
 import ResetProgressButton from "@/components/ResetProgressButton";
+
+export async function generateMetadata(props: PageProps<"/cert/[certId]">): Promise<Metadata> {
+  const { certId } = await props.params;
+  const cert = certifications.find((c) => c.id === certId);
+  if (!cert) return {};
+  return {
+    title: `${cert.name} — Security Cert Study`,
+    description: `Study notes, practice quizzes, and flashcards for the ${cert.fullName} (${cert.name}).`,
+  };
+}
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -30,7 +41,7 @@ export default async function CertPage(props: PageProps<"/cert/[certId]">) {
   const certQuestions = questions.filter((q) => q.certId === cert.id);
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main id="main-content" className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 mb-6 inline-block">
           ← All certifications

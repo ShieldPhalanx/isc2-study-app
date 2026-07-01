@@ -423,23 +423,35 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
   const timeWarning = timeLeft !== null && timeLeft <= 60;
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main id="main-content" className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <button onClick={restart} className="text-sm text-gray-500 hover:text-gray-700">
+          <button onClick={restart} className="text-sm text-gray-500 hover:text-gray-700" aria-label={`Exit quiz, back to ${cert.name}`}>
             ← {cert.name}
           </button>
           <div className="flex items-center gap-4">
             {timeLeft !== null && (
-              <span className={`text-sm font-mono font-semibold ${timeWarning ? "text-red-500" : "text-gray-500"}`}>
+              <span
+                role="timer"
+                aria-live="polite"
+                aria-label={`Time remaining: ${formatTime(timeLeft)}`}
+                className={`text-sm font-mono font-semibold ${timeWarning ? "text-red-500" : "text-gray-500"}`}
+              >
                 {formatTime(timeLeft)}
               </span>
             )}
-            <span className="text-sm text-gray-400">{index + 1} / {shuffled.length}</span>
+            <span className="text-sm text-gray-400" aria-label={`Question ${index + 1} of ${shuffled.length}`}>{index + 1} / {shuffled.length}</span>
           </div>
         </div>
 
-        <div className="w-full bg-gray-200 rounded-full h-1.5 mb-8">
+        <div
+          role="progressbar"
+          aria-valuenow={index + 1}
+          aria-valuemin={1}
+          aria-valuemax={shuffled.length}
+          aria-label={`Question ${index + 1} of ${shuffled.length}`}
+          className="w-full bg-gray-200 rounded-full h-1.5 mb-8"
+        >
           <div
             className={`h-1.5 rounded-full transition-all ${colorMap[cert.color].split(" ")[0]}`}
             style={{ width: `${((index + 1) / shuffled.length) * 100}%` }}

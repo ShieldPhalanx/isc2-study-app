@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { certifications } from "@/data/certifications";
@@ -5,6 +6,17 @@ import { studyContent } from "@/data/studyContent";
 import { questions } from "@/data/questions";
 import MarkReadButton from "@/components/MarkReadButton";
 import DomainQuizBadge from "@/components/DomainQuizBadge";
+
+export async function generateMetadata(props: PageProps<"/cert/[certId]/learn/[domainId]">): Promise<Metadata> {
+  const { certId, domainId } = await props.params;
+  const cert = certifications.find((c) => c.id === certId);
+  const domain = cert?.domains.find((d) => d.id === domainId);
+  if (!cert || !domain) return {};
+  return {
+    title: `${domain.name} — ${cert.name} Study`,
+    description: `Study notes and exam tips for the ${cert.name} domain: ${domain.name} (${domain.weight}% of exam).`,
+  };
+}
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-600",
@@ -46,16 +58,16 @@ export default async function DomainLearnPage(
   const domainQCount = questions.filter((q) => q.domainId === domainId).length;
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main id="main-content" className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-3xl mx-auto">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-gray-400 mb-6">
           <Link href={`/cert/${certId}`} className="hover:text-gray-600">{cert.name}</Link>
-          <span>/</span>
+          <span aria-hidden="true">/</span>
           <Link href={`/cert/${certId}/learn`} className="hover:text-gray-600">Study</Link>
-          <span>/</span>
-          <span className="text-gray-600">Domain {domainIndex + 1}</span>
-        </div>
+          <span aria-hidden="true">/</span>
+          <span className="text-gray-600" aria-current="page">Domain {domainIndex + 1}</span>
+        </nav>
 
         {/* Header */}
         <div className="mb-8">

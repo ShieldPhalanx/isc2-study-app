@@ -145,7 +145,7 @@ export default function StudyClient({ cert, questions }: Props) {
     const allTimePct = Math.round((persistentMastered / questions.length) * 100);
 
     return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
+      <main id="main-content" className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
         <div className="bg-white rounded-2xl border border-gray-200 p-10 max-w-md w-full text-center">
           <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
           <p className="text-gray-500 mb-2">{masteredCount} of {totalCount} mastered this session</p>
@@ -197,7 +197,7 @@ export default function StudyClient({ cert, questions }: Props) {
 
   // ── Cards screen ──────────────────────────────────────────────────────────
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main id="main-content" className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <Link href={`/cert/${cert.id}`} className="text-sm text-gray-500 hover:text-gray-700">
@@ -213,7 +213,14 @@ export default function StudyClient({ cert, questions }: Props) {
           </div>
         </div>
 
-        <div className="w-full bg-gray-200 rounded-full h-1.5 mb-8">
+        <div
+          role="progressbar"
+          aria-valuenow={index + 1}
+          aria-valuemin={1}
+          aria-valuemax={totalCount}
+          aria-label={`Card ${index + 1} of ${totalCount}`}
+          className="w-full bg-gray-200 rounded-full h-1.5 mb-8"
+        >
           <div
             className={`h-1.5 rounded-full transition-all ${colorMap[cert.color].split(" ")[0]}`}
             style={{ width: `${((index + 1) / totalCount) * 100}%` }}

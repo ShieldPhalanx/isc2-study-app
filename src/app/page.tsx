@@ -22,7 +22,7 @@ export default function Home() {
   const totalDomains = certifications.reduce((sum, c) => sum + c.domains.length, 0);
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main id="main-content" className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-1">Security Cert Study</h1>
         <p className="text-gray-500 mb-1">

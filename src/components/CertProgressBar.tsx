@@ -24,11 +24,18 @@ export default function CertProgressBar({ certColor, domainIds }: Props) {
 
   return (
     <div className="mt-3">
-      <div className="flex justify-between text-xs text-gray-400 mb-1">
+      <div className="flex justify-between text-xs text-gray-400 mb-1" aria-hidden="true">
         <span>{readCount}/{total} domains studied</span>
         <span>{pct}%</span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-1">
+      <div
+        role="progressbar"
+        aria-valuenow={pct}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`Study progress: ${readCount} of ${total} domains read (${pct}%)`}
+        className="w-full bg-gray-200 rounded-full h-1"
+      >
         <div
           className={`h-1 rounded-full transition-all ${colorMap[certColor]}`}
           style={{ width: `${pct}%` }}
