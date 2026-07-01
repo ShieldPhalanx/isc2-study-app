@@ -197,10 +197,7 @@ export default function StudyClient({ cert, questions }: Props) {
             )}
             {flaggedIds.size > 0 && (
               <Link
-                href={`/cert/${cert.id}/quiz?domain=all`}
-                onClick={() => {
-                  // Navigate to quiz — flagged questions are accessible via quiz setup
-                }}
+                href={`/cert/${cert.id}/quiz`}
                 className="w-full py-3 rounded-lg text-center border-2 border-yellow-300 bg-yellow-50 text-yellow-800 font-medium text-sm hover:bg-yellow-100 transition-colors"
               >
                 ⚑ {flaggedIds.size} flagged — practice in quiz →
