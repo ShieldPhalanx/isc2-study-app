@@ -3217,4 +3217,246 @@ export const questions: Question[] = [
     explanation:
       "Incident severity should be based on business impact — data sensitivity, systems/users affected, regulatory implications, financial exposure, and operational disruption. Technical factors are secondary. A simple phishing email compromising the CFO's account is more severe than a complex attack on a test system. Severity drives response priority and resource allocation.",
   },
+  // ── CISSP additional questions ───────────────────────────────────────────
+  {
+    id: "cissp-d1-010",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "A Privacy Impact Assessment (PIA) is MOST valuable because it:",
+    options: [
+      "Replaces the need for a risk assessment",
+      "Identifies privacy risks before a system or process is implemented, when changes are least costly",
+      "Is required by all global privacy regulations",
+      "Documents post-implementation compliance",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A PIA proactively identifies privacy risks associated with new systems or processes before deployment, when design changes cost far less than post-launch remediation. While many regulations encourage or require PIAs (GDPR calls them DPIAs), the primary value is the shift-left principle: find and fix privacy issues early.",
+  },
+  {
+    id: "cissp-d1-011",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Security awareness training differs from security education in that training:",
+    options: [
+      "Prepares individuals for security certifications",
+      "Focuses on changing day-to-day behavior for a specific audience",
+      "Provides deep theoretical knowledge of security principles",
+      "Is only required for technical staff",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The NIST framework distinguishes training (skill-building for a role), education (deep conceptual understanding), and awareness (changing everyday behavior). Awareness programs target all users with role-appropriate behavioral nudges — e.g., 'don't click phishing links.' Training equips practitioners with job-specific skills. Education produces security professionals.",
+  },
+  {
+    id: "cissp-d2-009",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "A database view is used as a security control primarily to:",
+    options: [
+      "Speed up query performance",
+      "Restrict access to specific rows or columns of a table, implementing need-to-know",
+      "Encrypt sensitive data at rest",
+      "Log all database queries for audit purposes",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A database view presents a customized subset of the underlying data — specific columns, filtered rows, or computed values — without exposing the full table. This enforces need-to-know and least privilege at the data layer: a customer service rep might see order status but not credit card numbers, even though both reside in the same table.",
+  },
+  {
+    id: "cissp-d3-009",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "The reference monitor concept in security architecture ensures that:",
+    options: [
+      "All subject-to-object access requests are mediated, tamperproof, and auditable",
+      "Subjects can communicate with each other without object access",
+      "All network traffic passes through a single inspection point",
+      "The operating system kernel is isolated from applications",
+    ],
+    correctIndex: 0,
+    explanation:
+      "A reference monitor is an abstract security model requiring that: (1) all access requests are mediated — no path exists that bypasses the monitor; (2) it is tamperproof — cannot be altered by unauthorized means; (3) it is small enough to be verified. The Security Kernel is the concrete implementation. It underpins mandatory access control in secure systems.",
+  },
+  {
+    id: "cissp-d4-009",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "Network Address Translation (NAT) provides limited security because it:",
+    options: [
+      "Encrypts all outbound traffic",
+      "Hides internal IP addresses from the internet, reducing direct external exposure",
+      "Prevents all inbound connection attempts",
+      "Replaces the need for a firewall",
+    ],
+    correctIndex: 1,
+    explanation:
+      "NAT translates private internal addresses to one or more public IPs, incidentally hiding the internal topology from external observers. This is not real security — an attacker who exploits an outbound connection can still reach internal hosts. NAT does not replace firewalls, IDS/IPS, or other controls; it is a byproduct of IPv4 address conservation.",
+  },
+  {
+    id: "cissp-d5-009",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Access recertification (access reviews) is PRIMARILY performed to:",
+    options: [
+      "Speed up the provisioning process",
+      "Ensure users retain only the access they currently need, removing accumulated excess permissions",
+      "Prevent password sharing between employees",
+      "Satisfy multi-factor authentication requirements",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Over time, users accumulate access through role changes, temporary projects, or poorly deprovisioned accounts — a phenomenon called privilege creep. Access recertification (periodic manager or owner review of who has access to what) identifies and removes excess permissions. It is a detective/corrective control for the IAM lifecycle.",
+  },
+  {
+    id: "cissp-d6-009",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "STRIDE is used in threat modeling to:",
+    options: [
+      "Categorize vulnerabilities by CVSS severity score",
+      "Systematically identify potential threats to a system by type: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege",
+      "Assign risk scores to assets",
+      "Document the kill chain for known attack patterns",
+    ],
+    correctIndex: 1,
+    explanation:
+      "STRIDE (developed at Microsoft) is a threat taxonomy used during security design reviews. Each letter represents a threat category: Spoofing (authentication), Tampering (integrity), Repudiation (non-repudiation), Information Disclosure (confidentiality), Denial of Service (availability), Elevation of Privilege (authorization). Applying STRIDE to data flow diagrams helps surface security requirements early in the SDLC.",
+  },
+  {
+    id: "cissp-d7-009",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "A Security Orchestration, Automation and Response (SOAR) platform differs from a SIEM primarily because it:",
+    options: [
+      "Collects and correlates log data from multiple sources",
+      "Automates response actions and orchestrates workflows across security tools",
+      "Provides real-time threat intelligence feeds",
+      "Replaces the need for human analysts",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SIEM aggregates, correlates, and alerts on log data. SOAR adds automation: when a SIEM fires an alert, SOAR can automatically enrich it (threat intel lookup), contain it (block an IP), and route the case to analysts with a pre-populated playbook. SOAR reduces mean time to respond (MTTR) and analyst fatigue. The two tools are complementary, not interchangeable.",
+  },
+  {
+    id: "cissp-d7-010",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "In a cloud shared responsibility model, the cloud provider is ALWAYS responsible for:",
+    options: [
+      "Customer data encryption at rest",
+      "Patching the underlying physical infrastructure and hypervisor",
+      "User access management and identity configuration",
+      "Application-level security controls",
+    ],
+    correctIndex: 1,
+    explanation:
+      "In all cloud service models (IaaS, PaaS, SaaS), the provider owns the physical infrastructure, data centers, network hardware, and hypervisor. Customer responsibilities shift depending on the model: IaaS customers manage OS and above; PaaS customers manage applications and data; SaaS customers manage only data and access configuration. Identity and encryption configuration are typically customer responsibilities in IaaS/PaaS.",
+  },
+  {
+    id: "cissp-d8-009",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Input validation is the PRIMARY defense against injection attacks because it:",
+    options: [
+      "Encrypts user input before processing",
+      "Ensures only expected, properly structured data reaches application logic and prevents malicious payloads from executing",
+      "Logs all user input for forensic analysis",
+      "Limits the number of requests a user can make",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Injection attacks (SQL, command, LDAP) succeed when untrusted data is sent to an interpreter as part of a command. Input validation — accepting only expected formats, rejecting or encoding special characters — prevents malicious input from reaching interpreters. Parameterized queries (prepared statements) are the gold standard for SQL injection; combined with allowlist validation, they address the root cause rather than symptoms.",
+  },
+  // ── ISSMP additional questions ───────────────────────────────────────────
+  {
+    id: "issmp-d1-009",
+    certId: "issmp",
+    domainId: "issmp-d1",
+    question: "A security leader presenting to the board should frame security investments PRIMARILY in terms of:",
+    options: [
+      "Technical severity scores and CVE counts",
+      "Headcount required for the security team",
+      "Business risk, regulatory exposure, and value protection",
+      "Comparison to peer organizations' security budgets",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Boards govern risk, not technology. Effective security leaders translate technical realities into business language: expected loss, regulatory penalties, reputational impact, and strategic risk. CVE counts and technical metrics lack the context boards need to make resource allocation decisions. Risk-based framing builds credibility and secures appropriate investment.",
+  },
+  {
+    id: "issmp-d2-009",
+    certId: "issmp",
+    domainId: "issmp-d2",
+    question: "Security by design in the SDLC primarily means:",
+    options: [
+      "Performing a penetration test before each release",
+      "Incorporating security requirements, threat modeling, and security controls from the earliest stages of development",
+      "Hiring security engineers to review code after it is written",
+      "Using only open-source, community-audited frameworks",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Security by design (shift-left security) integrates security activities throughout the SDLC: threat modeling in design, security requirements in specifications, secure coding standards in development, SAST/DAST in testing, and hardening in deployment. Fixing security issues early is orders of magnitude cheaper than post-release remediation and forms the basis of DevSecOps.",
+  },
+  {
+    id: "issmp-d3-009",
+    certId: "issmp",
+    domainId: "issmp-d3",
+    question: "A gap analysis in the context of security compliance management MOST directly helps an organization:",
+    options: [
+      "Identify specific differences between the current security posture and the requirements of a standard or regulation",
+      "Calculate the ROI on security controls",
+      "Prioritize threats based on likelihood",
+      "Audit third-party suppliers",
+    ],
+    correctIndex: 0,
+    explanation:
+      "A gap analysis compares the current state against a target standard (ISO 27001, NIST CSF, PCI-DSS) to identify missing or insufficient controls. The output — a gap register with prioritized remediation actions — drives the compliance roadmap. It is a foundational activity before undertaking any compliance or certification effort.",
+  },
+  {
+    id: "issmp-d4-009",
+    certId: "issmp",
+    domainId: "issmp-d4",
+    question: "The PRIMARY difference between a tabletop exercise and a full interruption test is that:",
+    options: [
+      "A tabletop exercise is mandatory; a full interruption test is optional",
+      "A tabletop exercise discusses plans verbally without activating systems, while a full interruption test actually switches operations to the recovery site",
+      "Full interruption tests are only for IT systems",
+      "Tabletop exercises require executive sponsorship; full interruption tests do not",
+    ],
+    correctIndex: 1,
+    explanation:
+      "BC/DR testing progresses from low-risk to high-risk: tabletop (discussion), walkthrough/desk check, simulation, parallel test (both sites active), full interruption (production cut over to DR). Full interruption testing is the most rigorous and carries real risk of service disruption if the DR site fails — it should be planned carefully and often reserved for critical infrastructure.",
+  },
+  {
+    id: "issmp-d5-009",
+    certId: "issmp",
+    domainId: "issmp-d5",
+    question: "The Computer Fraud and Abuse Act (CFAA) is significant for security professionals primarily because it:",
+    options: [
+      "Defines privacy rights for social media users",
+      "Criminalizes unauthorized access to computers and is used to prosecute both external attackers and insider threats",
+      "Requires mandatory breach notification within 72 hours",
+      "Establishes minimum security standards for federal contractors",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The CFAA (1986, amended multiple times) is the primary US federal law governing computer crimes. It criminalizes unauthorized access, exceeding authorized access, and related offenses. Practitioners need to understand CFAA when authorizing penetration tests (written authorization is critical), investigating insider threats, and cooperating with law enforcement. The 'exceeding authorized access' language has been debated in employee misuse cases.",
+  },
+  {
+    id: "issmp-d6-009",
+    certId: "issmp",
+    domainId: "issmp-d6",
+    question: "An information security program's strategic objectives should be PRIMARILY derived from:",
+    options: [
+      "The latest threat intelligence reports",
+      "The organization's business strategy, risk appetite, and regulatory obligations",
+      "Industry benchmark security spending percentages",
+      "The CISO's personal security philosophy",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Security programs exist to enable business objectives safely. Strategic objectives must be grounded in the organization's mission, business goals, risk tolerance, and compliance obligations — not just reactive threat response or external benchmarks. Alignment with business strategy ensures security investments protect what matters and security controls don't unnecessarily obstruct value creation.",
+  },
 ];
