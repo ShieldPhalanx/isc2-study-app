@@ -33,16 +33,22 @@ export default function QuizScoreHistory({ certId, certColor }: Props) {
           &nbsp;·&nbsp;Last&nbsp;<span className="font-semibold text-gray-600">{last}%</span>
         </span>
       </div>
-      <div className="flex items-end gap-1" style={{ height: "28px" }}>
+      <div
+        className="flex items-end gap-1"
+        style={{ height: "28px" }}
+        role="img"
+        aria-label={`Quiz score history: ${chronological.map(r => r.pct + '%').join(', ')}`}
+      >
         {chronological.map((r, i) => (
           <div
             key={i}
             className={`flex-1 rounded-sm ${r.pct >= 70 ? colorMap[certColor] : "bg-gray-200"}`}
             style={{ height: `${Math.max(4, Math.round(r.pct * 0.26))}px` }}
-            title={`${r.pct}% (${r.score}/${r.total})`}
+            title={`Quiz ${i + 1}: ${r.pct}% (${r.score}/${r.total})${r.examMode ? " · exam mode" : ""}`}
           />
         ))}
       </div>
+      <p className="text-xs text-gray-300 mt-1">70% pass threshold shown in color</p>
     </div>
   );
 }

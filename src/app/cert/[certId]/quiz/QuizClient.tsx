@@ -216,7 +216,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
     const allSelected = selectedDomainIds.size === domainsWithQuestions.length;
 
     return (
-      <main className="min-h-screen bg-gray-50 p-8">
+      <main id="main-content" className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-lg mx-auto">
           <Link href={`/cert/${cert.id}`} className="text-sm text-gray-500 hover:text-gray-700 mb-6 inline-block">
             ← {cert.name}
@@ -362,19 +362,28 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
                   .map((d) => {
                     const ds = domainScores[d.id];
                     const dpct = Math.round((ds.score / ds.total) * 100);
+                    const weak = dpct < 70;
                     return (
                       <div key={d.id} className="flex items-center gap-3 text-sm">
                         <span className="flex-1 text-gray-700 truncate">{d.name}</span>
                         <span className="text-xs text-gray-400 w-12 text-right">{ds.score}/{ds.total}</span>
                         <div className="w-16 bg-gray-100 rounded-full h-1.5">
                           <div
-                            className={`h-1.5 rounded-full ${dpct >= 70 ? colorMap[cert.color].split(" ")[0] : "bg-red-300"}`}
+                            className={`h-1.5 rounded-full ${weak ? "bg-red-300" : colorMap[cert.color].split(" ")[0]}`}
                             style={{ width: `${dpct}%` }}
                           />
                         </div>
-                        <span className={`text-xs font-medium w-8 text-right ${dpct >= 70 ? "text-gray-600" : "text-red-500"}`}>
+                        <span className={`text-xs font-medium w-8 text-right ${weak ? "text-red-500" : "text-gray-600"}`}>
                           {dpct}%
                         </span>
+                        {weak && (
+                          <Link
+                            href={`/cert/${cert.id}/quiz?domain=${d.id}`}
+                            className="text-xs font-medium text-orange-600 hover:text-orange-800 bg-orange-50 hover:bg-orange-100 px-2 py-0.5 rounded transition-colors whitespace-nowrap"
+                          >
+                            ↻ Retry
+                          </Link>
+                        )}
                       </div>
                     );
                   })}

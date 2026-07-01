@@ -65,45 +65,54 @@ export default function DomainProgressList({ cert, domains, contentMap }: Props)
           const quizWeak = stats && stats.lastPct < 70;
 
           return (
-            <Link
+            <div
               key={domain.id}
-              href={`/cert/${cert.id}/learn/${domain.id}`}
-              className={`flex items-start justify-between bg-white border rounded-xl px-5 py-4 transition-all ring-2 ring-transparent ${ringMap[cert.color]} ${
+              className={`flex items-stretch bg-white border rounded-xl overflow-hidden transition-all ${
                 quizWeak ? "border-orange-200" : "border-gray-200"
               }`}
             >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className={`text-xs font-bold text-white px-2 py-0.5 rounded ${colorMap[cert.color]}`}>
-                    D{i + 1}
-                  </span>
-                  <span className="text-sm font-semibold text-gray-900">{domain.name}</span>
-                  {quizWeak && (
-                    <span className="text-xs font-medium text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">
-                      Review
+              <Link
+                href={`/cert/${cert.id}/learn/${domain.id}`}
+                className={`flex-1 flex items-start justify-between px-5 py-4 ring-2 ring-inset ring-transparent transition-all ${ringMap[cert.color]}`}
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className={`text-xs font-bold text-white px-2 py-0.5 rounded ${colorMap[cert.color]}`}>
+                      D{i + 1}
                     </span>
+                    <span className="text-sm font-semibold text-gray-900">{domain.name}</span>
+                  </div>
+                  {content && (
+                    <p className="text-xs text-gray-500 line-clamp-2 mt-1">{content.overview}</p>
                   )}
                 </div>
-                {content && (
-                  <p className="text-xs text-gray-500 line-clamp-2 mt-1">{content.overview}</p>
-                )}
-              </div>
-              <div className="ml-4 text-right shrink-0 flex flex-col items-end gap-1">
-                {isRead ? (
-                  <span className={`text-lg font-bold ${checkMap[cert.color]}`}>✓</span>
-                ) : (
-                  <span className="text-lg text-gray-200">○</span>
-                )}
-                {stats ? (
-                  <span className={`text-xs font-semibold tabular-nums ${stats.lastPct >= 70 ? "text-green-600" : "text-red-500"}`}>
-                    {stats.lastPct}%
-                  </span>
-                ) : (
-                  <p className="text-xs text-gray-400">{domain.weight}%</p>
-                )}
-                <p className="text-xs text-gray-400">{domain.qCount} q</p>
-              </div>
-            </Link>
+                <div className="ml-4 text-right shrink-0 flex flex-col items-end gap-1">
+                  {isRead ? (
+                    <span className={`text-lg font-bold ${checkMap[cert.color]}`}>✓</span>
+                  ) : (
+                    <span className="text-lg text-gray-200">○</span>
+                  )}
+                  {stats ? (
+                    <span className={`text-xs font-semibold tabular-nums ${stats.lastPct >= 70 ? "text-green-600" : "text-red-500"}`}>
+                      {stats.lastPct}%
+                    </span>
+                  ) : (
+                    <p className="text-xs text-gray-400">{domain.weight}%</p>
+                  )}
+                  <p className="text-xs text-gray-400">{domain.qCount} q</p>
+                </div>
+              </Link>
+              {quizWeak && (
+                <Link
+                  href={`/cert/${cert.id}/quiz?domain=${domain.id}`}
+                  className="flex items-center justify-center px-3 border-l border-orange-200 bg-orange-50 hover:bg-orange-100 transition-colors"
+                  aria-label={`Retry quiz for ${domain.name}`}
+                  title="Retry quiz for this domain"
+                >
+                  <span className="text-orange-600 text-sm font-semibold">↻</span>
+                </Link>
+              )}
+            </div>
           );
         })}
       </div>
