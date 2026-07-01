@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Certification } from "@/data/certifications";
 import { Question } from "@/data/questions";
 import { loadFlashcardRecords, useFlashcardProgress } from "@/hooks/useFlashcardProgress";
+import { useStudyStreak } from "@/hooks/useStudyStreak";
 
 type Props = {
   cert: Certification;
@@ -67,6 +68,7 @@ function prioritizedDeck(questions: Question[]): CardState[] {
 
 export default function StudyClient({ cert, questions }: Props) {
   const { updateCard } = useFlashcardProgress();
+  const { recordStudy } = useStudyStreak();
 
   const [phase, setPhase] = useState<Phase>("cards");
   const [cards, setCards] = useState<CardState[]>(() => prioritizedDeck(questions));
@@ -115,6 +117,7 @@ export default function StudyClient({ cert, questions }: Props) {
     newCards[index] = { ...newCards[index], rating };
     setCards(newCards);
     if (index + 1 >= cards.length) {
+      recordStudy();
       setPhase("summary");
     } else {
       setIndex(index + 1);

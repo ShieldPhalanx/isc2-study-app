@@ -3036,4 +3036,185 @@ export const questions: Question[] = [
     explanation:
       "Due care is the legal and ethical standard requiring organizations to exercise reasonable, prudent precautions to protect assets and reduce risk to stakeholders. It is not a standard of perfection — it asks what a reasonable, prudent organization would do. Failure to exercise due care can result in negligence liability if harm occurs.",
   },
+  // ── CISM additional questions ────────────────────────────────────────────
+  {
+    id: "cism-d1-010",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "A CISM is preparing a security budget request for the board. The MOST effective approach is to:",
+    options: [
+      "List all planned security tools and their costs",
+      "Present technical threat statistics and vulnerability counts",
+      "Frame the request in terms of business risk reduction and expected loss avoided",
+      "Show a comparison to competitor security budgets",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Boards make decisions based on business value and risk. Framing security spending as risk reduction — expected loss avoided, regulatory fines prevented, reputational harm mitigated — resonates with executive decision-making. Technical metrics (CVE counts, tool costs) lack business context and are less persuasive to non-technical leadership.",
+  },
+  {
+    id: "cism-d1-011",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "An employee requests a policy exception to use a personal cloud storage service for work files. The security manager should FIRST:",
+    options: [
+      "Deny the exception immediately as policy violations cannot be tolerated",
+      "Approve the exception to avoid impeding productivity",
+      "Assess the risk the exception introduces and document it with compensating controls if approved",
+      "Escalate to legal before any decision is made",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Policy exceptions are a normal governance mechanism. The correct process is to assess the risk introduced, determine whether compensating controls can bring it to an acceptable level, obtain appropriate management approval, and document the exception with a review date. Flat denials impede business agility; unconditional approvals undermine governance.",
+  },
+  {
+    id: "cism-d1-012",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "Separation of duties in information security governance PRIMARILY serves to:",
+    options: [
+      "Ensure redundancy in case a key employee leaves",
+      "Reduce the risk that a single individual can commit and conceal fraud or error",
+      "Speed up security approvals by distributing workload",
+      "Meet regulatory requirements regardless of actual risk",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Separation of duties (SoD) requires two or more people to complete a sensitive transaction, preventing a single actor from both committing and concealing fraud or error. Examples: the person who approves access should not be the one who grants it; the auditor should not review their own work.",
+  },
+  {
+    id: "cism-d2-010",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "Risk scenarios are MOST useful in information security risk management because they:",
+    options: [
+      "Replace the need for quantitative risk calculations",
+      "Provide narrative context that helps management understand how a risk could materialize and its potential impact",
+      "Eliminate subjectivity from risk assessments",
+      "Are required by ISO 27001",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Risk scenarios translate abstract threats into concrete stories: 'A ransomware attack encrypts our ERP system, preventing order processing for five days, costing $2M.' This narrative approach helps non-technical executives grasp consequences and make informed decisions. Scenarios complement rather than replace quantitative analysis.",
+  },
+  {
+    id: "cism-d2-011",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "Control effectiveness testing is BEST described as:",
+    options: [
+      "Verifying that controls are documented in policy",
+      "Confirming that controls are operating as designed and actually reducing risk",
+      "Determining the cost of implementing a control",
+      "Comparing controls to industry benchmarks",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A control can exist on paper but fail in practice. Control effectiveness testing verifies that controls are functioning as intended — e.g., confirming access reviews complete on schedule, or that patches are applied within the SLA. Design adequacy (the control exists) and operating effectiveness (it works) are two distinct and both necessary audit concepts.",
+  },
+  {
+    id: "cism-d2-012",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "An organization has formally accepted a risk. The security manager's ongoing responsibility is to:",
+    options: [
+      "Nothing — risk acceptance ends security's responsibility for that risk",
+      "Monitor the risk and reassess if the threat environment or asset value changes",
+      "Transfer the risk to a third party immediately",
+      "Implement additional controls to reduce it further",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Risk acceptance is not permanent. The security manager must monitor accepted risks and reassess when conditions change — new threat actors, regulatory changes, increased asset value, or near-miss incidents may push a previously acceptable risk above tolerance. Accepted risks should be documented in the risk register with review dates.",
+  },
+  {
+    id: "cism-d3-010",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "A Capability Maturity Model (CMM) is used in information security programs to:",
+    options: [
+      "Calculate the financial return on security investments",
+      "Assess the current maturity of security processes and guide improvement planning",
+      "Certify individual security professionals",
+      "Determine the number of security staff needed",
+    ],
+    correctIndex: 1,
+    explanation:
+      "CMM-based models evaluate process maturity on a scale (typically 1–5: Initial → Optimizing). They help organizations understand current security program capability, identify gaps, and build improvement roadmaps. Maturity assessments are common inputs to security strategy and resource planning discussions with leadership.",
+  },
+  {
+    id: "cism-d3-011",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "When is the BEST time to integrate security requirements into a new application?",
+    options: [
+      "During acceptance testing before deployment",
+      "After deployment, via a penetration test",
+      "During the requirements and design phases of the SDLC",
+      "When the first security incident involving the application occurs",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The 'shift-left' principle: security requirements identified during design cost a fraction of those found in testing or post-deployment. Fixing a flaw in design costs ~6× less than fixing it in testing and ~100× less than fixing it after release. This is the foundation of Secure SDLC and DevSecOps.",
+  },
+  {
+    id: "cism-d3-012",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "An organization's security awareness program shows high training completion rates, yet phishing incidents continue at the same rate. The MOST likely explanation is:",
+    options: [
+      "The phishing attacks are too sophisticated to prevent through training",
+      "The training content is not translating into behavior change",
+      "Employees are completing the training dishonestly",
+      "Security awareness programs cannot reduce phishing success rates",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Completion rates measure activity, not behavior change. A program with high completion but no reduction in phishing click rates has failed its purpose. Effective awareness programs use targeted content, simulated phishing exercises, and reinforcement to change behavior. Completion rate is a vanity metric; click rate, report rate, and incident trends are the real KPIs.",
+  },
+  {
+    id: "cism-d4-010",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "During a major data breach, the decision to publicly notify affected customers is PRIMARILY driven by:",
+    options: [
+      "The security manager's assessment of reputational risk",
+      "Legal and regulatory breach notification requirements",
+      "The marketing team's communications strategy",
+      "Whether the breach has already appeared in media reports",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Notification timelines and triggers are defined by law — GDPR requires supervisory authority notification within 72 hours; US state breach laws vary but mandate notification. The security manager must understand these requirements and coordinate with legal counsel. Basing decisions on reputational concerns alone creates regulatory liability.",
+  },
+  {
+    id: "cism-d4-011",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "Preserving forensic evidence during an incident investigation is MOST important for:",
+    options: [
+      "Speeding up the eradication phase",
+      "Ensuring the evidence is admissible in legal proceedings and supporting root cause analysis",
+      "Reducing the organization's cyber insurance premiums",
+      "Satisfying documentation requirements for the incident log",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Forensic evidence preservation — chain of custody, write-blocked storage, cryptographic hashing — ensures integrity and admissibility in civil or criminal proceedings. Even when litigation isn't anticipated, preserved evidence supports thorough root cause analysis and regulatory investigations. Failure to preserve evidence can expose the organization to obstruction claims.",
+  },
+  {
+    id: "cism-d4-012",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "Which criterion is MOST important when classifying the severity of a security incident?",
+    options: [
+      "The technical sophistication of the attack",
+      "The actual or potential business impact and scope of the incident",
+      "The cost of the tools used by the attacker",
+      "Whether the incident was caused by an insider or external threat",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Incident severity should be based on business impact — data sensitivity, systems/users affected, regulatory implications, financial exposure, and operational disruption. Technical factors are secondary. A simple phishing email compromising the CFO's account is more severe than a complex attack on a test system. Severity drives response priority and resource allocation.",
+  },
 ];

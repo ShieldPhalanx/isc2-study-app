@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Certification, Domain } from "@/data/certifications";
 import { Question } from "@/data/questions";
 import { useScoreHistory } from "@/hooks/useScoreHistory";
+import { useStudyStreak } from "@/hooks/useStudyStreak";
 
 type Props = {
   cert: Certification;
@@ -68,6 +69,7 @@ function formatTime(seconds: number): string {
 
 export default function QuizClient({ cert, questions, initialDomain }: Props) {
   const { addResult } = useScoreHistory();
+  const { recordStudy } = useStudyStreak();
 
   const domainsWithQuestions: Domain[] = cert.domains.filter((d) =>
     questions.some((q) => q.domainId === d.id)
@@ -93,6 +95,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
       return new Set<string>(Array.isArray(stored) ? stored : []);
     } catch { return new Set<string>(); }
   });
+  const [skippedIds, setSkippedIds] = useState<Set<string>>(new Set());
   const [showMistakes, setShowMistakes] = useState(false);
   const [domainScores, setDomainScores] = useState<Record<string, { score: number; total: number }>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
@@ -111,17 +114,21 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
 
   function finishQuiz(
     finalScore: number,
-    finalDomainScores: Record<string, { score: number; total: number }>
+    finalDomainScores: Record<string, { score: number; total: number }>,
+    finalSkippedIds?: Set<string>
   ) {
+    const skipped = finalSkippedIds ?? skippedIds;
+    const answered = shuffled.length - skipped.size;
     addResult({
       certId: cert.id,
       score: finalScore,
-      total: shuffled.length,
-      pct: Math.round((finalScore / shuffled.length) * 100),
+      total: answered,
+      pct: answered > 0 ? Math.round((finalScore / answered) * 100) : 0,
       ts: Date.now(),
       examMode: isExamSession,
       domainScores: finalDomainScores,
     });
+    recordStudy();
     setPhase("done");
   }
 
@@ -155,6 +162,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
     setSelected(null);
     setScore(0);
     setWrongIds(new Set());
+    setSkippedIds(new Set());
     setDomainScores({});
     setShowMistakes(false);
     setIsExamSession(examMode && !questionsToUse);
@@ -199,8 +207,19 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
 
   function next() {
     if (index + 1 >= shuffled.length) {
-      // score/domainScores are already updated because choose() ran first (separate click)
       finishQuiz(score, domainScores);
+    } else {
+      setIndex((i) => i + 1);
+      setSelected(null);
+    }
+  }
+
+  function skip() {
+    const current = shuffled[index];
+    const newSkipped = new Set(skippedIds).add(current.id);
+    setSkippedIds(newSkipped);
+    if (index + 1 >= shuffled.length) {
+      finishQuiz(score, domainScores, newSkipped);
     } else {
       setIndex((i) => i + 1);
       setSelected(null);
@@ -211,14 +230,17 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
     setPhase("setup");
     setSelectedDomainIds(new Set(domainsWithQuestions.map((d) => d.id)));
     setWrongIds(new Set());
+    setSkippedIds(new Set());
     setShowMistakes(false);
     setTimeLeft(null);
   }
 
   const chooseRef = useRef(choose);
   const nextRef = useRef(next);
+  const skipRef = useRef(skip);
   useEffect(() => { chooseRef.current = choose; });
   useEffect(() => { nextRef.current = next; });
+  useEffect(() => { skipRef.current = skip; });
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -226,6 +248,7 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
       if (selected === null) {
         const pick = ["1", "2", "3", "4"].indexOf(e.key);
         if (pick !== -1) { e.preventDefault(); chooseRef.current(pick); }
+        if (e.key === "s" || e.key === "S") { e.preventDefault(); skipRef.current(); }
       } else {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nextRef.current(); }
       }
@@ -385,8 +408,10 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
 
   // ── Results screen ────────────────────────────────────────────────────────
   if (phase === "done") {
-    const pct = Math.round((score / shuffled.length) * 100);
+    const answeredCount = shuffled.length - skippedIds.size;
+    const pct = answeredCount > 0 ? Math.round((score / answeredCount) * 100) : 0;
     const wrongQuestions = shuffled.filter((q) => wrongIds.has(q.id));
+    const skippedQuestions = shuffled.filter((q) => skippedIds.has(q.id));
     const timedOut = timeLeft === 0;
 
     return (
@@ -397,7 +422,10 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
               <p className="text-xs font-semibold text-red-500 uppercase tracking-wide mb-2">Time expired</p>
             )}
             <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
-            <p className="text-gray-500 mb-4">{score} / {shuffled.length} correct</p>
+            <p className="text-gray-500 mb-1">{score} / {answeredCount} correct</p>
+            {skippedIds.size > 0 && (
+              <p className="text-xs text-gray-400 mb-3">{skippedIds.size} skipped (not counted)</p>
+            )}
             <p className="text-base font-semibold text-gray-800 mb-8">
               {pct >= 70 ? "Good work — keep it up!" : "Keep studying — you've got this!"}
             </p>
@@ -411,6 +439,14 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
                   className="px-5 py-2.5 rounded-lg border-2 border-orange-200 text-orange-700 font-medium text-sm hover:bg-orange-50"
                 >
                   Retry {wrongQuestions.length} wrong
+                </button>
+              )}
+              {skippedQuestions.length > 0 && (
+                <button
+                  onClick={() => startQuiz(skippedQuestions)}
+                  className="px-5 py-2.5 rounded-lg border-2 border-gray-200 text-gray-700 font-medium text-sm hover:bg-gray-50"
+                >
+                  Answer {skippedQuestions.length} skipped
                 </button>
               )}
               {flaggedIds.size > 0 && (
@@ -597,6 +633,17 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
               <p className="text-xs font-semibold text-gray-500 mb-1">Explanation</p>
               <p className="text-sm text-gray-700">{current.explanation}</p>
             </div>
+          )}
+
+          {selected === null && (
+            <button
+              onClick={skip}
+              className="w-full py-2 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label="Skip this question"
+            >
+              Skip question
+              <span className="hidden md:inline ml-1 opacity-60">(S)</span>
+            </button>
           )}
 
           {selected !== null && (

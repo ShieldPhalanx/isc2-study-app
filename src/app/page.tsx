@@ -3,6 +3,7 @@ import { certifications } from "@/data/certifications";
 import { questions } from "@/data/questions";
 import CertProgressBar from "@/components/CertProgressBar";
 import CertLastScore from "@/components/CertLastScore";
+import StudyStreakBadge from "@/components/StudyStreakBadge";
 
 const colorMap: Record<string, string> = {
   blue: "bg-blue-50 border-blue-200 hover:border-blue-400",
@@ -25,7 +26,10 @@ export default function Home() {
   return (
     <main id="main-content" className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-1">Security Cert Study</h1>
+        <div className="flex items-start justify-between mb-1">
+          <h1 className="text-3xl font-bold text-gray-900">Security Cert Study</h1>
+          <StudyStreakBadge />
+        </div>
         <p className="text-gray-500 mb-1">
           ISC² &amp; ISACA certification prep — study notes, practice quizzes, and flashcards.
         </p>
