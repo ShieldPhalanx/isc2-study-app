@@ -8,6 +8,8 @@ export type QuizResult = {
   total: number;
   pct: number;
   ts: number;
+  examMode?: boolean;
+  domainScores?: Record<string, { score: number; total: number }>;
 };
 
 const STORAGE_KEY = "quiz-score-history";

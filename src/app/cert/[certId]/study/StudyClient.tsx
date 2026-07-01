@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Certification } from "@/data/certifications";
 import { Question } from "@/data/questions";
+import { loadFlashcardRecords, useFlashcardProgress } from "@/hooks/useFlashcardProgress";
 
 type Props = {
   cert: Certification;
@@ -39,6 +40,13 @@ const textColorMap: Record<string, string> = {
   orange: "text-orange-600",
 };
 
+const bgLightMap: Record<string, string> = {
+  blue: "bg-blue-50 text-blue-700",
+  green: "bg-green-50 text-green-700",
+  purple: "bg-purple-50 text-purple-700",
+  orange: "bg-orange-50 text-orange-700",
+};
+
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -48,13 +56,20 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function initCards(questions: Question[]): CardState[] {
-  return shuffle(questions).map((q) => ({ question: q, rating: null }));
+// Weak cards (streak < 2) appear first; mastered cards (streak ≥ 2) at the back.
+// Within each tier, cards are shuffled so the order varies each session.
+function prioritizedDeck(questions: Question[]): CardState[] {
+  const records = loadFlashcardRecords();
+  const weak = shuffle(questions.filter((q) => (records[q.id]?.streak ?? 0) < 2));
+  const strong = shuffle(questions.filter((q) => (records[q.id]?.streak ?? 0) >= 2));
+  return [...weak, ...strong].map((q) => ({ question: q, rating: null }));
 }
 
 export default function StudyClient({ cert, questions }: Props) {
+  const { updateCard } = useFlashcardProgress();
+
   const [phase, setPhase] = useState<Phase>("cards");
-  const [cards, setCards] = useState<CardState[]>(() => initCards(questions));
+  const [cards, setCards] = useState<CardState[]>(() => prioritizedDeck(questions));
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
@@ -64,7 +79,20 @@ export default function StudyClient({ cert, questions }: Props) {
   const reviewCount = cards.filter((c) => c.rating === "review").length;
   const totalCount = cards.length;
 
+  // Persistent mastery: streak ≥ 2
+  const persistentMastered = (() => {
+    const records = loadFlashcardRecords();
+    return questions.filter((q) => (records[q.id]?.streak ?? 0) >= 2).length;
+  })();
+
+  // Streak badge for current card
+  const currentStreak = (() => {
+    const records = loadFlashcardRecords();
+    return records[current.question.id]?.streak ?? 0;
+  })();
+
   function rate(rating: Rating) {
+    updateCard(current.question.id, rating === "mastered");
     const newCards = [...cards];
     newCards[index] = { ...newCards[index], rating };
     setCards(newCards);
@@ -76,7 +104,6 @@ export default function StudyClient({ cert, questions }: Props) {
     }
   }
 
-  // Keep a stable ref so the keyboard handler never goes stale
   const rateRef = useRef(rate);
   useEffect(() => { rateRef.current = rate; });
 
@@ -91,13 +118,12 @@ export default function StudyClient({ cert, questions }: Props) {
   }
 
   function restart() {
-    setCards(initCards(questions));
+    setCards(prioritizedDeck(questions));
     setIndex(0);
     setFlipped(false);
     setPhase("cards");
   }
 
-  // Keyboard shortcuts: Space/Enter = flip, → or 1 = Got it, ← or 2 = Review
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (phase !== "cards") return;
@@ -116,20 +142,32 @@ export default function StudyClient({ cert, questions }: Props) {
   // ── Summary screen ────────────────────────────────────────────────────────
   if (phase === "summary") {
     const pct = Math.round((masteredCount / totalCount) * 100);
+    const allTimePct = Math.round((persistentMastered / questions.length) * 100);
+
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
         <div className="bg-white rounded-2xl border border-gray-200 p-10 max-w-md w-full text-center">
           <p className="text-5xl font-bold text-gray-900 mb-1">{pct}%</p>
-          <p className="text-gray-500 mb-2">{masteredCount} of {totalCount} mastered</p>
+          <p className="text-gray-500 mb-2">{masteredCount} of {totalCount} mastered this session</p>
+
+          {/* Persistent mastery indicator */}
+          <div className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full mb-6 ${bgLightMap[cert.color]}`}>
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 12 12">
+              <path d="M6 1l1.5 3 3.3.5-2.4 2.3.6 3.2L6 8.5l-2.9 1.5.6-3.2L1.2 4.5l3.3-.5z"/>
+            </svg>
+            {persistentMastered}/{questions.length} mastered all-time ({allTimePct}%)
+          </div>
+
           {reviewCount > 0 ? (
             <p className="text-sm text-orange-600 mb-8">
               {reviewCount} card{reviewCount !== 1 ? "s" : ""} marked for review
             </p>
           ) : (
             <p className={`text-sm font-semibold mb-8 ${textColorMap[cert.color]}`}>
-              All cards mastered!
+              All cards mastered this session!
             </p>
           )}
+
           <div className="flex flex-col gap-3">
             {reviewCount > 0 && (
               <button
@@ -143,7 +181,7 @@ export default function StudyClient({ cert, questions }: Props) {
               onClick={restart}
               className="w-full py-3 rounded-lg border border-gray-200 font-medium text-sm text-gray-700 hover:border-gray-400"
             >
-              Start over (reshuffled)
+              Restart (weak cards first)
             </button>
             <Link
               href={`/cert/${cert.id}`}
@@ -175,7 +213,6 @@ export default function StudyClient({ cert, questions }: Props) {
           </div>
         </div>
 
-        {/* Progress bar */}
         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-8">
           <div
             className={`h-1.5 rounded-full transition-all ${colorMap[cert.color].split(" ")[0]}`}
@@ -200,6 +237,11 @@ export default function StudyClient({ cert, questions }: Props) {
           <div className={`flashcard ${flipped ? "flashcard--flipped" : ""}`}>
             {/* Front face */}
             <div className="flashcard-face flashcard-face--front bg-white rounded-2xl border-2 border-gray-200 p-8 flex flex-col items-center justify-center text-center hover:border-gray-300 transition-colors">
+              {currentStreak >= 2 && (
+                <span className={`text-xs font-medium px-2 py-0.5 rounded-full mb-3 ${bgLightMap[cert.color]}`}>
+                  Mastered ×{currentStreak}
+                </span>
+              )}
               <p className="text-xs font-medium text-gray-400 mb-4 uppercase tracking-wide">
                 {domain?.name}
               </p>
@@ -219,7 +261,6 @@ export default function StudyClient({ cert, questions }: Props) {
           </div>
         </div>
 
-        {/* Self-rating buttons — appear after flip */}
         {flipped ? (
           <div className="flex gap-3 mb-3">
             <button
