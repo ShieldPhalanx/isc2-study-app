@@ -9,19 +9,21 @@ export type Question = {
 };
 
 export const questions: Question[] = [
+  // ───────────────────────────────────────────
   // CISSP – D1: Security and Risk Management
+  // ───────────────────────────────────────────
   {
     id: "cissp-d1-001",
     certId: "cissp",
     domainId: "cissp-d1",
     question: "Which of the following best describes the concept of due care?",
     options: [
-      "Performing research to understand what standards apply to your organization",
+      "Researching which laws and standards apply before acting",
+      "Delegating protection of assets to a third-party provider",
       "Taking reasonable steps to protect assets and reduce risk",
-      "Delegating security responsibilities to a third party",
-      "Documenting all security policies and procedures",
+      "Recording every security decision in a formal audit log",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
       "Due care refers to taking reasonable protective measures — actually doing what is necessary. Due diligence is the research phase that identifies what steps are needed.",
   },
@@ -31,10 +33,10 @@ export const questions: Question[] = [
     domainId: "cissp-d1",
     question: "A company classifies data as Confidential, Internal, and Public. Which principle drives this practice?",
     options: [
-      "Least privilege",
-      "Separation of duties",
-      "Data classification",
-      "Need to know",
+      "Least privilege, limiting access by job function",
+      "Separation of duties across data custodians",
+      "Data classification, tiering information by sensitivity",
+      "Need to know, restricting access to relevant tasks",
     ],
     correctIndex: 2,
     explanation:
@@ -45,24 +47,529 @@ export const questions: Question[] = [
     certId: "cissp",
     domainId: "cissp-d1",
     question: "Which risk response involves purchasing cyber insurance?",
-    options: ["Risk avoidance", "Risk mitigation", "Risk transfer", "Risk acceptance"],
-    correctIndex: 2,
+    options: [
+      "Risk transfer, shifting financial impact to a third party",
+      "Risk mitigation, applying controls to reduce impact",
+      "Risk avoidance, eliminating the activity that creates exposure",
+      "Risk acceptance, retaining the risk without controls",
+    ],
+    correctIndex: 0,
     explanation:
       "Risk transfer shifts the financial burden of a risk to a third party (e.g., an insurer), without eliminating the underlying risk.",
   },
+  {
+    id: "cissp-d1-004",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Which of the following BEST describes the principle of least privilege?",
+    options: [
+      "Users receive broad permissions to cover any possible task",
+      "Access levels are assigned based on organizational seniority",
+      "Users are granted only the minimum access required for their role",
+      "Privileged accounts are shared among admins for efficiency",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Least privilege limits each user, process, or system to only the permissions necessary for their defined function. This minimizes the blast radius of compromised accounts or misconfigured software.",
+  },
+  {
+    id: "cissp-d1-005",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "An organization calculates that a flood has a 10% annual probability and would cause $500,000 in damage. What is the Annual Loss Expectancy (ALE)?",
+    options: [
+      "$500,000, equal to the single loss expectancy",
+      "$5,000,000, the damage scaled by ten years",
+      "$5,000, based on a 1% annualized rate",
+      "$50,000, based on SLE multiplied by ARO",
+    ],
+    correctIndex: 3,
+    explanation:
+      "ALE = SLE × ARO = $500,000 × 0.10 = $50,000. ALE guides how much it is rational to spend annually on a countermeasure — spending more than $50,000/year to prevent this flood would not be cost-effective.",
+  },
+  {
+    id: "cissp-d1-006",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "A Business Continuity Plan (BCP) is primarily activated when:",
+    options: [
+      "A routine, pre-scheduled security patch needs deployment",
+      "A disruption threatens critical business functions",
+      "A new employee joins the IT operations team this week",
+      "An annual penetration test begins exactly as planned",
+    ],
+    correctIndex: 1,
+    explanation:
+      "BCP activation is triggered by events that jeopardize continuity of critical operations — not routine IT activities.",
+  },
+  {
+    id: "cissp-d1-007",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "The NIST Cybersecurity Framework (CSF) organizes security activities into five functions. Which function focuses on developing and implementing appropriate safeguards to ensure delivery of critical services?",
+    options: [
+      "Identify, which builds organizational risk understanding",
+      "Protect, which implements safeguards for critical services",
+      "Detect, which finds cybersecurity events as they occur",
+      "Respond, which contains the impact of detected incidents",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The Protect function covers access control, awareness training, data security, and protective technology.",
+  },
+  {
+    id: "cissp-d1-008",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Which type of security policy defines acceptable use of organizational resources and is signed by employees?",
+    options: [
+      "System-specific policy governing a single platform",
+      "Organizational policy set by executive leadership",
+      "Issue-specific policy covering a single topic area",
+      "Acceptable Use Policy (AUP) signed at onboarding",
+    ],
+    correctIndex: 3,
+    explanation:
+      "An AUP defines what users may and may not do with organizational systems and data, typically signed at onboarding.",
+  },
+  {
+    id: "cissp-d1-009",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "A qualitative risk analysis differs from a quantitative analysis in that it:",
+    options: [
+      "Produces exact dollar-value figures for each identified risk",
+      "Uses descriptive scales like High/Medium/Low instead of numbers",
+      "Requires significantly more historical loss data to complete",
+      "May only be performed legally by external auditors",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Qualitative analysis uses subjective ratings and is faster and less data-intensive than quantitative (ALE = SLE × ARO) analysis.",
+  },
+  {
+    id: "cissp-d1-010",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "A Privacy Impact Assessment (PIA) is MOST valuable because it identifies privacy risks:",
+    options: [
+      "After a breach, to support regulatory notification duties",
+      "During annual audits, to confirm ongoing compliance",
+      "Before implementation, when changes are least costly to make",
+      "Only when required explicitly by a specific regulation",
+    ],
+    correctIndex: 2,
+    explanation:
+      "A PIA proactively identifies privacy risks before deployment, when design changes cost far less than post-launch remediation.",
+  },
+  {
+    id: "cissp-d1-011",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Security awareness training differs from security education in that training:",
+    options: [
+      "Prepares individuals for advanced security certifications",
+      "Builds deep theoretical knowledge of security principles",
+      "Applies only to technical staff who manage infrastructure",
+      "Focuses on changing day-to-day behavior for an audience",
+    ],
+    correctIndex: 3,
+    explanation:
+      "NIST distinguishes training (skill-building for a role), education (deep conceptual understanding), and awareness (changing everyday behavior).",
+  },
+  {
+    id: "cissp-d1-012",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "In governance frameworks, what is the PRIMARY distinction between COBIT and COSO?",
+    options: [
+      "COBIT governs IT processes; COSO addresses enterprise internal control",
+      "COSO is mandatory under SOX while COBIT is a voluntary standard",
+      "COBIT applies only to private firms; COSO applies to government",
+      "COSO focuses on encryption while COBIT focuses on physical security",
+    ],
+    correctIndex: 0,
+    explanation:
+      "COBIT is an IT governance and management framework, while COSO provides a broader internal control framework used across the enterprise, including financial reporting.",
+  },
+  {
+    id: "cissp-d1-013",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "For security governance to be MOST effective, the CISO should PRIMARILY report to:",
+    options: [
+      "A level with enough authority to enforce policy, such as the CEO or board",
+      "The Chief Information Officer, since security is a subset of IT",
+      "The Chief Financial Officer, who controls the security budget",
+      "The IT help desk manager, who handles daily operational issues",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Reporting to a senior, independent level (CEO, board, or risk committee) avoids conflicts of interest with IT operations and ensures security has organizational authority.",
+  },
+  {
+    id: "cissp-d1-014",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "In the security policy hierarchy, which document provides step-by-step instructions for performing a specific task?",
+    options: [
+      "Guideline, offering recommended but discretionary advice",
+      "Standard, mandating specific technologies or configurations",
+      "Procedure, detailing the exact steps to complete a task",
+      "Policy, stating high-level management intent and goals",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Procedures are the most granular documents, giving detailed step-by-step instructions. Policies set intent, standards mandate specifics, and guidelines offer discretionary recommendations.",
+  },
+  {
+    id: "cissp-d1-015",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Separation of duties differs from job rotation primarily in that separation of duties:",
+    options: [
+      "Trains backup staff by moving employees between roles",
+      "Splits a critical task among multiple people to prevent fraud",
+      "Removes access rights immediately after employee termination",
+      "Requires periodic vacations to help detect ongoing fraud",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Separation of duties divides a sensitive task into parts requiring multiple people, preventing any single person from completing fraud alone. Job rotation instead moves people between roles over time, which also helps expose wrongdoing but works differently.",
+  },
+  {
+    id: "cissp-d1-016",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Which type of intellectual property protection covers the unique expression of an idea, such as source code text, but not the underlying functional concept?",
+    options: [
+      "Trade secret, protecting confidential competitive information",
+      "Patent, protecting novel and non-obvious inventions",
+      "Trademark, protecting brand names, logos, and slogans",
+      "Copyright, protecting the fixed expression of original work",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Copyright protects the specific expression of an idea (e.g., the literal code or text written), while patents protect functional inventions, trademarks protect brand identifiers, and trade secrets protect confidential business information.",
+  },
+  {
+    id: "cissp-d1-017",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "An organization's Business Impact Analysis (BIA) determines a system's Maximum Tolerable Downtime (MTD) is 8 hours. Which relationship MUST hold true for its Recovery Time Objective (RTO)?",
+    options: [
+      "RTO must equal the Recovery Point Objective exactly",
+      "RTO must be less than or equal to the 8-hour MTD",
+      "RTO must exceed the MTD to allow thorough recovery testing",
+      "RTO is unrelated to MTD and set independently by IT staff",
+    ],
+    correctIndex: 1,
+    explanation:
+      "RTO, the targeted time to restore a system, must be at or below the MTD, the maximum time the business can tolerate an outage before severe harm occurs. RPO instead measures acceptable data loss, a separate metric.",
+  },
+  {
+    id: "cissp-d1-018",
+    certId: "cissp",
+    domainId: "cissp-d1",
+    question: "Under the ISC2 Code of Ethics, when the canons appear to conflict, how should a member resolve the conflict?",
+    options: [
+      "Apply the canons in the order they are listed, giving earlier ones priority",
+      "Treat all four canons as equally weighted regardless of context",
+      "Escalate every conflict to ISC2 headquarters before acting",
+      "Follow the interpretation given by their direct manager",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The ISC2 Code of Ethics states the canons are listed in order of precedence, so members must resolve conflicts by prioritizing the earlier-listed canon (starting with protecting society, the commonwealth, and the infrastructure).",
+  },
+  // ───────────────────────────────────────────
+  // CISSP – D2: Asset Security
+  // ───────────────────────────────────────────
+  {
+    id: "cissp-d2-001",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Who bears ultimate responsibility for classifying data and ensuring appropriate controls are applied?",
+    options: [
+      "The data custodian, who implements controls under direction",
+      "The data processor, who follows another party's instructions",
+      "The data owner, accountable for the asset's classification",
+      "The data user, who accesses data to perform daily tasks",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The data owner (typically a business manager) is accountable for classification decisions; the custodian implements controls day-to-day.",
+  },
+  {
+    id: "cissp-d2-002",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which data-destruction method is MOST appropriate for highly classified data stored on solid-state drives?",
+    options: [
+      "Physically destroying the drive via shredding or incineration",
+      "Degaussing the drive with a strong magnetic field source",
+      "Overwriting every addressable block with a single zero pass",
+      "Reformatting the drive's partition table and file system",
+    ],
+    correctIndex: 0,
+    explanation:
+      "SSDs use wear-leveling that makes overwriting unreliable and degaussing ineffective. Physical destruction ensures no residual data can be recovered.",
+  },
+  {
+    id: "cissp-d2-003",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Data sovereignty means that data is:",
+    options: [
+      "Encrypted at all times regardless of its processing location",
+      "Subject to the laws of the country where it physically resides",
+      "Owned exclusively by the party that paid for its storage",
+      "Replicated automatically across three or more regions",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Data sovereignty recognizes that data stored in a jurisdiction falls under that nation's legal authority — significant for cloud storage.",
+  },
+  {
+    id: "cissp-d2-004",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "For highly sensitive information, which data states should be encrypted with the greatest priority?",
+    options: [
+      "Only data at rest, since storage is the largest attack surface",
+      "Only data in transit, since interception is the likeliest threat",
+      "Only data in use, since memory scraping bypasses other controls",
+      "Data at rest, in transit, and in use, per modern frameworks",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Best practice requires encryption for data at rest, in transit, and in use for the highest sensitivity — modern frameworks require all three.",
+  },
+  {
+    id: "cissp-d2-005",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which technique writes multiple patterns of 1s and 0s over all locations on a magnetic disk to sanitize it?",
+    options: [
+      "Degaussing the disk using a calibrated magnetic device",
+      "Overwriting the disk through repeated multi-pass write cycles",
+      "Shredding the disk platters into small metal fragments",
+      "Reformatting the disk to reinitialize its file structures",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Multi-pass overwriting writes patterns multiple times to make data unrecoverable on magnetic media.",
+  },
+  {
+    id: "cissp-d2-006",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Under GDPR, a 'data controller' is BEST described as the party that:",
+    options: [
+      "Operates the servers that physically host a database",
+      "Maintains guard staff over data center facilities",
+      "Determines the purposes and means of processing data",
+      "Is the individual whose personal data is processed",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The data controller decides WHY and HOW personal data is processed; the processor acts on the controller's behalf.",
+  },
+  {
+    id: "cissp-d2-007",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "A data retention policy primarily serves to:",
+    options: [
+      "Mandate encryption of data at rest for its storage period",
+      "Ensure data is replicated across multiple geographic regions",
+      "Define how long data is kept and when it must be destroyed",
+      "Restrict data access to only those with a need to know",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Retention policies balance legal hold requirements against privacy obligations to delete data when no longer needed.",
+  },
+  {
+    id: "cissp-d2-008",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which concept requires that information be labeled and handled according to its level of sensitivity?",
+    options: [
+      "Data minimization, limiting collection to what is necessary",
+      "Data classification, assigning sensitivity-based labels",
+      "Data lineage, tracing data through its transformations",
+      "Data normalization, structuring data to cut redundancy",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Data classification assigns sensitivity labels that drive handling requirements.",
+  },
+  {
+    id: "cissp-d2-009",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "A database view is used as a security control primarily to:",
+    options: [
+      "Restrict a user's visible rows or columns for need-to-know",
+      "Record every executed query for later audit review",
+      "Encrypt sensitive fields transparently at the storage layer",
+      "Improve query execution speed through cached indexes",
+    ],
+    correctIndex: 0,
+    explanation:
+      "A database view presents a customized subset of underlying data, enforcing need-to-know and least privilege at the data layer.",
+  },
+  {
+    id: "cissp-d2-010",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "In data governance roles, a 'data steward' is BEST described as the person who:",
+    options: [
+      "Manages day-to-day data quality and metadata for the owner",
+      "Holds ultimate legal accountability for data classification",
+      "Processes data solely under contract for another party",
+      "Consumes data through applications to complete job tasks",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The data steward handles operational data-quality and metadata responsibilities delegated by the data owner, distinct from the custodian's technical duties and the owner's accountability.",
+  },
+  {
+    id: "cissp-d2-011",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "In the data lifecycle, which stage occurs immediately before data is archived?",
+    options: [
+      "Create, when data is first generated or collected",
+      "Store, when data is first committed to a repository",
+      "Use, when data is actively accessed and processed",
+      "Share, when data is distributed to other parties",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The common lifecycle sequence is create, store, use, share, archive, destroy — data is typically used, and often shared, before it moves to archival storage.",
+  },
+  {
+    id: "cissp-d2-012",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Per NIST SP 800-88, which sanitization category renders data recovery infeasible using standard software and system-level tools, but not necessarily against advanced laboratory techniques?",
+    options: [
+      "Destroy, which physically disintegrates or incinerates media",
+      "Clear, applying logical techniques like standard overwriting",
+      "Purge, applying techniques such as cryptographic erase",
+      "Disposal, simply removing media from organizational control",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Clear applies logical sanitization (e.g., overwrite) defeating simple recovery tools; Purge applies stronger physical or logical techniques resistant to laboratory attack; Destroy makes the media unusable altogether.",
+  },
+  {
+    id: "cissp-d2-013",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Where is a network-based DLP solution typically deployed to inspect outbound traffic for policy violations?",
+    options: [
+      "Inside the identity provider evaluating login requests",
+      "On individual endpoints as an installed local agent",
+      "Within the database engine monitoring live queries",
+      "At egress points such as proxies or mail gateways",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Network DLP is deployed at egress points (web proxies, email gateways) to inspect data leaving the organization, complementing endpoint and storage (data-at-rest) DLP deployments.",
+  },
+  {
+    id: "cissp-d2-014",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which pair correctly distinguishes PII from PHI?",
+    options: [
+      "PII covers only financial records; PHI covers all personal data",
+      "PII identifies a person; PHI is health data tied to a person",
+      "PII applies only in the EU; PHI applies only in the US",
+      "PII is always encrypted; PHI is always tokenized in practice",
+    ],
+    correctIndex: 1,
+    explanation:
+      "PII (personally identifiable information) is any data identifying a specific person; PHI (protected health information) is a subset involving health-related data linked to an identifiable individual, regulated under laws like HIPAA.",
+  },
+  {
+    id: "cissp-d2-015",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which principle of privacy by design holds that privacy protections should be embedded into systems from the outset rather than added afterward?",
+    options: [
+      "Privacy as the default setting, requiring no user action",
+      "Full functionality, avoiding trade-offs with other features",
+      "End-to-end security across the entire data lifecycle",
+      "Proactive not reactive, building privacy in from the start",
+    ],
+    correctIndex: 3,
+    explanation:
+      "'Proactive not reactive; preventative not remedial' is the foundational privacy-by-design principle requiring privacy to be engineered in from the start of system design.",
+  },
+  {
+    id: "cissp-d2-016",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Under GDPR, the data subject right that allows an individual to obtain and reuse their personal data across different services is called the right to:",
+    options: [
+      "Object, which halts certain processing such as marketing",
+      "Rectification, which corrects inaccurate personal data",
+      "Data portability, receiving data in a reusable format",
+      "Erasure, which removes personal data upon request",
+    ],
+    correctIndex: 2,
+    explanation:
+      "The right to data portability lets individuals obtain their data in a commonly used, machine-readable format and transmit it to another controller.",
+  },
+  {
+    id: "cissp-d2-017",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "Which technique replaces sensitive data with a non-sensitive substitute value while maintaining a secure mapping back to the original, without using a mathematical key-based algorithm?",
+    options: [
+      "Hashing, producing a one-way fixed-length digest of input",
+      "Masking, permanently obscuring characters for display",
+      "Encryption, transforming data reversibly via a key",
+      "Tokenization, substituting a value mapped in a secure vault",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Tokenization substitutes a non-sensitive token for the original value, with the mapping stored in a secure token vault, rather than relying on a reversible cryptographic algorithm as encryption does.",
+  },
+  {
+    id: "cissp-d2-018",
+    certId: "cissp",
+    domainId: "cissp-d2",
+    question: "An accurate, continuously updated asset inventory (CMDB) is a foundational control PRIMARILY because it:",
+    options: [
+      "Enables an organization to know what exists so it can be protected",
+      "Automatically encrypts newly discovered assets on registration",
+      "Eliminates the need for periodic vulnerability scanning",
+      "Replaces the need for a formal data classification policy",
+    ],
+    correctIndex: 0,
+    explanation:
+      "You cannot classify, protect, or manage the risk of an asset you don't know exists; an asset inventory/CMDB underpins nearly every other asset security control.",
+  },
+  // ───────────────────────────────────────────
   // CISSP – D3: Security Architecture and Engineering
+  // ───────────────────────────────────────────
   {
     id: "cissp-d3-001",
     certId: "cissp",
     domainId: "cissp-d3",
     question: "Which security model is based on a lattice structure and focuses on data confidentiality?",
     options: [
-      "Biba",
-      "Clark-Wilson",
-      "Bell-LaPadula",
-      "Brewer-Nash",
+      "Clark-Wilson, which enforces well-formed transactions",
+      "Biba, which restricts write-up and read-down actions",
+      "Brewer-Nash, which blocks conflicting data set access",
+      "Bell-LaPadula, which enforces no-read-up, no-write-down",
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation:
       "Bell-LaPadula enforces confidentiality with 'no read up, no write down' rules using a lattice of security labels.",
   },
@@ -72,27 +579,1621 @@ export const questions: Question[] = [
     domainId: "cissp-d3",
     question: "What is the primary goal of defense in depth?",
     options: [
-      "To reduce the cost of security controls",
-      "To ensure a single strong perimeter protects all assets",
-      "To layer multiple controls so that failure of one does not compromise the system",
-      "To make auditing easier by centralizing logs",
+      "To reduce the overall cost of the controls",
+      "To build one strong perimeter around all assets",
+      "To layer controls so one failure does not doom it",
+      "To centralize the logging so audits become easier",
     ],
     correctIndex: 2,
     explanation:
-      "Defense in depth uses multiple, overlapping security layers so that an attacker must overcome each one, reducing the chance that a single failure leads to a breach.",
+      "Defense in depth uses multiple, overlapping security layers so an attacker must overcome each one.",
   },
+  {
+    id: "cissp-d3-003",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "The Trusted Computing Base (TCB) is defined as:",
+    options: [
+      "All components critical to enforcing the security policy",
+      "A curated list of approved security product vendors",
+      "The physical infrastructure of a data center facility",
+      "A framework for evaluating cryptographic algorithms",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The TCB includes all hardware, firmware, and software elements that must function correctly to enforce the security policy.",
+  },
+  {
+    id: "cissp-d3-004",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "The Biba integrity model enforces which rules?",
+    options: [
+      "No read up, no write down, focused on confidentiality",
+      "No write up, no read down, focused on integrity",
+      "Read any object, but write only to lower objects",
+      "Write access requires a matching clearance level",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Biba protects integrity: subjects cannot write to higher-integrity objects and cannot read from lower-integrity objects.",
+  },
+  {
+    id: "cissp-d3-005",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "The principle of fail-safe defaults means:",
+    options: [
+      "Systems automatically restart after a failure",
+      "Redundant systems take over when a primary fails",
+      "Access is denied by default unless explicitly granted",
+      "Errors are logged quietly without disrupting users",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Fail-safe defaults establish that the default state is no access.",
+  },
+  {
+    id: "cissp-d3-006",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "AES-256 is classified as which type of cryptographic algorithm?",
+    options: [
+      "Asymmetric algorithm using a public/private key pair",
+      "One-way hash function used for integrity checks",
+      "Symmetric algorithm using a single shared secret key",
+      "Stream cipher that encrypts one bit at a time",
+    ],
+    correctIndex: 2,
+    explanation:
+      "AES is a symmetric block cipher — the same key encrypts and decrypts data.",
+  },
+  {
+    id: "cissp-d3-007",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "In a public key infrastructure (PKI), a Certificate Authority (CA) is trusted because it:",
+    options: [
+      "Always uses the most advanced algorithm available",
+      "Stores every subscriber's private key for recovery",
+      "Issues certificates free of charge to any requestor",
+      "Digitally signs certificates, binding a key to an identity",
+    ],
+    correctIndex: 3,
+    explanation:
+      "The CA's digital signature on a certificate is the root of trust.",
+  },
+  {
+    id: "cissp-d3-008",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "Software as a Service (SaaS) differs from Infrastructure as a Service (IaaS) in that the customer:",
+    options: [
+      "Configures and patches the OS and runtime in SaaS",
+      "Carries no application responsibility under IaaS",
+      "Owns and maintains the underlying hardware in SaaS",
+      "Only manages data and user access, provider does the rest",
+    ],
+    correctIndex: 3,
+    explanation:
+      "In SaaS, the provider manages infrastructure, OS, platform, and application; the customer configures the application and manages users/data.",
+  },
+  {
+    id: "cissp-d3-009",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "The reference monitor concept in security architecture ensures that:",
+    options: [
+      "Access requests are mediated, tamperproof, auditable",
+      "Subjects may communicate without touching objects",
+      "All network traffic passes one inspection point",
+      "The kernel stays fully isolated from applications",
+    ],
+    correctIndex: 0,
+    explanation:
+      "A reference monitor requires all access requests are mediated, tamperproof, and small enough to verify. The Security Kernel is the concrete implementation.",
+  },
+  {
+    id: "cissp-d3-010",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "An organization requires that the employee who initiates a wire transfer cannot also approve it. Which principle is being applied?",
+    options: [
+      "Separation of duties, splitting a task among people",
+      "Least privilege, limiting access to role needs",
+      "Job rotation, periodically moving staff assignments",
+      "Mandatory vacation, forcing continuous leave",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Separation of duties requires that no single individual can complete a sensitive transaction alone, reducing fraud and error risk.",
+  },
+  {
+    id: "cissp-d3-011",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "The security design principle of economy of mechanism advises that:",
+    options: [
+      "Every access request must be individually justified",
+      "Security mechanisms be kept as simple as possible",
+      "Independent controls should overlap the same risk",
+      "Design details be published for expert review",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Economy of mechanism keeps protection mechanisms simple and small, making them easier to analyze, test, and verify for correctness.",
+  },
+  {
+    id: "cissp-d3-012",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "Kerckhoffs's principle in cryptographic system design states that:",
+    options: [
+      "A system stays secure even if only the key is secret",
+      "Encryption algorithms should be kept secret always",
+      "Key length is irrelevant if the design is novel",
+      "Symmetric algorithms are inherently more secure",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Kerckhoffs's principle holds that security should rely solely on keeping the key secret, not on obscuring the algorithm.",
+  },
+  {
+    id: "cissp-d3-013",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "Which best describes the core assumption behind a zero trust architecture?",
+    options: [
+      "Internal traffic is trustworthy past the firewall",
+      "No user or device is trusted by default, ever",
+      "One strong perimeter suffices without segmentation",
+      "Trust is granted permanently after onboarding",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Zero trust requires continuous verification of every access request, treating internal and external networks as equally untrusted.",
+  },
+  {
+    id: "cissp-d3-014",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "In the Clark-Wilson integrity model, which component is responsible for changing a constrained data item from one valid state to another?",
+    options: [
+      "The unconstrained data item, holding raw input",
+      "The integrity verification procedure, which audits",
+      "The transformation procedure, running the change",
+      "The access list bound to the data item itself",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Transformation procedures (TPs) are the only means by which constrained data items (CDIs) may be modified, ensuring well-formed transactions.",
+  },
+  {
+    id: "cissp-d3-015",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "A financial analyst who advises Company A is barred by the system from also accessing data for competing Company B. Which model enforces this restriction?",
+    options: [
+      "Graham-Denning, defining rights creation rules",
+      "Take-Grant, modeling rights propagation paths",
+      "Clark-Wilson, enforcing transaction separation",
+      "Brewer-Nash, preventing conflicts of interest",
+    ],
+    correctIndex: 3,
+    explanation:
+      "The Brewer-Nash (Chinese Wall) model dynamically blocks access to competing datasets once a conflict of interest is created.",
+  },
+  {
+    id: "cissp-d3-016",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "Under the Common Criteria (ISO/IEC 15408), what does the Evaluation Assurance Level (EAL) rating of a certified product indicate?",
+    options: [
+      "How many vulnerabilities were patched in testing",
+      "The rigor of testing against claimed functions",
+      "The hardware's durability under stress tests",
+      "The total number of features implemented",
+    ],
+    correctIndex: 1,
+    explanation:
+      "EAL ratings (EAL1-EAL7) reflect how thoroughly a product's security claims were tested and verified, not the number of features or flaws.",
+  },
+  {
+    id: "cissp-d3-017",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "In Common Criteria terminology, what is the difference between a Protection Profile and a Security Target?",
+    options: [
+      "One lists specific claims, the other generic ones",
+      "Both describe identical content for different labs",
+      "A Profile is generic; a Target is product-specific",
+      "A Target precedes testing, a Profile follows it",
+    ],
+    correctIndex: 2,
+    explanation:
+      "A Protection Profile states reusable, category-wide security needs; a Security Target maps those needs to one vendor's specific product implementation.",
+  },
+  {
+    id: "cissp-d3-018",
+    certId: "cissp",
+    domainId: "cissp-d3",
+    question: "A data center installs a mantrap at its server room entrance. What is the primary security purpose of this control?",
+    options: [
+      "To regulate the room's humidity before staff enter",
+      "To detect electromagnetic emissions from equipment",
+      "To suppress fire automatically before entry is allowed",
+      "To prevent tailgating by admitting one person at a time",
+    ],
+    correctIndex: 3,
+    explanation:
+      "A mantrap is a small interlocking chamber with two doors that prevents piggybacking/tailgating by admitting one verified individual at a time.",
+  },
+  // ───────────────────────────────────────────
+  // CISSP – D4: Communication and Network Security
+  // ───────────────────────────────────────────
+  {
+    id: "cissp-d4-001",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "A stateful inspection firewall differs from a simple packet-filtering firewall primarily because it:",
+    options: [
+      "Filters every packet using only static, per-packet header rules",
+      "Decrypts and fully inspects the contents of every encrypted payload",
+      "Tracks connection state and validates packets against a session table",
+      "Terminates and re-establishes every TCP session at the firewall itself",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Stateful inspection maintains a connection table and ensures each packet belongs to an established, legitimate session, unlike simple packet filtering which evaluates packets in isolation.",
+  },
+  {
+    id: "cissp-d4-002",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "Which protocol secures IP communications at the network layer using AH and ESP?",
+    options: [
+      "IPsec, protecting IP packets using authentication and encryption",
+      "TLS, negotiating session keys through a transport-layer handshake",
+      "SSH, authenticating users for remote command-line sessions",
+      "HTTPS, wrapping web application traffic in a certificate tunnel",
+    ],
+    correctIndex: 0,
+    explanation:
+      "IPsec operates at Layer 3 and provides authentication (AH) and encryption (ESP) for IP traffic, unlike TLS/SSH/HTTPS which operate at higher layers.",
+  },
+  {
+    id: "cissp-d4-003",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "Which attack redirects users to a malicious IP address by inserting fraudulent records into a resolver's cache?",
+    options: [
+      "DNS tunneling, which smuggles data inside query and response fields",
+      "DNS amplification, which reflects oversized responses off resolvers",
+      "DNS zone transfer abuse, which leaks an organization's record set",
+      "DNS cache poisoning, which corrupts cached records to redirect lookups",
+    ],
+    correctIndex: 3,
+    explanation:
+      "DNS cache poisoning inserts fraudulent records into a resolver's cache, redirecting victims to attacker-controlled hosts. DNSSEC was designed to prevent this.",
+  },
+  {
+    id: "cissp-d4-004",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "In IPsec tunnel mode, as opposed to transport mode, what gets encrypted?",
+    options: [
+      "Only the payload, leaving the original IP header fully visible",
+      "The entire original packet, wrapped inside a new outer IP header",
+      "Only the original IP header, leaving the payload in plaintext",
+      "Nothing at all; tunnel mode provides authentication but no encryption",
+    ],
+    correctIndex: 1,
+    explanation:
+      "IPsec tunnel mode encapsulates the entire original packet, including its header, inside a new IP packet, which is why it's used for VPN gateways.",
+  },
+  {
+    id: "cissp-d4-005",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "A VLAN provides security benefits primarily by:",
+    options: [
+      "Segmenting broadcast domains so VLANs must route through a gateway",
+      "Encrypting all traffic exchanged between hosts on the same switch",
+      "Blocking every single form of broadcast traffic on the network",
+      "Requiring a valid digital certificate from every connected device",
+    ],
+    correctIndex: 0,
+    explanation:
+      "VLANs create logical Layer 2 segments; inter-VLAN traffic must traverse a Layer 3 device where access controls can be applied.",
+  },
+  {
+    id: "cissp-d4-006",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "WPA3 improves on WPA2 for wireless security primarily by:",
+    options: [
+      "Extending the maximum SSID length for more complex network names",
+      "Replacing the PSK exchange with Simultaneous Authentication of Equals",
+      "Removing the need for any shared secret between client and access point",
+      "Reducing access point transmit power to shrink the coverage area",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SAE replaces the WPA2 four-way handshake's PSK exchange, making offline brute-force attacks against captured handshakes infeasible.",
+  },
+  {
+    id: "cissp-d4-007",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "A man-in-the-middle (MitM) attack against a client-server session is BEST mitigated by:",
+    options: [
+      "Requiring users to choose longer and more complex passwords",
+      "Deploying intrusion detection sensors at the network perimeter",
+      "Segmenting clients and servers into separate network VLANs",
+      "Enforcing mutual authentication over an encrypted channel like TLS",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Mutual authentication ensures both parties verify identity, and encryption prevents an interceptor from reading or altering the traffic.",
+  },
+  {
+    id: "cissp-d4-008",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "The primary purpose of network segmentation in a security architecture is to:",
+    options: [
+      "Increase overall network throughput between departments",
+      "Limit lateral movement and contain a compromise to one zone",
+      "Reduce hardware costs by consolidating switching infrastructure",
+      "Simplify day-to-day administration and physical cabling",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Segmentation creates security zones so a compromise in one segment cannot freely reach others, limiting blast radius.",
+  },
+  {
+    id: "cissp-d4-009",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "Network Address Translation (NAT) provides only limited security value because it:",
+    options: [
+      "Only hides internal addressing without providing access control",
+      "Encrypts all outbound traffic leaving the private network",
+      "Blocks every single inbound connection attempt from outside",
+      "Functions as a full replacement for a stateful firewall",
+    ],
+    correctIndex: 0,
+    explanation:
+      "NAT incidentally obscures internal topology but performs no real inspection or access control and doesn't replace a firewall or IDS/IPS.",
+  },
+  {
+    id: "cissp-d4-010",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "At which OSI layer does a traditional switch operate when forwarding frames based on MAC addresses?",
+    options: [
+      "Physical layer, moving raw electrical or optical signals",
+      "Data Link layer, forwarding frames using a MAC address table",
+      "Network layer, routing packets using logical IP addresses",
+      "Transport layer, multiplexing sessions using port numbers",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Switches forward frames based on MAC addresses learned in a CAM table, which is a Data Link layer (Layer 2) function.",
+  },
+  {
+    id: "cissp-d4-011",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "Compared to TLS 1.2, TLS 1.3 improves security and performance primarily by:",
+    options: [
+      "Adding a second handshake to re-verify certificates mid-session",
+      "Requiring an extra certificate authority signature per session",
+      "Dropping weak legacy ciphers and shortening the handshake to one trip",
+      "Replacing asymmetric key exchange entirely with pre-shared keys",
+    ],
+    correctIndex: 2,
+    explanation:
+      "TLS 1.3 drops legacy weak ciphers (e.g., RC4, static RSA key exchange) and streamlines the handshake to a single round trip, improving both security and latency.",
+  },
+  {
+    id: "cissp-d4-012",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "Why is SSH considered a secure replacement for Telnet on remote devices?",
+    options: [
+      "SSH needs no authentication, removing credential theft risk",
+      "SSH runs over UDP, which is inherently harder to intercept",
+      "SSH only functions over physically isolated management networks",
+      "SSH encrypts sessions and supports strong authentication, not Telnet",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Telnet sends all data, including credentials, unencrypted, while SSH encrypts the entire session and supports key-based authentication.",
+  },
+  {
+    id: "cissp-d4-013",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "How does DNSSEC primarily protect the integrity of DNS responses?",
+    options: [
+      "It signs DNS records so resolvers can verify their authenticity",
+      "It encrypts all DNS query and response traffic in transit",
+      "It requires every DNS query to present a valid client certificate",
+      "It restricts resolution to a fixed allowlist of trusted domains",
+    ],
+    correctIndex: 0,
+    explanation:
+      "DNSSEC adds a chain of digital signatures to DNS records, letting resolvers verify that responses have not been forged or altered in transit.",
+  },
+  {
+    id: "cissp-d4-014",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "What is the PRIMARY security benefit of S/MIME or PGP for email?",
+    options: [
+      "Automatic quarantine of messages flagged by spam filters",
+      "End-to-end encryption and digital signatures for message content",
+      "Enforcement of mailbox storage quotas to limit data retention",
+      "Replacing the mail server's TLS-secured transport connection",
+    ],
+    correctIndex: 1,
+    explanation:
+      "S/MIME and PGP encrypt message bodies and attach digital signatures, providing confidentiality and non-repudiation independent of transport-layer protections.",
+  },
+  {
+    id: "cissp-d4-015",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "In an 802.1X-controlled network, what role does the RADIUS server play?",
+    options: [
+      "It physically blocks the switch port until authentication completes",
+      "It generates the encryption keys used for data-plane traffic only",
+      "It validates supplicant credentials on behalf of the authenticator",
+      "It runs as the supplicant software installed on the endpoint",
+    ],
+    correctIndex: 2,
+    explanation:
+      "In 802.1X, the switch or access point (authenticator) forwards credentials from the endpoint (supplicant) to a RADIUS server (authentication server), which validates them before the port opens.",
+  },
+  {
+    id: "cissp-d4-016",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "An \"evil twin\" wireless attack works by:",
+    options: [
+      "Flooding an access point with deauthentication frames until it fails",
+      "Cloning a MAC address to bypass MAC-based filtering lists",
+      "Jamming spectrum to force clients onto a wired fallback link",
+      "Broadcasting a rogue access point with a legitimate-looking SSID",
+    ],
+    correctIndex: 3,
+    explanation:
+      "An evil twin is a rogue access point broadcasting a legitimate-looking SSID, tricking clients into connecting so the attacker can intercept their traffic.",
+  },
+  {
+    id: "cissp-d4-017",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "What distinguishes a Web Application Firewall (WAF) from a traditional network firewall?",
+    options: [
+      "It inspects HTTP content to catch attacks like SQL injection and XSS",
+      "It filters traffic using only source and destination IP addresses",
+      "It replaces the need for TLS termination at the load balancer",
+      "It operates strictly at the network layer to block malformed packets",
+    ],
+    correctIndex: 0,
+    explanation:
+      "WAFs analyze application-layer (Layer 7) content such as HTTP requests, detecting attacks like SQL injection and cross-site scripting that IP/port-based firewalls cannot see.",
+  },
+  {
+    id: "cissp-d4-018",
+    certId: "cissp",
+    domainId: "cissp-d4",
+    question: "What is the key operational difference between an IDS and an IPS?",
+    options: [
+      "An IDS needs signature updates; an IPS relies only on anomaly detection",
+      "An IDS alerts on suspicious traffic; an IPS sits inline and blocks it live",
+      "An IDS sits only at the perimeter; an IPS sits only on endpoints",
+      "An IDS analyzes only encrypted traffic; an IPS only plaintext traffic",
+    ],
+    correctIndex: 1,
+    explanation:
+      "An IDS is typically passive, monitoring a traffic copy and generating alerts, whereas an IPS sits inline in the traffic path and can actively drop or block malicious packets.",
+  },
+  // ───────────────────────────────────────────
   // CISSP – D5: Identity and Access Management
+  // ───────────────────────────────────────────
   {
     id: "cissp-d5-001",
     certId: "cissp",
     domainId: "cissp-d5",
     question: "Which access control model grants permissions based on a user's role within an organization?",
-    options: ["DAC", "MAC", "RBAC", "ABAC"],
+    options: [
+      "Discretionary Access Control, where object owners assign rights",
+      "Mandatory Access Control, where labels and clearances govern access",
+      "Role-Based Access Control, where roles are assigned defined permission sets",
+      "Attribute-Based Access Control, where multiple attributes drive decisions",
+    ],
     correctIndex: 2,
     explanation:
-      "Role-Based Access Control (RBAC) assigns permissions to roles, and users inherit those permissions by being assigned to a role.",
+      "RBAC assigns permissions to roles, and users inherit those permissions by being assigned to a role.",
   },
-  // CGRC – D1: Information Security Risk Management Program
+  {
+    id: "cissp-d5-002",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Which authentication factor category does a fingerprint scan belong to?",
+    options: [
+      "Something you know, such as a memorized PIN or passphrase",
+      "Something you have, such as a token or smart card",
+      "Something you are, such as a physiological biometric trait",
+      "Somewhere you are, such as a verified network location",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Biometrics are 'something you are' factors.",
+  },
+  {
+    id: "cissp-d5-003",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Single Sign-On (SSO) improves security primarily because it:",
+    options: [
+      "removes the need for any authentication once a session starts",
+      "reduces password fatigue, cutting down on weak or reused passwords",
+      "automatically grants access to every connected system",
+      "substitutes for multi-factor authentication requirements",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SSO reduces the number of credentials users must manage, reducing temptation to reuse weak passwords.",
+  },
+  {
+    id: "cissp-d5-004",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Attribute-Based Access Control (ABAC) differs from RBAC in that it:",
+    options: [
+      "Functions only within cloud-hosted application platforms",
+      "Assigns permissions straight to individual users instead of roles",
+      "Depends on a single centralized directory service to operate",
+      "Evaluates combinations of user, resource, and environmental attributes",
+    ],
+    correctIndex: 3,
+    explanation:
+      "ABAC evaluates multiple attributes simultaneously for dynamic, fine-grained access decisions.",
+  },
+  {
+    id: "cissp-d5-005",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Kerberos authentication uses which cryptographic mechanism to prevent replay attacks?",
+    options: [
+      "Long-lived digital certificates issued per user session",
+      "Time-stamped tickets that expire after a short validity window",
+      "A public key infrastructure shared across the realm",
+      "Rotating one-time passwords synced to a hardware token",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Kerberos tickets contain timestamps and expire quickly, preventing replay after the validity window closes.",
+  },
+  {
+    id: "cissp-d5-006",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Zero Trust Architecture (ZTA) is based on the principle of:",
+    options: [
+      "Verifying every access request continuously, with no implicit trust",
+      "Trusting all traffic that originates inside the network perimeter",
+      "Granting elevated access whenever a user simply requests it",
+      "Removing passwords entirely in favor of biometric methods only",
+    ],
+    correctIndex: 0,
+    explanation:
+      "ZTA assumes breach and verifies every access request regardless of network origin.",
+  },
+  {
+    id: "cissp-d5-007",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Privileged Access Management (PAM) reduces risk primarily by:",
+    options: [
+      "mandating that admin accounts use longer passwords than normal users",
+      "vaulting, monitoring, and recording privileged credential use to limit exposure",
+      "giving every user temporary admin rights to speed up operations",
+      "blocking all administrative access attempted from remote locations",
+    ],
+    correctIndex: 1,
+    explanation:
+      "PAM vaults privileged credentials, requires JIT access approval, records sessions, and alerts on anomalous behavior.",
+  },
+  {
+    id: "cissp-d5-008",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "OAuth 2.0 is primarily used for:",
+    options: [
+      "Encrypting stored passwords within an identity database",
+      "Authenticating users directly with a username and password",
+      "Generating one-time passwords for multi-factor authentication",
+      "Delegating authorization so an app can act for a user",
+    ],
+    correctIndex: 3,
+    explanation:
+      "OAuth 2.0 is an authorization framework, not authentication. OIDC builds on OAuth to add authentication.",
+  },
+  {
+    id: "cissp-d5-009",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Access recertification (access reviews) is PRIMARILY performed to:",
+    options: [
+      "Ensure users retain only the access they currently need",
+      "Accelerate the account provisioning process for new hires",
+      "Prevent employees from sharing passwords with coworkers",
+      "Satisfy the organization's multi-factor authentication policy",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Access recertification identifies and removes excess permissions accumulated through role changes (privilege creep).",
+  },
+  {
+    id: "cissp-d5-010",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "A key weakness of Discretionary Access Control (DAC) is that it:",
+    options: [
+      "Cannot be implemented at all on any modern operating system",
+      "Requires a central administrator to approve every access change",
+      "Allows a Trojan horse to leak or alter data via granted rights",
+      "Prevents any delegation of permissions between system users",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Because owners can freely grant rights, malware executing with the owner's privileges can copy or modify data the owner can access, without a central authority catching it.",
+  },
+  {
+    id: "cissp-d5-011",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Mandatory Access Control (MAC) is favored in high-security government and military environments because it:",
+    options: [
+      "Enforces fixed labels and clearances that users cannot override",
+      "Lets each data owner decide who else may read their files",
+      "Adapts permissions dynamically using real-time risk scoring",
+      "Relies on group membership defined by department managers",
+    ],
+    correctIndex: 0,
+    explanation:
+      "MAC ties access to classification labels and clearance levels set by a central authority, removing user discretion and reducing insider-driven leakage.",
+  },
+  {
+    id: "cissp-d5-012",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Rule-Based Access Control differs from role-based models in that it:",
+    options: [
+      "Assigns access strictly according to a user's job title",
+      "Adjusts access dynamically using machine-learning risk scores",
+      "Requires biometric verification before any rule is evaluated",
+      "Applies global if-then rules to every subject regardless of role",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Rule-based access control applies system-wide rules (e.g., time-of-day, source IP) uniformly, rather than deriving access from role membership.",
+  },
+  {
+    id: "cissp-d5-013",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "In biometric system evaluation, the Crossover Error Rate (CER) represents the point where:",
+    options: [
+      "Throughput and enrollment time are equal for all users",
+      "The sensor fails to capture a usable biometric sample",
+      "Liveness detection and template matching produce identical scores",
+      "False Accept Rate and False Reject Rate curves intersect",
+    ],
+    correctIndex: 3,
+    explanation:
+      "CER is the point where FAR equals FRR; a lower CER indicates a more accurate biometric system overall.",
+  },
+  {
+    id: "cissp-d5-014",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "A bank is choosing between two fingerprint readers: Reader A has a lower CER than Reader B. For a high-security vault application, which reader should be selected and why?",
+    options: [
+      "Reader B, because a higher CER means fewer legitimate users are rejected",
+      "Reader A, since a lower CER means better overall accuracy at the crossover point",
+      "Either reader, since CER has no bearing on security-sensitive deployments",
+      "Reader B, because higher CER values always indicate stronger liveness detection",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A lower CER means the FAR and FRR curves cross at a lower error rate, so the system is more accurate overall, which matters most in high-security deployments.",
+  },
+  {
+    id: "cissp-d5-015",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Storing passwords as salted hashes rather than plain hashes primarily protects against:",
+    options: [
+      "brute-force network sniffing of credentials in transit",
+      "precomputed rainbow table attacks against the password database",
+      "phishing attacks that trick users into revealing passwords",
+      "session hijacking after a user has already authenticated",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A unique salt per password ensures identical passwords produce different hashes, defeating precomputed rainbow tables and forcing attackers to crack each hash individually.",
+  },
+  {
+    id: "cissp-d5-016",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "In a SAML 2.0 web SSO flow, what is the role of the Identity Provider (IdP)?",
+    options: [
+      "Authenticates the user and issues a signed assertion the SP trusts",
+      "Hosts the protected application resource the user is trying to reach",
+      "Stores the user's session cookies for the Service Provider's domain",
+      "Encrypts network traffic between the user and the Service Provider",
+    ],
+    correctIndex: 0,
+    explanation:
+      "The IdP authenticates the subject and issues a digitally signed SAML assertion, which the Service Provider (SP) consumes to grant access without re-authenticating the user.",
+  },
+  {
+    id: "cissp-d5-017",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "How does OpenID Connect (OIDC) relate to OAuth 2.0?",
+    options: [
+      "OIDC replaces OAuth 2.0 entirely as a newer authorization standard",
+      "OIDC and OAuth 2.0 are unrelated protocols from different standards bodies",
+      "OIDC is used only for machine-to-machine API authorization, never login",
+      "OIDC adds an authentication layer with an ID token atop OAuth's framework",
+    ],
+    correctIndex: 3,
+    explanation:
+      "OAuth 2.0 handles delegated authorization; OIDC extends it with an ID token and standardized claims to provide user authentication.",
+  },
+  {
+    id: "cissp-d5-018",
+    certId: "cissp",
+    domainId: "cissp-d5",
+    question: "Automating deprovisioning with SCIM (System for Cross-domain Identity Management) MOST directly reduces the risk of:",
+    options: [
+      "Weak passwords being chosen during initial account registration",
+      "Phishing emails specifically targeting newly created accounts",
+      "Orphan accounts that remain active after a user departs",
+      "Brute-force attacks against externally facing login portals",
+    ],
+    correctIndex: 2,
+    explanation:
+      "SCIM standardizes and automates account lifecycle events across systems, so terminated users are promptly deprovisioned everywhere instead of leaving orphaned, unmonitored accounts.",
+  },
+  // ───────────────────────────────────────────
+  // CISSP – D6: Security Assessment and Testing
+  // ───────────────────────────────────────────
+  {
+    id: "cissp-d6-001",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A penetration tester begins an engagement with zero prior knowledge of the target's internal architecture, source code, or credentials. This testing approach is called:",
+    options: [
+      "Gray-box testing, using partial knowledge shared by the client",
+      "White-box testing, using full architectural and source code access",
+      "Black-box testing, simulating an external attacker with no insider knowledge",
+      "Double-blind testing, keeping the defensive team unaware of the exercise",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Black-box (blind) testing simulates an external attacker with no insider knowledge of systems, code, or network layout.",
+  },
+  {
+    id: "cissp-d6-002",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Which metric measures the average elapsed time between a vulnerability being exploited and the organization first becoming aware of the compromise?",
+    options: [
+      "Mean Time to Detect (MTTD), the average time from exploitation to discovery",
+      "Mean Time to Repair (MTTR), the average time needed to restore a failed component",
+      "Mean Time Between Failures (MTBF), the average operating time between hardware breakdowns",
+      "Recovery Point Objective (RPO), the maximum acceptable data loss measured in time",
+    ],
+    correctIndex: 0,
+    explanation:
+      "MTTD measures the gap between exploitation and discovery; shorter MTTD limits attacker dwell time and damage.",
+  },
+  {
+    id: "cissp-d6-003",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "During a vulnerability scan, an item with no actual security weakness is incorrectly flagged as a threat. This outcome is best described as a:",
+    options: [
+      "False negative, where a genuine vulnerability goes undetected by the scanner",
+      "True negative, where a clean item is correctly reported as having no issue",
+      "Scan failure, where the tool cannot complete its assessment of the target",
+      "False positive, where a clean item is incorrectly reported as a vulnerability",
+    ],
+    correctIndex: 3,
+    explanation:
+      "False positives waste analyst time investigating non-issues; a high false-positive rate causes alert fatigue.",
+  },
+  {
+    id: "cissp-d6-004",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A vulnerability assessment identifies and catalogs weaknesses in a system. What does a penetration test typically add that a vulnerability assessment alone does NOT provide?",
+    options: [
+      "A prioritized list of discovered weaknesses ranked by severity level",
+      "Active exploitation of discovered vulnerabilities to demonstrate real-world impact",
+      "A comparison of patch levels against known CVE database entries",
+      "Automated scanning of the network for open ports and running services",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Vulnerability assessments identify and catalog weaknesses but generally stop short of exploitation; penetration tests go further by actively exploiting flaws to prove real-world impact.",
+  },
+  {
+    id: "cissp-d6-005",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Which practice has developers systematically examine a colleague's source code to catch defects before it merges?",
+    options: [
+      "Unit testing, where individual functions are tested in isolation by their author",
+      "Regression testing, where prior functionality is re-verified after a change",
+      "Dynamic analysis, where the compiled application is tested while running",
+      "Peer code review, where colleagues manually inspect the code for defects",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Peer/code review has developers examine colleagues' code, catching logic flaws and insecure patterns before deployment.",
+  },
+  {
+    id: "cissp-d6-006",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "The Common Vulnerability Scoring System (CVSS) primarily provides organizations with a standardized way to:",
+    options: [
+      "Assign a numeric severity score to vulnerabilities to help prioritize patching",
+      "Track the cumulative financial cost of remediating each vulnerability",
+      "Certify that a security product meets a government-approved baseline",
+      "Maintain a chronological log of past confirmed security incidents",
+    ],
+    correctIndex: 0,
+    explanation:
+      "CVSS scores (0.0-10.0) quantify severity based on exploitability and impact, helping teams prioritize patching.",
+  },
+  {
+    id: "cissp-d6-007",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "How does a compliance audit differ from a broader security assessment?",
+    options: [
+      "It actively searches for unknown vulnerabilities through live exploitation",
+      "It verifies that controls required by a named standard or regulation exist",
+      "It restricts its scope exclusively to technical, automated controls",
+      "It can only ever be performed by an accredited external auditor",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Compliance audits check adherence to a defined standard or regulation; broader assessments may also uncover undocumented risks.",
+  },
+  {
+    id: "cissp-d6-008",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Which testing methodology gives the tester full access to the system's architecture diagrams and source code beforehand?",
+    options: [
+      "Black-box testing, where no internal information is shared with the tester",
+      "Gray-box testing, where limited internal information is shared with the tester",
+      "White-box testing, where complete internal information is shared with the tester",
+      "Red team exercise, where a simulated adversary operates against live defenses",
+    ],
+    correctIndex: 2,
+    explanation:
+      "White-box testing gives complete visibility into design and code, making it the most thorough but least realistic method.",
+  },
+  {
+    id: "cissp-d6-009",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "In threat modeling, the STRIDE framework is primarily used to:",
+    options: [
+      "Rank existing vulnerabilities by their calculated CVSS severity score",
+      "Assign monetary risk values to organizational assets and processes",
+      "Document the sequential stages of a known attacker's kill chain",
+      "Systematically identify threats by six defined categories of attacker goals",
+    ],
+    correctIndex: 3,
+    explanation:
+      "STRIDE (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) is a Microsoft-developed threat taxonomy applied during design reviews.",
+  },
+  {
+    id: "cissp-d6-010",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A bug bounty program primarily benefits an organization by:",
+    options: [
+      "Crowdsourcing vulnerability discovery to external researchers paid per finding",
+      "Replacing the need for any internal application security testing entirely",
+      "Guaranteeing that every critical vulnerability is found before shipping",
+      "Certifying that the application legally meets a compliance standard",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Bug bounty programs crowdsource testing to a broad pool of external researchers, rewarded per validated vulnerability, supplementing (not replacing) internal testing.",
+  },
+  {
+    id: "cissp-d6-011",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Before a penetration test begins, the rules of engagement document primarily defines:",
+    options: [
+      "The specific coding standards the development team must follow going forward",
+      "The financial penalties owed if the tester fails to find any vulnerabilities",
+      "The scope, timing, authorized techniques, and emergency contacts for the test",
+      "The vendor's long-term product roadmap for future security enhancements",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Rules of engagement set boundaries: authorized targets, testing windows, permitted techniques, and escalation/emergency contacts, protecting both tester and client.",
+  },
+  {
+    id: "cissp-d6-012",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "In a typical penetration testing methodology, which phase immediately follows reconnaissance and scanning, before post-exploitation activities occur?",
+    options: [
+      "Planning, where scope and objectives are formally agreed with the client",
+      "Exploitation, where discovered vulnerabilities are actively leveraged to gain access",
+      "Reporting, where findings are documented and delivered to stakeholders",
+      "Remediation validation, where fixes are retested to confirm closure",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The standard flow is planning, reconnaissance/scanning, exploitation, post-exploitation, then reporting; exploitation follows scanning and precedes post-exploitation.",
+  },
+  {
+    id: "cissp-d6-013",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Compared to an internal audit function, an external audit provides greater assurance to stakeholders primarily because it offers:",
+    options: [
+      "Deeper knowledge of the organization's internal culture and history",
+      "Lower cost, due to reduced travel and staffing requirements needed",
+      "Faster turnaround, since auditors are already familiar with the systems",
+      "Greater independence, since auditors have no reporting line to management",
+    ],
+    correctIndex: 3,
+    explanation:
+      "External auditors are organizationally independent of the entity under review, which strengthens objectivity and credibility for outside stakeholders.",
+  },
+  {
+    id: "cissp-d6-014",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A key capability that a SIEM platform adds beyond simple centralized log storage is:",
+    options: [
+      "Correlating events across multiple log sources to detect patterns indicating an attack",
+      "Automatically patching vulnerable software the moment a CVE is published",
+      "Physically encrypting log files at rest on the collection server's disk",
+      "Replacing the need for endpoint detection and response agents on hosts",
+    ],
+    correctIndex: 0,
+    explanation:
+      "SIEM correlation engines analyze events across firewalls, hosts, and applications together, surfacing attack patterns that no single log source would reveal alone.",
+  },
+  {
+    id: "cissp-d6-015",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Unlike SAST, which analyzes source code without executing it, DAST identifies vulnerabilities by:",
+    options: [
+      "Scanning uncompiled source code offline for insecure coding patterns",
+      "Inspecting the software bill of materials for outdated components",
+      "Interacting with a running application externally, without source access",
+      "Instrumenting the runtime to combine static and dynamic signals together",
+    ],
+    correctIndex: 2,
+    explanation:
+      "DAST (Dynamic Application Security Testing) tests a running application externally, black-box style, unlike SAST which examines source code statically without execution.",
+  },
+  {
+    id: "cissp-d6-016",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "Software Composition Analysis (SCA) tools are primarily used to:",
+    options: [
+      "Measure cyclomatic complexity of internally written application code",
+      "Identify known CVEs in open-source and third-party libraries a project depends on",
+      "Simulate concurrent user load to test application performance under stress",
+      "Enforce coding style and formatting conventions across a development team",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SCA tools inventory open-source and third-party dependencies and flag components with known published CVEs, addressing supply-chain risk.",
+  },
+  {
+    id: "cissp-d6-017",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A purple team exercise is best described as one in which:",
+    options: [
+      "Only offensive testers operating covertly against production, unannounced",
+      "Only defensive analysts monitoring and responding to routine daily alerts",
+      "An external regulator auditing both offense and defense for compliance",
+      "Red and blue teams collaborating actively and sharing findings in real time",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Purple teaming has red (offensive) and blue (defensive) teams work together and share findings in real time, maximizing the learning value of the exercise.",
+  },
+  {
+    id: "cissp-d6-018",
+    certId: "cissp",
+    domainId: "cissp-d6",
+    question: "A tabletop exercise tests an organization's incident response plan by:",
+    options: [
+      "Walking participants through a simulated scenario in discussion, without operating live systems",
+      "Executing a full, unannounced failover of production systems to a backup data center",
+      "Deploying real malware into an isolated lab to observe detection tool behavior",
+      "Automatically generating synthetic transactions to monitor production availability",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Tabletop exercises are discussion-based walkthroughs of a scenario, letting teams validate plans and roles without disrupting live systems.",
+  },
+  // ───────────────────────────────────────────
+  // CISSP – D7: Security Operations
+  // ───────────────────────────────────────────
+  {
+    id: "cissp-d7-001",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Which concept requires that no single employee can complete a sensitive transaction alone?",
+    options: [
+      "Job rotation, which periodically moves staff between assigned duties over time",
+      "Need to know, which restricts data access to only what a task requires",
+      "Separation of duties, which splits a process into steps performed by different people",
+      "Least privilege, which limits each user to the minimum access for their role",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Separation of duties splits critical tasks across multiple people so fraud requires collusion.",
+  },
+  {
+    id: "cissp-d7-002",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "During a forensic investigation, the FIRST action an investigator should take when arriving at a scene with a running computer is to:",
+    options: [
+      "Capture the contents of volatile memory before any other action is taken",
+      "Power off the system to preserve the current state of the hard disk",
+      "Create a forensic image of the hard drive using a write blocker",
+      "Disconnect the network cable to stop any remote access to the host",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Volatile memory (RAM) contains data lost on shutdown; capture it first.",
+  },
+  {
+    id: "cissp-d7-003",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "A Security Information and Event Management (SIEM) system primarily provides:",
+    options: [
+      "Automated scheduling and rollout of operating system security patches",
+      "Signature-based scanning and quarantine of malware on endpoints",
+      "Centralized deployment and enforcement of firewall rule sets",
+      "Real-time aggregation, correlation, and alerting of events from many sources",
+    ],
+    correctIndex: 3,
+    explanation:
+      "A SIEM collects logs, applies correlation rules, and generates alerts.",
+  },
+  {
+    id: "cissp-d7-004",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Chain of custody in digital forensics ensures that:",
+    options: [
+      "Evidence is encrypted at every stage of storage and transport",
+      "The handling and integrity of evidence is documented from collection to court",
+      "Investigators are granted the fastest possible access to seized evidence",
+      "Evidence is duplicated and stored redundantly in a cloud environment",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Chain of custody documents evidence handling; without it, evidence may be inadmissible.",
+  },
+  {
+    id: "cissp-d7-005",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Job rotation in a security operations context is PRIMARILY used to:",
+    options: [
+      "Ensure adequate backup staffing coverage during vacations and absences",
+      "Give employees broader career development and networking opportunities",
+      "Reduce fraud risk by disrupting long-term unchecked control over a process",
+      "Improve team output by cross-training staff on multiple systems",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Job rotation disrupts fraud schemes relying on long-term unchecked access.",
+  },
+  {
+    id: "cissp-d7-006",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Data Loss Prevention (DLP) tools are PRIMARILY designed to:",
+    options: [
+      "Automatically back up critical data to guard against hardware failure",
+      "Detect and prevent unauthorized exfiltration of sensitive data",
+      "Encrypt sensitive data at rest across file servers and databases",
+      "Block known malware signatures from executing on endpoints",
+    ],
+    correctIndex: 1,
+    explanation:
+      "DLP monitors and blocks sensitive data moving to unauthorized destinations.",
+  },
+  {
+    id: "cissp-d7-007",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Threat hunting is BEST described as:",
+    options: [
+      "Reviewing firewall logs on a fixed schedule for known bad signatures",
+      "Waiting for automated alerts to trigger a formal investigation",
+      "Performing routinely scheduled vulnerability scans of production hosts",
+      "Proactively searching for adversary activity that evaded automated detection",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Threat hunting is hypothesis-driven, proactive analyst-led searching for indicators of compromise.",
+  },
+  {
+    id: "cissp-d7-008",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Which principle ensures that an employee on vacation cannot single-handedly cause financial fraud?",
+    options: [
+      "Need to know, which limits visibility into unrelated sensitive data",
+      "Least privilege, which restricts each account to its required access rights",
+      "Separation of duties, which prevents one person from controlling a process",
+      "Mandatory vacation, which forces temporary handover of duties to a peer",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Separation of duties prevents one individual from controlling an entire sensitive process.",
+  },
+  {
+    id: "cissp-d7-009",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "A Security Orchestration, Automation and Response (SOAR) platform differs from a SIEM primarily because it:",
+    options: [
+      "Collects and correlates log data from many monitored sources",
+      "Automates response actions and orchestrates workflows across security tools",
+      "Provides curated real-time threat intelligence feeds to analysts",
+      "Eliminates the need for human analysts to review incoming alerts",
+    ],
+    correctIndex: 1,
+    explanation:
+      "SOAR adds automated response and orchestration on top of SIEM's detection/correlation.",
+  },
+  {
+    id: "cissp-d7-010",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "In a cloud shared responsibility model, the cloud provider is ALWAYS responsible for:",
+    options: [
+      "Encrypting all of the customer's data while it is stored at rest",
+      "Configuring the customer's user access management and identity federation",
+      "Securing the code and business logic within customer-deployed applications",
+      "Patching and securing the underlying physical infrastructure and hypervisor",
+    ],
+    correctIndex: 3,
+    explanation:
+      "The provider always owns physical infrastructure, data centers, and hypervisor across all service models.",
+  },
+  {
+    id: "cissp-d7-011",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "During incident response, why must containment be completed before eradication begins?",
+    options: [
+      "Eradication tools require containment logs to identify the malware family",
+      "Regulatory frameworks mandate containment as a separate billable phase",
+      "Containment limits damage and preserves evidence before root-cause removal",
+      "Containment automatically produces the lessons-learned report used later",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Containment stops the incident from spreading and preserves evidence; eradicating first could let damage continue or destroy evidence needed for analysis.",
+  },
+  {
+    id: "cissp-d7-012",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "When collecting digital evidence, the order of volatility principle dictates that responders should collect data:",
+    options: [
+      "Starting with the most volatile data, such as RAM, before disk or backups",
+      "In alphabetical order by device hostname for a consistent process",
+      "Based on which affected device is physically closest to the responder",
+      "Starting with archived backup tapes before any live systems",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Order of volatility ranks evidence by how quickly it degrades; RAM disappears almost immediately, so it must be captured before disk or archival media.",
+  },
+  {
+    id: "cissp-d7-013",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "A write blocker is used during forensic acquisition PRIMARILY to:",
+    options: [
+      "Encrypt the forensic image so it cannot be viewed without a passphrase",
+      "Prevent any modification to the original media while data is acquired",
+      "Speed up imaging by caching reads from the source drive in memory",
+      "Compress the acquired image to reduce evidence storage needs",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A write blocker allows read access to source media while preventing any write operation, preserving evidence integrity.",
+  },
+  {
+    id: "cissp-d7-014",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "After creating a forensic image of a drive, an investigator computes and compares hash values PRIMARILY to:",
+    options: [
+      "Estimate how long the imaging process took to complete overall",
+      "Identify which user account most recently accessed the drive",
+      "Determine the file types and folder structure held on the drive",
+      "Verify the image is a bit-for-bit exact copy of the original media",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Matching hash values (e.g., SHA-256) between source and image prove the copy is identical and has not been altered.",
+  },
+  {
+    id: "cissp-d7-015",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "A legal hold notice covering records relevant to pending litigation requires an organization to:",
+    options: [
+      "Immediately transfer the affected records to outside legal counsel",
+      "Suspend the normal retention and destruction schedule for those records",
+      "Encrypt the affected records with a key known only to legal staff",
+      "Reclassify the affected records to the highest sensitivity level",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A legal hold overrides routine retention/destruction schedules, requiring preservation of relevant records until the hold is lifted, regardless of normal disposal policy.",
+  },
+  {
+    id: "cissp-d7-016",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "An emergency change process differs from the standard change process PRIMARILY because it:",
+    options: [
+      "Applies only to changes that never touch a production system",
+      "Removes any requirement to test the change before deployment",
+      "Permits expedited approval, followed by mandatory retroactive review",
+      "Allows a fix to bypass the vendor's standard licensing terms",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Emergency changes are implemented quickly through a compressed approval path but still require after-the-fact documentation and CAB review.",
+  },
+  {
+    id: "cissp-d7-017",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "When prioritizing which vulnerabilities to patch first, teams should weigh CVSS severity together with:",
+    options: [
+      "Real-world exploitability and the criticality of the affected asset",
+      "The alphabetical order of the affected vendor's product name",
+      "The total number of patches the vendor released that quarter",
+      "The length of time the vulnerability has been publicly known",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Effective patch prioritization combines CVSS score with active exploitability (e.g., known exploited vulnerabilities) and asset criticality to the organization.",
+  },
+  {
+    id: "cissp-d7-018",
+    certId: "cissp",
+    domainId: "cissp-d7",
+    question: "Configuration drift detection tools are used PRIMARILY to identify:",
+    options: [
+      "Systems whose settings have deviated from the approved baseline",
+      "Users whose access rights exceed their assigned job role",
+      "Endpoints that have not rebooted since their last patch install",
+      "Network segments experiencing abnormally high bandwidth utilization",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Drift detection compares a system's live configuration against its approved baseline and flags unauthorized or unintended deviations.",
+  },
+  // ───────────────────────────────────────────
+  // CISSP – D8: Software Development Security
+  // ───────────────────────────────────────────
+  {
+    id: "cissp-d8-001",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Which technique involves examining an application's source code for security flaws without executing the program?",
+    options: [
+      "Dynamic analysis, which observes behavior during runtime execution",
+      "Fuzz testing, which feeds malformed input to a running process",
+      "Static analysis, which inspects code structure and logic directly",
+      "Regression testing, which reruns prior test cases after a change",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Static analysis (SAST) reviews code without running it.",
+  },
+  {
+    id: "cissp-d8-002",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "An attacker injects malicious SQL into a login form to bypass authentication. The ROOT CAUSE of this vulnerability is:",
+    options: [
+      "A weak password policy that allows easily guessed credentials",
+      "An encryption scheme that fails to protect data in transit",
+      "Insufficient input validation that lets untrusted data reach the query",
+      "Firewall rules that fail to restrict inbound traffic to the server",
+    ],
+    correctIndex: 2,
+    explanation:
+      "SQL injection succeeds because input is concatenated into queries without validation.",
+  },
+  {
+    id: "cissp-d8-003",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Which SDLC activity is MOST effective at reducing the cost of fixing security flaws?",
+    options: [
+      "Running penetration tests against the live production environment",
+      "Conducting threat modeling during the design phase of development",
+      "Delivering security training to developers after deployment",
+      "Performing vulnerability scanning after the release has shipped",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Fixing a flaw in design costs far less than fixing it post-release — threat modeling in design is highest-ROI.",
+  },
+  {
+    id: "cissp-d8-004",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Cross-Site Scripting (XSS) is primarily prevented by:",
+    options: [
+      "Validating input and encoding output before it reaches the browser",
+      "Encrypting all connections between client and server using HTTPS",
+      "Deploying a web application firewall as the sole line of defense",
+      "Requiring user authentication before granting page access",
+    ],
+    correctIndex: 0,
+    explanation:
+      "XSS requires validating/sanitizing input and encoding output so the browser doesn't execute user data as script.",
+  },
+  {
+    id: "cissp-d8-005",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "What is the purpose of a software bill of materials (SBOM)?",
+    options: [
+      "Documenting the licensing costs associated with each software title",
+      "Tracking productivity metrics for individual developers on a team",
+      "Providing a formal inventory of all components and dependencies in a product",
+      "Automating promotion of build artifacts through a deployment pipeline",
+    ],
+    correctIndex: 2,
+    explanation:
+      "An SBOM lists every library/dependency, enabling rapid identification of vulnerable components.",
+  },
+  {
+    id: "cissp-d8-006",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "A race condition vulnerability occurs when:",
+    options: [
+      "Code executes faster than the underlying CPU can retire instructions",
+      "Multiple users happen to authenticate to a system at the same time",
+      "An application relies on a deprecated or broken cryptographic algorithm",
+      "Its outcome depends on timing of uncontrolled events an attacker can exploit",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Race conditions (TOCTOU) occur when security checks and the actions they protect are not atomic.",
+  },
+  {
+    id: "cissp-d8-007",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "The OWASP Top 10 is MOST useful as:",
+    options: [
+      "A certification standard developers must pass to write web applications",
+      "An awareness document highlighting the most critical web application risks",
+      "A legally binding standard mandated for web application security",
+      "A fixed rule set that automated SAST tools must implement exactly",
+    ],
+    correctIndex: 1,
+    explanation:
+      "OWASP Top 10 is a community-driven awareness document, not a standard or certification.",
+  },
+  {
+    id: "cissp-d8-008",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Fuzz testing (fuzzing) is used to:",
+    options: [
+      "Confirm that code satisfies documented functional requirements",
+      "Detect crashes and memory corruption by feeding malformed or random input",
+      "Review source code for adherence to team coding-style conventions",
+      "Measure how an application performs under heavy concurrent load",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Fuzzing generates invalid/random inputs to find input-handling bugs like buffer overflows.",
+  },
+  {
+    id: "cissp-d8-009",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Input validation is the PRIMARY defense against injection attacks because it:",
+    options: [
+      "Encrypts user-supplied input before the application processes it",
+      "Logs all submitted input for later forensic investigation use",
+      "Throttles the number of requests a single user can submit at once",
+      "Ensures only well-formed data reaches app logic, blocking bad payloads",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Input validation prevents malicious input from reaching interpreters; parameterized queries are the gold standard for SQLi.",
+  },
+  {
+    id: "cissp-d8-010",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "During which phase of the secure SDLC should security requirements such as data classification and regulatory constraints FIRST be documented?",
+    options: [
+      "Requirements phase, alongside the functional requirements",
+      "Implementation phase, once developers begin writing code",
+      "Testing phase, when the QA team designs test cases",
+      "Maintenance phase, after the system is in production",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Security requirements must be captured at the requirements phase so design and coding decisions can satisfy them from the start.",
+  },
+  {
+    id: "cissp-d8-011",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "In STRIDE threat modeling, an attacker who modifies data in transit without authorization is exploiting a threat in which category?",
+    options: [
+      "Spoofing, by impersonating a trusted identity",
+      "Repudiation, by denying an action took place",
+      "Tampering, by altering data or code integrity",
+      "Elevation of privilege, by gaining unauthorized rights",
+    ],
+    correctIndex: 2,
+    explanation:
+      "Tampering in STRIDE covers unauthorized modification of data or code, which violates integrity.",
+  },
+  {
+    id: "cissp-d8-012",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Compared to STRIDE, PASTA (Process for Attack Simulation and Threat Analysis) is distinguished by its emphasis on:",
+    options: [
+      "A risk-centric, multi-stage process aligned to business impact and attacker simulation",
+      "A checklist of six fixed threat categories applied to each system component",
+      "A purely qualitative severity score derived from damage and reproducibility",
+      "An audit of cryptographic controls performed after deployment only",
+    ],
+    correctIndex: 0,
+    explanation:
+      "PASTA is a seven-stage, risk-centric methodology that aligns threat modeling with business objectives and simulates attacker behavior, unlike STRIDE's category checklist.",
+  },
+  {
+    id: "cissp-d8-013",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Broken access control, ranked as the top OWASP web application risk, MOST directly results from:",
+    options: [
+      "Failure to enforce restrictions on what authenticated users are allowed to do",
+      "Use of outdated TLS versions during transport of session data",
+      "Verbose error messages that reveal internal stack trace information",
+      "Storage of passwords using a fast, unsalted hashing algorithm",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Broken access control occurs when an application fails to properly enforce authorization, letting users act outside their intended permissions.",
+  },
+  {
+    id: "cissp-d8-014",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "Which practice BEST addresses the OWASP risk category of cryptographic failures?",
+    options: [
+      "Encoding all output rendered into HTML pages to prevent script injection",
+      "Restricting administrative panels to an internal management network",
+      "Rate-limiting authentication attempts to slow down credential stuffing",
+      "Applying strong algorithms and properly protecting encryption keys",
+    ],
+    correctIndex: 3,
+    explanation:
+      "Cryptographic failures stem from weak, outdated, or misconfigured cryptography and poor key management; the fix is strong algorithms and sound key handling.",
+  },
+  {
+    id: "cissp-d8-015",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "A production system is deployed with default administrator credentials and verbose debug error pages left enabled. This is an example of:",
+    options: [
+      "Insecure deserialization introduced during the build process",
+      "Security misconfiguration left over from an insecure default state",
+      "Server-side request forgery triggered by unvalidated URLs",
+      "A broken authentication flaw in the session management logic",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Security misconfiguration includes default credentials, unnecessary features enabled, and overly detailed error messages exposing internals.",
+  },
+  {
+    id: "cissp-d8-016",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "An application embeds a JSON web token secret directly in its source code repository. The BEST remediation is to:",
+    options: [
+      "Rotate the secret only after the next scheduled major release",
+      "Store the secret in a dedicated secrets manager or vault and reference it at runtime",
+      "Base64-encode the secret before committing it to reduce readability",
+      "Move the secret into a configuration file within the same repository",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Secrets should never be hardcoded; a vault or secrets manager centralizes storage, rotation, and access control while keeping secrets out of source code.",
+  },
+  {
+    id: "cissp-d8-017",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "In a DevSecOps pipeline, software composition analysis (SCA) scanning is used to:",
+    options: [
+      "Identify known CVEs in open-source libraries and dependencies pulled into a build",
+      "Measure the cyclomatic complexity of first-party application code",
+      "Validate that container base images run with a non-root user",
+      "Confirm that infrastructure-as-code templates follow naming conventions",
+    ],
+    correctIndex: 0,
+    explanation:
+      "SCA tools scan dependencies against vulnerability databases to flag known CVEs in third-party and open-source components.",
+  },
+  {
+    id: "cissp-d8-018",
+    certId: "cissp",
+    domainId: "cissp-d8",
+    question: "A web application accepts a URL from a user and has its server fetch that URL, allowing an attacker to reach internal-only services. This describes:",
+    options: [
+      "Cross-site request forgery, by forcing a browser to submit an unwanted request",
+      "Insecure deserialization, by executing code embedded in a serialized object",
+      "Broken access control, by bypassing authorization checks on an internal endpoint",
+      "Server-side request forgery, by tricking the server into making attacker-chosen requests",
+    ],
+    correctIndex: 3,
+    explanation:
+      "SSRF occurs when an attacker manipulates a server into issuing requests to unintended destinations, often reaching internal-only resources.",
+  },
+              // CGRC – D1: Information Security Risk Management Program
   {
     id: "cgrc-d1-001",
     certId: "cgrc",
@@ -233,127 +2334,7 @@ export const questions: Question[] = [
     explanation:
       "Risk appetite is the high-level statement of how much risk the organization will accept. Risk tolerance is the acceptable deviation from that appetite in day-to-day practice, and residual risk is what remains after controls are applied.",
   },
-  // CISSP – D2: Asset Security
-  {
-    id: "cissp-d2-001",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Who bears ultimate responsibility for classifying data and ensuring appropriate controls are applied?",
-    options: ["Data custodian", "Data processor", "Data owner", "Data user"],
-    correctIndex: 2,
-    explanation:
-      "The data owner (typically a business manager) is accountable for classification decisions and ensuring controls match the data's sensitivity. The custodian implements those controls day-to-day.",
-  },
-  {
-    id: "cissp-d2-002",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Which data-destruction method is MOST appropriate for highly classified data stored on solid-state drives?",
-    options: ["Degaussing", "Overwriting with zeros once", "Physical destruction (shredding/incineration)", "Reformatting"],
-    correctIndex: 2,
-    explanation:
-      "SSDs use wear-leveling that makes overwriting unreliable and degaussing ineffective. Physical destruction ensures no residual data can be recovered from flash memory cells.",
-  },
-  // CISSP – D4: Communication and Network Security
-  {
-    id: "cissp-d4-001",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "A stateful inspection firewall differs from a packet-filtering firewall primarily because it:",
-    options: [
-      "Operates at the application layer",
-      "Tracks the state of active connections and validates packets in context",
-      "Requires user authentication for every session",
-      "Inspects encrypted payloads",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Stateful inspection maintains a connection table and ensures each packet belongs to an established, legitimate session — blocking packets that don't match tracked state.",
-  },
-  {
-    id: "cissp-d4-002",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "Which protocol provides confidentiality, integrity, and authentication for IP communications at the network layer?",
-    options: ["TLS", "SSH", "IPsec", "HTTPS"],
-    correctIndex: 2,
-    explanation:
-      "IPsec operates at Layer 3 and provides authentication (AH) and encryption (ESP) for IP traffic. TLS/SSH operate at higher layers and protect specific application streams.",
-  },
-  // CISSP – D6: Security Assessment and Testing
-  {
-    id: "cissp-d6-001",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "A penetration tester has no prior knowledge of the target environment. This approach is called:",
-    options: ["White-box testing", "Gray-box testing", "Black-box testing", "Crystal-box testing"],
-    correctIndex: 2,
-    explanation:
-      "Black-box (or blind) testing simulates an external attacker with no insider knowledge. White-box provides full system details; gray-box provides partial information.",
-  },
-  {
-    id: "cissp-d6-002",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "Which metric measures the average time between a vulnerability being exploited and its detection?",
-    options: ["Mean Time to Repair (MTTR)", "Mean Time Between Failures (MTBF)", "Mean Time to Detect (MTTD)", "Recovery Time Objective (RTO)"],
-    correctIndex: 2,
-    explanation:
-      "MTTD (Mean Time to Detect) measures the gap between exploitation and discovery. Reducing MTTD is a key goal of security monitoring and threat detection programs.",
-  },
-  // CISSP – D7: Security Operations
-  {
-    id: "cissp-d7-001",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "Which concept requires that no single employee can complete a sensitive transaction alone?",
-    options: ["Least privilege", "Separation of duties", "Job rotation", "Need to know"],
-    correctIndex: 1,
-    explanation:
-      "Separation of duties splits critical tasks across multiple people so that fraud or error requires collusion. It is a key preventive control for high-risk operations.",
-  },
-  {
-    id: "cissp-d7-002",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "During a forensic investigation, the FIRST action an investigator should take when arriving at a scene with a running computer is to:",
-    options: [
-      "Power off the system immediately",
-      "Capture volatile memory before any other action",
-      "Image the hard drive",
-      "Disconnect the network cable",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Volatile memory (RAM) contains running processes, encryption keys, and network connections that are lost on shutdown. Capturing it first preserves evidence that cannot be recovered from disk.",
-  },
-  // CISSP – D8: Software Development Security
-  {
-    id: "cissp-d8-001",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "Which technique involves examining source code without executing it to find security flaws?",
-    options: ["Dynamic analysis", "Fuzzing", "Static analysis", "Regression testing"],
-    correctIndex: 2,
-    explanation:
-      "Static analysis (SAST) reviews source or compiled code without running it, identifying vulnerabilities like injection flaws, hard-coded credentials, and unsafe API usage.",
-  },
-  {
-    id: "cissp-d8-002",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "An attacker injects malicious SQL into a login form to bypass authentication. The ROOT CAUSE of this vulnerability is:",
-    options: [
-      "Weak password policy",
-      "Lack of encryption",
-      "Insufficient input validation",
-      "Missing firewall rules",
-    ],
-    correctIndex: 2,
-    explanation:
-      "SQL injection succeeds because user-supplied input is concatenated into queries without validation or parameterization. Prepared statements/parameterized queries are the primary defense.",
-  },
-  // CGRC – D2: Scope of the Information System
+                      // CGRC – D2: Scope of the Information System
   {
     id: "cgrc-d2-001",
     certId: "cgrc",
@@ -682,367 +2663,14 @@ export const questions: Question[] = [
 
   // ── Additional questions (round 2) ───────────────────────────────────────
 
-  // CISSP – D1: Security and Risk Management (additional)
-  {
-    id: "cissp-d1-004",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "Which of the following BEST describes the principle of least privilege?",
-    options: [
-      "Users receive all permissions needed to complete any possible task",
-      "Users are granted only the minimum access required for their specific role",
-      "Privileged accounts are shared among administrators for efficiency",
-      "Access is granted based on seniority within the organization",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Least privilege limits each user, process, or system to only the permissions necessary for their defined function. This minimizes the blast radius of compromised accounts or misconfigured software.",
-  },
-  {
-    id: "cissp-d1-005",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "An organization calculates that a flood has a 10% annual probability and would cause $500,000 in damage. What is the Annual Loss Expectancy (ALE)?",
-    options: ["$50,000", "$500,000", "$5,000", "$5,000,000"],
-    correctIndex: 0,
-    explanation:
-      "ALE = SLE × ARO = $500,000 × 0.10 = $50,000. ALE guides how much it is rational to spend annually on a countermeasure — spending more than $50,000/year to prevent this flood would not be cost-effective.",
-  },
-  {
-    id: "cissp-d1-006",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "A Business Continuity Plan (BCP) is primarily activated when:",
-    options: [
-      "A security patch needs to be applied",
-      "A disruption threatens the organization's ability to perform critical business functions",
-      "A new employee joins the IT department",
-      "The annual penetration test is scheduled",
-    ],
-    correctIndex: 1,
-    explanation:
-      "BCP activation is triggered by events that jeopardize continuity of critical operations — not routine IT activities. BCPs define how the organization sustains essential functions during and after a disruption.",
-  },
-
-  // CISSP – D2: Asset Security (additional)
-  {
-    id: "cissp-d2-003",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Data sovereignty means that:",
-    options: [
-      "Data is encrypted at all times",
-      "Data is subject to the laws and regulations of the country where it physically resides",
-      "Data owners have exclusive rights to all stored data",
-      "Data must be replicated to at least three geographic locations",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Data sovereignty recognizes that data stored in a particular jurisdiction falls under that nation's legal authority. This has major implications for cloud storage — data in a foreign data center is subject to that country's laws.",
-  },
-  {
-    id: "cissp-d2-004",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Which data state requires encryption to be MOST urgently prioritized for highly sensitive information?",
-    options: ["Data at rest", "Data in transit", "Data in use", "All states equally"],
-    correctIndex: 3,
-    explanation:
-      "Best practice requires encryption for data at rest (storage), in transit (networks), and in use (memory/processing for the highest sensitivity). For exam purposes, if forced to choose one, data in transit is classically prioritized as it crosses untrusted networks — but modern frameworks require all three.",
-  },
-  {
-    id: "cissp-d2-005",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Which technique writes multiple patterns of 1s and 0s over all locations on a magnetic disk to sanitize it?",
-    options: ["Degaussing", "Overwriting (multi-pass)", "Physical shredding", "Reformatting"],
-    correctIndex: 1,
-    explanation:
-      "Multi-pass overwriting (e.g., DoD 5220.22-M) writes patterns multiple times to make data unrecoverable on magnetic media. Degaussing disrupts the magnetic field; physical destruction ensures no recovery. Reformatting only removes file system metadata.",
-  },
-
-  // CISSP – D3: Security Architecture and Engineering (additional)
-  {
-    id: "cissp-d3-003",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "The Trusted Computing Base (TCB) is defined as:",
-    options: [
-      "The set of all hardware, firmware, and software components critical to enforcing a security policy",
-      "A list of trusted third-party vendors",
-      "The physical data center infrastructure",
-      "A framework for evaluating cryptographic algorithms",
-    ],
-    correctIndex: 0,
-    explanation:
-      "The TCB includes all elements (hardware, firmware, software) that must function correctly to enforce the security policy. Keeping the TCB small and well-tested reduces its attack surface.",
-  },
-  {
-    id: "cissp-d3-004",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "The Biba integrity model enforces which rules?",
-    options: [
-      "No read up, no write down (confidentiality-focused)",
-      "No write up, no read down (integrity-focused)",
-      "All users can read any data but only write to lower-sensitivity objects",
-      "Write access requires a security clearance equal to the object's label",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Biba protects integrity: subjects cannot write to higher-integrity objects ('no write up') and cannot read from lower-integrity objects ('no read down'). This prevents untrusted data from contaminating trusted processes.",
-  },
-  {
-    id: "cissp-d3-005",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "The principle of FAIL-SAFE defaults means:",
-    options: [
-      "Systems automatically restart after a failure",
-      "Access is denied by default unless explicitly granted",
-      "Redundant systems take over when a primary system fails",
-      "Errors are logged and suppressed so users are not disrupted",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Fail-safe defaults establish that the default state is no access. If a system fails or a rule is missing, access is denied rather than permitted. This limits exposure when errors occur.",
-  },
-
-  // CISSP – D4: Communication and Network Security (additional)
-  {
-    id: "cissp-d4-003",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "Which type of DNS attack redirects users to a malicious IP by poisoning the resolver's cache?",
-    options: ["DNS tunneling", "DNS hijacking", "DNS cache poisoning", "DNS amplification"],
-    correctIndex: 2,
-    explanation:
-      "DNS cache poisoning inserts fraudulent DNS records into a resolver's cache so that legitimate domain queries return attacker-controlled IP addresses. DNSSEC was designed to prevent this by digitally signing DNS records.",
-  },
-  {
-    id: "cissp-d4-004",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "In IPsec tunnel mode (vs. transport mode), what is encrypted?",
-    options: [
-      "Only the payload — the original IP header is unchanged",
-      "The entire original IP packet, including the header — a new IP header is added",
-      "Only the IP header, not the payload",
-      "Nothing — tunnel mode only provides authentication",
-    ],
-    correctIndex: 1,
-    explanation:
-      "IPsec tunnel mode encapsulates the entire original packet (header + payload) inside a new IP packet. This hides the original source and destination, making it suitable for VPN gateways between networks.",
-  },
-  {
-    id: "cissp-d4-005",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "A VLAN provides security primarily by:",
-    options: [
-      "Encrypting all traffic between hosts",
-      "Logically segmenting network traffic so hosts in different VLANs cannot communicate without routing through a controlled gateway",
-      "Preventing all broadcast traffic",
-      "Requiring certificate-based authentication for every device",
-    ],
-    correctIndex: 1,
-    explanation:
-      "VLANs create logical network segments at Layer 2. Traffic between VLANs must traverse a Layer 3 device (router or firewall), enabling enforcement of access controls between segments.",
-  },
-
-  // CISSP – D5: Identity and Access Management (additional)
-  {
-    id: "cissp-d5-002",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Which authentication factor category does a fingerprint scan belong to?",
-    options: ["Something you know", "Something you have", "Something you are", "Somewhere you are"],
-    correctIndex: 2,
-    explanation:
-      "Biometrics (fingerprints, retina scans, facial recognition) are 'something you are' factors. Multi-factor authentication requires factors from at least two different categories.",
-  },
-  {
-    id: "cissp-d5-003",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Single Sign-On (SSO) improves security primarily because it:",
-    options: [
-      "Eliminates the need for any authentication",
-      "Reduces password fatigue and associated weak/reused passwords across systems",
-      "Grants users access to all systems automatically",
-      "Replaces multi-factor authentication requirements",
-    ],
-    correctIndex: 1,
-    explanation:
-      "SSO reduces the number of credentials users must manage. Fewer passwords means less temptation to reuse weak passwords. The tradeoff is that compromising the SSO identity provider affects all connected systems.",
-  },
-  {
-    id: "cissp-d5-004",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Attribute-Based Access Control (ABAC) differs from RBAC in that it:",
-    options: [
-      "Only works with cloud applications",
-      "Grants access based on combinations of user attributes, resource attributes, and environmental conditions",
-      "Assigns permissions directly to individual users rather than roles",
-      "Requires a centralized directory service",
-    ],
-    correctIndex: 1,
-    explanation:
-      "ABAC evaluates multiple attributes simultaneously (e.g., user's department AND clearance level AND time of day AND resource classification) to make dynamic, fine-grained access decisions — more flexible than RBAC.",
-  },
-  {
-    id: "cissp-d5-005",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Kerberos authentication uses which cryptographic mechanism to prevent replay attacks?",
-    options: [
-      "Digital certificates",
-      "Time-stamped tickets with short validity windows",
-      "Public key infrastructure",
-      "One-time passwords",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Kerberos tickets contain timestamps. Clients and servers must be time-synchronized (typically within 5 minutes). Tickets expire quickly, so intercepted tickets cannot be replayed after the validity window closes.",
-  },
-
-  // CISSP – D6: Security Assessment and Testing (additional)
-  {
-    id: "cissp-d6-003",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "A false positive in security scanning occurs when:",
-    options: [
-      "A real vulnerability is not detected",
-      "A clean item is incorrectly flagged as a threat",
-      "A test fails to run due to configuration error",
-      "An attacker evades detection",
-    ],
-    correctIndex: 1,
-    explanation:
-      "False positives waste analyst time investigating non-issues. False negatives (missed real threats) are more dangerous but harder to measure. High false-positive rates can cause alert fatigue, causing teams to ignore real alerts.",
-  },
-  {
-    id: "cissp-d6-004",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "What does a vulnerability assessment do that a penetration test does NOT necessarily do?",
-    options: [
-      "Identify vulnerabilities in a system",
-      "Attempt to actively exploit discovered vulnerabilities to demonstrate real-world impact",
-      "Provide a comprehensive list of all weaknesses",
-      "Test physical security controls",
-    ],
-    correctIndex: 1,
-    explanation:
-      "A vulnerability assessment identifies and categorizes weaknesses but typically stops short of exploitation. A penetration test goes further — it actively attempts to exploit vulnerabilities to determine true impact and attack feasibility.",
-  },
-  {
-    id: "cissp-d6-005",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "Which code review practice involves developers examining each other's code for defects?",
-    options: ["Unit testing", "Regression testing", "Peer/code review", "Dynamic analysis"],
-    correctIndex: 2,
-    explanation:
-      "Peer code review (also called code inspection) has developers examine code written by colleagues. It catches logic errors, security flaws, and style issues early in development — before code reaches testing stages.",
-  },
-
-  // CISSP – D7: Security Operations (additional)
-  {
-    id: "cissp-d7-003",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "A Security Information and Event Management (SIEM) system primarily provides:",
-    options: [
-      "Firewall policy management",
-      "Real-time aggregation, correlation, and alerting of security events from multiple sources",
-      "Endpoint antivirus protection",
-      "Automated patch deployment",
-    ],
-    correctIndex: 1,
-    explanation:
-      "A SIEM collects logs and events from across the environment, applies correlation rules to detect suspicious patterns, and generates alerts. It gives security teams a centralized view of the organization's security posture.",
-  },
-  {
-    id: "cissp-d7-004",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "Chain of custody in digital forensics ensures that:",
-    options: [
-      "Evidence is encrypted before storage",
-      "The integrity and handling of evidence is documented from collection through court presentation",
-      "Investigators have the fastest access to evidence",
-      "Evidence is stored in a cloud environment",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Chain of custody documents who collected, handled, and stored evidence and when. Without it, evidence may be ruled inadmissible in court because its integrity cannot be guaranteed.",
-  },
-  {
-    id: "cissp-d7-005",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "Job rotation in a security operations context is PRIMARILY used to:",
-    options: [
-      "Give employees career development opportunities",
-      "Reduce the risk of fraud and detect concealed wrongdoing by disrupting long-term control over a single process",
-      "Ensure backup coverage during vacations",
-      "Improve team productivity through skill cross-training",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Job rotation is a detective and preventive control. Rotating employees out of sensitive roles disrupts schemes that rely on long-term, unchecked access — and the incoming employee may discover previous misconduct.",
-  },
-
-  // CISSP – D8: Software Development Security (additional)
-  {
-    id: "cissp-d8-003",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "Which SDLC activity is MOST effective at reducing the cost of fixing security flaws?",
-    options: [
-      "Penetration testing in production",
-      "Threat modeling during the design phase",
-      "Security training for developers after deployment",
-      "Vulnerability scanning post-release",
-    ],
-    correctIndex: 1,
-    explanation:
-      "The 'rule of 10' shows that fixing a flaw in design costs ~10x less than fixing it in coding, which costs 10x less than fixing it post-release. Threat modeling in design is the highest-ROI security activity.",
-  },
-  {
-    id: "cissp-d8-004",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "Cross-Site Scripting (XSS) is primarily prevented by:",
-    options: [
-      "Input validation and output encoding",
-      "Using HTTPS for all connections",
-      "Implementing a Web Application Firewall only",
-      "Requiring user authentication",
-    ],
-    correctIndex: 0,
-    explanation:
-      "XSS injects malicious scripts into pages viewed by other users. Defense requires validating and sanitizing all user input and encoding all output so the browser does not interpret user data as executable script.",
-  },
-  {
-    id: "cissp-d8-005",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "What is the purpose of a software bill of materials (SBOM)?",
-    options: [
-      "To document software licensing costs",
-      "To provide a formal inventory of all components and dependencies in a software product",
-      "To track developer productivity metrics",
-      "To automate deployment pipelines",
-    ],
-    correctIndex: 1,
-    explanation:
-      "An SBOM lists every library, dependency, and component in a software product. It enables rapid identification of whether a product is affected by a newly disclosed vulnerability in any of its components — critical for supply chain security.",
-  },
-
+      
+      
+      
+      
+        
+      
+      
+      
   // CGRC – D1: Information Security Risk Management Program (additional)
   {
     id: "cgrc-d1-003",
@@ -1574,352 +3202,14 @@ export const questions: Question[] = [
 
   // ── Additional questions (round 3) ───────────────────────────────────────
 
-  // CISSP – D1 additional
-  {
-    id: "cissp-d1-007",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "The NIST Cybersecurity Framework (CSF) organizes security activities into five functions. Which function focuses on developing and implementing appropriate safeguards to ensure delivery of critical services?",
-    options: ["Identify", "Protect", "Detect", "Respond"],
-    correctIndex: 1,
-    explanation:
-      "The Protect function covers access control, awareness training, data security, and protective technology — all aimed at limiting or containing the impact of a potential security event.",
-  },
-  {
-    id: "cissp-d1-008",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "Which type of security policy defines acceptable use of organizational resources and is signed by employees?",
-    options: ["Issue-specific policy", "System-specific policy", "Organizational policy", "Acceptable Use Policy (AUP)"],
-    correctIndex: 3,
-    explanation:
-      "An AUP defines what users may and may not do with organizational systems and data. It is typically signed at onboarding and creates a legally acknowledged agreement between the employee and the organization.",
-  },
-  {
-    id: "cissp-d1-009",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "A qualitative risk analysis differs from a quantitative analysis in that it:",
-    options: [
-      "Produces exact dollar-value estimates of risk",
-      "Uses expert judgment and descriptive scales (High/Medium/Low) rather than precise numerical calculations",
-      "Requires more time and data to complete",
-      "Can only be performed by external auditors",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Qualitative analysis uses subjective ratings and is faster and less data-intensive. Quantitative analysis uses formulas (ALE = SLE × ARO) to produce dollar values — more precise but requires accurate threat frequency and asset-value data.",
-  },
-
-  // CISSP – D2 additional
-  {
-    id: "cissp-d2-006",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Under GDPR, a 'data controller' is BEST described as:",
-    options: [
-      "A technical system that manages database access",
-      "The entity that determines the purposes and means of processing personal data",
-      "The person responsible for physical security of data centers",
-      "The individual whose personal data is being processed",
-    ],
-    correctIndex: 1,
-    explanation:
-      "The data controller decides WHY and HOW personal data is processed. The data processor acts on behalf of the controller. The data subject is the individual whose data is collected. Understanding this distinction is critical for GDPR compliance.",
-  },
-  {
-    id: "cissp-d2-007",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "A data retention policy primarily serves to:",
-    options: [
-      "Encrypt data at rest for the period it is stored",
-      "Define how long data is kept and when it must be securely destroyed",
-      "Ensure data is replicated across multiple geographic locations",
-      "Restrict access to sensitive data to authorized users only",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Retention policies balance legal hold requirements (keeping data long enough for litigation) against privacy obligations (deleting data when no longer needed). Keeping data longer than necessary increases both storage costs and breach exposure.",
-  },
-  {
-    id: "cissp-d2-008",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "Which concept requires that information be labeled and handled according to its level of sensitivity?",
-    options: ["Data minimization", "Data classification", "Data lineage", "Data normalization"],
-    correctIndex: 1,
-    explanation:
-      "Data classification assigns sensitivity labels (e.g., Public/Internal/Confidential/Restricted) that drive handling requirements — who can access data, how it must be stored, transmitted, and eventually destroyed.",
-  },
-
-  // CISSP – D3 additional
-  {
-    id: "cissp-d3-006",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "AES-256 is classified as which type of cryptographic algorithm?",
-    options: ["Asymmetric (public key)", "Hash function", "Symmetric (secret key)", "Stream cipher"],
-    correctIndex: 2,
-    explanation:
-      "AES (Advanced Encryption Standard) is a symmetric block cipher — the same key encrypts and decrypts data. RSA and ECC are asymmetric. SHA-256 is a hash. RC4 is a stream cipher. AES-256 uses a 256-bit key and is the current standard for bulk data encryption.",
-  },
-  {
-    id: "cissp-d3-007",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "In a public key infrastructure (PKI), a Certificate Authority (CA) is trusted because it:",
-    options: [
-      "Uses the most advanced encryption algorithm available",
-      "Digitally signs certificates, binding a public key to a verified identity",
-      "Stores all private keys for recovery purposes",
-      "Issues certificates at no charge to any requestor",
-    ],
-    correctIndex: 1,
-    explanation:
-      "The CA's digital signature on a certificate is the root of trust — it asserts that the CA has verified the certificate holder's identity. Browser and OS trust stores contain CA root certificates that enable this chain of trust.",
-  },
-  {
-    id: "cissp-d3-008",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "Software as a Service (SaaS) differs from Infrastructure as a Service (IaaS) in that the customer:",
-    options: [
-      "Manages the operating system and runtime in SaaS",
-      "Has no responsibility for the application layer in IaaS",
-      "Only manages data and user access in SaaS; the provider manages everything else",
-      "Owns the underlying hardware in SaaS",
-    ],
-    correctIndex: 2,
-    explanation:
-      "In SaaS, the provider manages infrastructure, OS, platform, and application — the customer only configures the application and manages users and data. In IaaS, the customer manages OS upward, giving more control but more responsibility.",
-  },
-
-  // CISSP – D4 additional
-  {
-    id: "cissp-d4-006",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "WPA3 improves on WPA2 for wireless security primarily by:",
-    options: [
-      "Using a longer SSID",
-      "Replacing PSK with Simultaneous Authentication of Equals (SAE), preventing offline dictionary attacks",
-      "Eliminating the need for passwords entirely",
-      "Reducing transmission power to limit coverage area",
-    ],
-    correctIndex: 1,
-    explanation:
-      "SAE (also called Dragonfly handshake) makes offline brute-force attacks against captured handshakes infeasible. WPA2 PSK was vulnerable to offline dictionary attacks if a weak passphrase was used.",
-  },
-  {
-    id: "cissp-d4-007",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "A man-in-the-middle (MitM) attack is BEST mitigated by:",
-    options: [
-      "Using longer passwords",
-      "Mutual authentication and encrypted communication channels (e.g., TLS with certificate validation)",
-      "Deploying an intrusion detection system",
-      "Segmenting the network with VLANs",
-    ],
-    correctIndex: 1,
-    explanation:
-      "MitM requires either impersonating one endpoint or intercepting traffic. Mutual authentication ensures both parties verify each other's identity; encryption prevents the attacker from reading or modifying the intercepted data.",
-  },
-  {
-    id: "cissp-d4-008",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "The primary purpose of network segmentation in a security architecture is to:",
-    options: [
-      "Improve network throughput",
-      "Limit lateral movement by attackers and contain the blast radius of a compromise",
-      "Reduce hardware costs by consolidating switches",
-      "Simplify network management",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Segmentation creates security zones. If an attacker compromises a device in one segment, they cannot freely reach devices in other segments — they must traverse a controlled gateway, creating additional detection and blocking opportunities.",
-  },
-
-  // CISSP – D5 additional
-  {
-    id: "cissp-d5-006",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Zero Trust Architecture (ZTA) is based on the principle of:",
-    options: [
-      "Trusting all traffic within the internal network perimeter",
-      "Never trust, always verify — no implicit trust based on network location",
-      "Granting temporary elevated access based on user requests",
-      "Eliminating all passwords in favor of biometric authentication",
-    ],
-    correctIndex: 1,
-    explanation:
-      "ZTA assumes breach and verifies every access request regardless of network origin. Users inside the corporate network receive the same scrutiny as external users. Controls include identity verification, device health checks, and least-privilege access.",
-  },
-  {
-    id: "cissp-d5-007",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Privileged Access Management (PAM) reduces risk primarily by:",
-    options: [
-      "Requiring admin accounts to use longer passwords",
-      "Controlling, monitoring, and recording use of privileged credentials to limit their exposure and detect abuse",
-      "Granting all users temporary admin access for efficiency",
-      "Blocking all administrative access from remote locations",
-    ],
-    correctIndex: 1,
-    explanation:
-      "PAM vaults privileged credentials, requires just-in-time access approval, records sessions, and alerts on anomalous behavior. Compromised admin accounts are a top attack vector — PAM dramatically limits what an attacker can do with them.",
-  },
-  {
-    id: "cissp-d5-008",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "OAuth 2.0 is primarily used for:",
-    options: [
-      "Encrypting passwords in storage",
-      "Delegated authorization — allowing an application to access resources on behalf of a user without sharing credentials",
-      "Authenticating users with username/password",
-      "Generating one-time passwords for MFA",
-    ],
-    correctIndex: 1,
-    explanation:
-      "OAuth 2.0 is an authorization framework (not authentication). It allows a user to grant a third-party application limited access to their resources without giving it their password. OpenID Connect (OIDC) builds on OAuth to add authentication.",
-  },
-
-  // CISSP – D6 additional
-  {
-    id: "cissp-d6-006",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "The Common Vulnerability Scoring System (CVSS) provides a standardized way to:",
-    options: [
-      "Track the financial cost of a vulnerability",
-      "Assign a numeric severity score to vulnerabilities to help prioritize remediation",
-      "Certify security products against a baseline",
-      "Document the history of security incidents",
-    ],
-    correctIndex: 1,
-    explanation:
-      "CVSS scores range from 0.0 to 10.0 (Critical). They consider base metrics (attack vector, complexity, impact) as well as temporal and environmental factors. Organizations use CVSS to prioritize patching — critical scores typically require faster remediation.",
-  },
-  {
-    id: "cissp-d6-007",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "A compliance audit differs from a security assessment in that it:",
-    options: [
-      "Looks for unknown vulnerabilities through active testing",
-      "Verifies that specific controls required by a standard or regulation are in place",
-      "Focuses exclusively on technical controls",
-      "Is always conducted by external third parties",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Compliance audits check adherence to defined standards (PCI DSS, HIPAA, SOC 2). Security assessments may go beyond defined controls to identify undocumented risks. Both are valuable — compliance ensures a minimum baseline; assessments reveal the true risk posture.",
-  },
-  {
-    id: "cissp-d6-008",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "Which testing methodology involves providing the tester with full knowledge of the system's architecture and source code?",
-    options: ["Black-box", "Gray-box", "White-box", "Red team"],
-    correctIndex: 2,
-    explanation:
-      "White-box testing gives the tester complete visibility — architecture diagrams, source code, credentials. It is the most thorough method and finds the most vulnerabilities, but doesn't simulate a realistic external attacker as well as black-box testing.",
-  },
-
-  // CISSP – D7 additional
-  {
-    id: "cissp-d7-006",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "Data Loss Prevention (DLP) tools are PRIMARILY designed to:",
-    options: [
-      "Encrypt sensitive data at rest",
-      "Detect and prevent unauthorized exfiltration or transmission of sensitive data",
-      "Back up critical data to prevent loss from hardware failure",
-      "Block malware from executing on endpoints",
-    ],
-    correctIndex: 1,
-    explanation:
-      "DLP monitors data in use, in motion, and at rest — alerting or blocking when sensitive data (PII, IP, financial data) is detected moving to unauthorized destinations such as personal email, USB drives, or cloud storage.",
-  },
-  {
-    id: "cissp-d7-007",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "Threat hunting is BEST described as:",
-    options: [
-      "Waiting for security alerts to trigger investigation",
-      "Proactively searching for hidden threats or adversary activity that evaded automated detection",
-      "Performing regularly scheduled vulnerability scans",
-      "Reviewing firewall logs for known malware signatures",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Threat hunting is hypothesis-driven and proactive — analysts actively search for indicators of compromise or attacker behavior that didn't trigger alerts. It's particularly valuable against advanced persistent threats (APTs) that operate stealthily.",
-  },
-  {
-    id: "cissp-d7-008",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "Which principle ensures that an employee on vacation cannot single-handedly cause financial fraud?",
-    options: ["Need to know", "Mandatory vacation", "Separation of duties", "Least privilege"],
-    correctIndex: 2,
-    explanation:
-      "Separation of duties prevents any one individual from controlling an entire sensitive process. Mandatory vacation policies (a related control) force someone else to cover duties, potentially exposing hidden fraud. Together they are key fraud-prevention controls.",
-  },
-
-  // CISSP – D8 additional
-  {
-    id: "cissp-d8-006",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "A race condition vulnerability occurs when:",
-    options: [
-      "Code executes faster than the CPU can process it",
-      "A program's behavior depends on the timing or ordering of uncontrolled events, allowing an attacker to manipulate the outcome",
-      "Multiple users attempt to log in simultaneously",
-      "An application uses deprecated cryptographic algorithms",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Race conditions (time-of-check/time-of-use — TOCTOU) occur when security checks and the actions they protect are not atomic. An attacker can change the state between check and use, bypassing the check.",
-  },
-  {
-    id: "cissp-d8-007",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "The OWASP Top 10 is MOST useful as:",
-    options: [
-      "A certification standard for web developers",
-      "A regularly updated awareness document highlighting the most critical web application security risks",
-      "A legally binding standard for web application security",
-      "A set of automated testing rules for SAST tools",
-    ],
-    correctIndex: 1,
-    explanation:
-      "The OWASP Top 10 is a community-driven awareness document, not a standard or certification. It names the most prevalent and impactful categories of web vulnerabilities (injection, broken auth, XSS, etc.) and drives developer education and tool development.",
-  },
-  {
-    id: "cissp-d8-008",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "Fuzz testing (fuzzing) is used to:",
-    options: [
-      "Verify that code meets functional requirements",
-      "Detect memory corruption, crashes, and unexpected behavior by feeding random or malformed inputs to an application",
-      "Review source code for coding style violations",
-      "Test application performance under load",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Fuzzing automatically generates invalid, unexpected, or random data as program inputs. It excels at finding input-handling bugs like buffer overflows, format string errors, and unhandled exceptions — vulnerabilities that manual code review often misses.",
-  },
-
+      
+      
+      
+      
+      
+      
+      
+      
   // CISM – D1 additional
   {
     id: "cism-d1-006",
@@ -3247,158 +4537,7 @@ export const questions: Question[] = [
     explanation:
       "Incident severity should be based on business impact — data sensitivity, systems and users affected, regulatory implications, and operational disruption. Technical sophistication, attacker tooling cost, and insider-versus-external origin are secondary factors.",
   },
-  // ── CISSP additional questions ───────────────────────────────────────────
-  {
-    id: "cissp-d1-010",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "A Privacy Impact Assessment (PIA) is MOST valuable because it:",
-    options: [
-      "Replaces the need for a risk assessment",
-      "Identifies privacy risks before a system or process is implemented, when changes are least costly",
-      "Is required by all global privacy regulations",
-      "Documents post-implementation compliance",
-    ],
-    correctIndex: 1,
-    explanation:
-      "A PIA proactively identifies privacy risks associated with new systems or processes before deployment, when design changes cost far less than post-launch remediation. While many regulations encourage or require PIAs (GDPR calls them DPIAs), the primary value is the shift-left principle: find and fix privacy issues early.",
-  },
-  {
-    id: "cissp-d1-011",
-    certId: "cissp",
-    domainId: "cissp-d1",
-    question: "Security awareness training differs from security education in that training:",
-    options: [
-      "Prepares individuals for security certifications",
-      "Focuses on changing day-to-day behavior for a specific audience",
-      "Provides deep theoretical knowledge of security principles",
-      "Is only required for technical staff",
-    ],
-    correctIndex: 1,
-    explanation:
-      "The NIST framework distinguishes training (skill-building for a role), education (deep conceptual understanding), and awareness (changing everyday behavior). Awareness programs target all users with role-appropriate behavioral nudges — e.g., 'don't click phishing links.' Training equips practitioners with job-specific skills. Education produces security professionals.",
-  },
-  {
-    id: "cissp-d2-009",
-    certId: "cissp",
-    domainId: "cissp-d2",
-    question: "A database view is used as a security control primarily to:",
-    options: [
-      "Speed up query performance",
-      "Restrict access to specific rows or columns of a table, implementing need-to-know",
-      "Encrypt sensitive data at rest",
-      "Log all database queries for audit purposes",
-    ],
-    correctIndex: 1,
-    explanation:
-      "A database view presents a customized subset of the underlying data — specific columns, filtered rows, or computed values — without exposing the full table. This enforces need-to-know and least privilege at the data layer: a customer service rep might see order status but not credit card numbers, even though both reside in the same table.",
-  },
-  {
-    id: "cissp-d3-009",
-    certId: "cissp",
-    domainId: "cissp-d3",
-    question: "The reference monitor concept in security architecture ensures that:",
-    options: [
-      "All subject-to-object access requests are mediated, tamperproof, and auditable",
-      "Subjects can communicate with each other without object access",
-      "All network traffic passes through a single inspection point",
-      "The operating system kernel is isolated from applications",
-    ],
-    correctIndex: 0,
-    explanation:
-      "A reference monitor is an abstract security model requiring that: (1) all access requests are mediated — no path exists that bypasses the monitor; (2) it is tamperproof — cannot be altered by unauthorized means; (3) it is small enough to be verified. The Security Kernel is the concrete implementation. It underpins mandatory access control in secure systems.",
-  },
-  {
-    id: "cissp-d4-009",
-    certId: "cissp",
-    domainId: "cissp-d4",
-    question: "Network Address Translation (NAT) provides limited security because it:",
-    options: [
-      "Encrypts all outbound traffic",
-      "Hides internal IP addresses from the internet, reducing direct external exposure",
-      "Prevents all inbound connection attempts",
-      "Replaces the need for a firewall",
-    ],
-    correctIndex: 1,
-    explanation:
-      "NAT translates private internal addresses to one or more public IPs, incidentally hiding the internal topology from external observers. This is not real security — an attacker who exploits an outbound connection can still reach internal hosts. NAT does not replace firewalls, IDS/IPS, or other controls; it is a byproduct of IPv4 address conservation.",
-  },
-  {
-    id: "cissp-d5-009",
-    certId: "cissp",
-    domainId: "cissp-d5",
-    question: "Access recertification (access reviews) is PRIMARILY performed to:",
-    options: [
-      "Speed up the provisioning process",
-      "Ensure users retain only the access they currently need, removing accumulated excess permissions",
-      "Prevent password sharing between employees",
-      "Satisfy multi-factor authentication requirements",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Over time, users accumulate access through role changes, temporary projects, or poorly deprovisioned accounts — a phenomenon called privilege creep. Access recertification (periodic manager or owner review of who has access to what) identifies and removes excess permissions. It is a detective/corrective control for the IAM lifecycle.",
-  },
-  {
-    id: "cissp-d6-009",
-    certId: "cissp",
-    domainId: "cissp-d6",
-    question: "STRIDE is used in threat modeling to:",
-    options: [
-      "Categorize vulnerabilities by CVSS severity score",
-      "Systematically identify potential threats to a system by type: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege",
-      "Assign risk scores to assets",
-      "Document the kill chain for known attack patterns",
-    ],
-    correctIndex: 1,
-    explanation:
-      "STRIDE (developed at Microsoft) is a threat taxonomy used during security design reviews. Each letter represents a threat category: Spoofing (authentication), Tampering (integrity), Repudiation (non-repudiation), Information Disclosure (confidentiality), Denial of Service (availability), Elevation of Privilege (authorization). Applying STRIDE to data flow diagrams helps surface security requirements early in the SDLC.",
-  },
-  {
-    id: "cissp-d7-009",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "A Security Orchestration, Automation and Response (SOAR) platform differs from a SIEM primarily because it:",
-    options: [
-      "Collects and correlates log data from multiple sources",
-      "Automates response actions and orchestrates workflows across security tools",
-      "Provides real-time threat intelligence feeds",
-      "Replaces the need for human analysts",
-    ],
-    correctIndex: 1,
-    explanation:
-      "SIEM aggregates, correlates, and alerts on log data. SOAR adds automation: when a SIEM fires an alert, SOAR can automatically enrich it (threat intel lookup), contain it (block an IP), and route the case to analysts with a pre-populated playbook. SOAR reduces mean time to respond (MTTR) and analyst fatigue. The two tools are complementary, not interchangeable.",
-  },
-  {
-    id: "cissp-d7-010",
-    certId: "cissp",
-    domainId: "cissp-d7",
-    question: "In a cloud shared responsibility model, the cloud provider is ALWAYS responsible for:",
-    options: [
-      "Customer data encryption at rest",
-      "Patching the underlying physical infrastructure and hypervisor",
-      "User access management and identity configuration",
-      "Application-level security controls",
-    ],
-    correctIndex: 1,
-    explanation:
-      "In all cloud service models (IaaS, PaaS, SaaS), the provider owns the physical infrastructure, data centers, network hardware, and hypervisor. Customer responsibilities shift depending on the model: IaaS customers manage OS and above; PaaS customers manage applications and data; SaaS customers manage only data and access configuration. Identity and encryption configuration are typically customer responsibilities in IaaS/PaaS.",
-  },
-  {
-    id: "cissp-d8-009",
-    certId: "cissp",
-    domainId: "cissp-d8",
-    question: "Input validation is the PRIMARY defense against injection attacks because it:",
-    options: [
-      "Encrypts user input before processing",
-      "Ensures only expected, properly structured data reaches application logic and prevents malicious payloads from executing",
-      "Logs all user input for forensic analysis",
-      "Limits the number of requests a user can make",
-    ],
-    correctIndex: 1,
-    explanation:
-      "Injection attacks (SQL, command, LDAP) succeed when untrusted data is sent to an interpreter as part of a command. Input validation — accepting only expected formats, rejecting or encoding special characters — prevents malicious input from reaching interpreters. Parameterized queries (prepared statements) are the gold standard for SQL injection; combined with allowlist validation, they address the root cause rather than symptoms.",
-  },
-  // ── ISSMP additional questions ───────────────────────────────────────────
+                      // ── ISSMP additional questions ───────────────────────────────────────────
   {
     id: "issmp-d1-009",
     certId: "issmp",
