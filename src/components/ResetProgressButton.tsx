@@ -31,6 +31,9 @@ export default function ResetProgressButton({ cert, questionIds }: Props) {
       const fp = JSON.parse(localStorage.getItem("flashcard-progress") ?? "{}");
       questionIds.forEach((id) => delete fp[id]);
       localStorage.setItem("flashcard-progress", JSON.stringify(fp));
+
+      // quiz flags: remove flagged questions for this cert
+      localStorage.removeItem(`quiz-flags-${cert.id}`);
     } catch {
       // ignore localStorage errors (private browsing, quota, etc.)
     }

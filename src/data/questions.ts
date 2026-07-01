@@ -2715,4 +2715,126 @@ export const questions: Question[] = [
     explanation:
       "The CFAA (18 U.S.C. § 1030) is the primary US federal law against computer crime. It criminalizes unauthorized access or exceeding authorized access to protected computers, accessing government computers without authorization, fraud using computers, and introducing malicious code. It applies to both external attackers and malicious insiders who exceed their access.",
   },
+
+  // ── CISM additional questions (round 2) ────────────────────────────────────
+  {
+    id: "cism-d1-008",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "Which of the following BEST demonstrates alignment between information security and business objectives?",
+    options: [
+      "The security team selects controls independently based on technical best practices",
+      "Security risk metrics are mapped to business impact indicators and reported to leadership",
+      "The CISO attends all IT project meetings",
+      "The organization passes its annual compliance audit",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Alignment means security decisions are driven by business objectives and communicated in business terms. Mapping security metrics to business impact (revenue risk, regulatory exposure, customer trust) demonstrates to leadership that security investments protect the mission — passing a compliance audit demonstrates compliance, not necessarily alignment.",
+  },
+  {
+    id: "cism-d1-009",
+    certId: "cism",
+    domainId: "cism-d1",
+    question: "A security manager discovers that a key business unit has deployed a cloud service without IT or security review. The BEST first action is to:",
+    options: [
+      "Shut down the cloud service immediately",
+      "Conduct a risk assessment of the service and engage the business unit to understand the need",
+      "Report the business unit to senior management as a policy violation",
+      "Ignore it since the service is already in production",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Shadow IT reflects unmet business needs. The CISM approach is to assess the actual risk, engage the business unit as a partner, and address the underlying need through appropriate channels. Immediate shutdown disrupts operations and damages relationships; ignoring it creates unmanaged risk; escalating before understanding the context misses the chance to solve the root cause.",
+  },
+  {
+    id: "cism-d2-008",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "Which statement BEST describes the relationship between threats, vulnerabilities, and risk?",
+    options: [
+      "Risk exists only when a threat is confirmed to be active",
+      "Risk arises when a threat has the potential to exploit a vulnerability, resulting in potential impact",
+      "A vulnerability alone constitutes risk regardless of whether threats exist",
+      "Threats and vulnerabilities are interchangeable terms",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Risk is the intersection of threat (the agent or event that could cause harm), vulnerability (a weakness that can be exploited), and impact (the consequence). A vulnerability without a plausible threat agent (or vice versa) typically yields lower risk. CISM candidates must understand this relationship to prioritize risk treatment effectively.",
+  },
+  {
+    id: "cism-d2-009",
+    certId: "cism",
+    domainId: "cism-d2",
+    question: "The PRIMARY purpose of a risk register in an information security program is to:",
+    options: [
+      "Store audit findings for the external auditor",
+      "Provide a centralized record of identified risks, their ratings, owners, and treatment status",
+      "Replace the need for a risk assessment",
+      "Document completed security projects",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A risk register is the authoritative record of an organization's identified information risks. It tracks risk descriptions, likelihood and impact ratings, risk owners, treatment decisions (mitigate/accept/transfer/avoid), and status of controls or remediation. It is a living document used by leadership for ongoing risk decision-making.",
+  },
+  {
+    id: "cism-d3-008",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "A newly appointed CISM is building an information security program from scratch. The BEST starting point is to:",
+    options: [
+      "Purchase a SIEM tool to detect threats immediately",
+      "Conduct a current-state assessment to understand the organization's risk profile and existing controls",
+      "Hire additional security staff before planning",
+      "Implement full ISO 27001 certification in the first year",
+    ],
+    correctIndex: 1,
+    explanation:
+      "A current-state assessment (gap analysis) establishes a baseline: what assets exist, what risks are present, what controls are in place, and what gaps remain. Without this understanding, investments in tools or certifications may not address the highest-priority risks. The assessment output drives the roadmap and business case for the security program.",
+  },
+  {
+    id: "cism-d3-009",
+    certId: "cism",
+    domainId: "cism-d3",
+    question: "A security manager wants to demonstrate ROI on a new security control. The MOST credible approach is to:",
+    options: [
+      "Show that the control satisfies a compliance requirement",
+      "Calculate the reduction in expected annual loss from the threat the control mitigates versus the control's cost",
+      "Cite industry averages for security spending as a percentage of IT budget",
+      "Count the number of alerts the control generates per month",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Demonstrating ROI uses quantitative risk analysis: compare the annualized loss expectancy (ALE) before the control versus after, and weigh against the total cost of ownership. If the ALE reduction exceeds the control cost, the investment is justified. Compliance satisfaction and alert counts don't express financial value to business decision-makers.",
+  },
+  {
+    id: "cism-d4-008",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "The PRIMARY objective of an incident containment strategy is to:",
+    options: [
+      "Identify the root cause of the incident immediately",
+      "Limit the spread and impact of the incident while preserving evidence and maintaining operations",
+      "Eradicate the attacker from all systems before any other action",
+      "Notify all affected customers as the first priority",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Containment stops the incident from spreading further and limits damage, while also preserving evidence for investigation and forensics. It is the second phase of incident response (after identification). Eradication and recovery come after containment, not simultaneously. Notification timelines are governed by regulation and occur after the incident is understood.",
+  },
+  {
+    id: "cism-d4-009",
+    certId: "cism",
+    domainId: "cism-d4",
+    question: "Which metric BEST measures the effectiveness of an incident response program over time?",
+    options: [
+      "Number of security tools deployed",
+      "Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR) trends",
+      "Total number of incidents reported",
+      "Size of the incident response team",
+    ],
+    correctIndex: 1,
+    explanation:
+      "MTTD and MTTR are the gold-standard incident response KPIs. Decreasing MTTD means threats are detected faster (reducing attacker dwell time); decreasing MTTR means the organization responds more efficiently. Total incident count reflects threat volume, not program effectiveness. Number of tools and team size are inputs, not outcomes.",
+  },
 ];
