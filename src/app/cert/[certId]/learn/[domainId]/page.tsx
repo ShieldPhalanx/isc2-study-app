@@ -6,6 +6,7 @@ import { studyContent } from "@/data/studyContent";
 import { questions } from "@/data/questions";
 import MarkReadButton from "@/components/MarkReadButton";
 import DomainQuizBadge from "@/components/DomainQuizBadge";
+import { diagramRegistry } from "@/components/diagrams";
 
 export async function generateMetadata(props: PageProps<"/cert/[certId]/learn/[domainId]">): Promise<Metadata> {
   const { certId, domainId } = await props.params;
@@ -111,6 +112,24 @@ export default async function DomainLearnPage(
             ))}
           </div>
         </div>
+
+        {/* Visual Diagrams */}
+        {content.diagramIds && content.diagramIds.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Visual Reference</h2>
+            <div className="space-y-6">
+              {content.diagramIds.map((id) => {
+                const DiagramComponent = diagramRegistry[id];
+                if (!DiagramComponent) return null;
+                return (
+                  <div key={id} className="bg-white border border-gray-200 rounded-xl p-4 overflow-hidden">
+                    <DiagramComponent />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Exam Tips */}
         <div className={`rounded-xl border p-6 mb-10 ${lightMap[cert.color]}`}>
