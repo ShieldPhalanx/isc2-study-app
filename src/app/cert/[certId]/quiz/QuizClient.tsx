@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { Certification, Domain } from "@/data/certifications";
 import { Question } from "@/data/questions";
@@ -89,17 +89,23 @@ export default function QuizClient({ cert, questions, initialDomain }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [wrongIds, setWrongIds] = useState<Set<string>>(new Set());
-  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(`quiz-flags-${cert.id}`) ?? "[]");
-      return new Set<string>(Array.isArray(stored) ? stored : []);
-    } catch { return new Set<string>(); }
-  });
+  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(new Set());
   const [skippedIds, setSkippedIds] = useState<Set<string>>(new Set());
   const [showMistakes, setShowMistakes] = useState(false);
   const [domainScores, setDomainScores] = useState<Record<string, { score: number; total: number }>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [isExamSession, setIsExamSession] = useState(false);
+
+  // Load flagged questions from localStorage client-side only — reading it in the
+  // initial useState would desync server-rendered HTML from the client's hydration
+  // pass (localStorage isn't available during SSR), causing a hydration mismatch.
+  useLayoutEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(`quiz-flags-${cert.id}`) ?? "[]");
+      setFlaggedIds(new Set(Array.isArray(stored) ? stored : []));
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Countdown timer for exam mode
   useEffect(() => {

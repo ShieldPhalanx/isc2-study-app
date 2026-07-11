@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { Certification } from "@/data/certifications";
 import { Question } from "@/data/questions";
-import { loadFlashcardRecords, useFlashcardProgress } from "@/hooks/useFlashcardProgress";
+import { CardRecord, loadFlashcardRecords, useFlashcardProgress } from "@/hooks/useFlashcardProgress";
 import { useStudyStreak } from "@/hooks/useStudyStreak";
 
 type Props = {
@@ -59,8 +59,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 // Weak cards (streak < 2) appear first; mastered cards (streak ≥ 2) at the back.
 // Within each tier, cards are shuffled so the order varies each session.
-function prioritizedDeck(questions: Question[]): CardState[] {
-  const records = loadFlashcardRecords();
+function prioritizedDeck(questions: Question[], records: Record<string, CardRecord>): CardState[] {
   const weak = shuffle(questions.filter((q) => (records[q.id]?.streak ?? 0) < 2));
   const strong = shuffle(questions.filter((q) => (records[q.id]?.streak ?? 0) >= 2));
   return [...weak, ...strong].map((q) => ({ question: q, rating: null }));
@@ -71,15 +70,27 @@ export default function StudyClient({ cert, questions }: Props) {
   const { recordStudy } = useStudyStreak();
 
   const [phase, setPhase] = useState<Phase>("cards");
-  const [cards, setCards] = useState<CardState[]>(() => prioritizedDeck(questions));
+  // Deterministic default (original question order, no shuffle) so the server-rendered
+  // HTML matches the client's initial hydration pass exactly — Math.random() and
+  // localStorage reads must stay out of the first render or React throws a hydration
+  // mismatch. The real shuffled/prioritized deck is applied client-side just below.
+  const [cards, setCards] = useState<CardState[]>(() =>
+    questions.map((q) => ({ question: q, rating: null }))
+  );
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => {
+  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(new Set());
+  const [records, setRecords] = useState<Record<string, CardRecord>>({});
+
+  useLayoutEffect(() => {
+    setCards(prioritizedDeck(questions, loadFlashcardRecords()));
+    setRecords(loadFlashcardRecords());
     try {
       const stored = JSON.parse(localStorage.getItem(`quiz-flags-${cert.id}`) ?? "[]");
-      return new Set<string>(Array.isArray(stored) ? stored : []);
-    } catch { return new Set<string>(); }
-  });
+      setFlaggedIds(new Set(Array.isArray(stored) ? stored : []));
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const current = cards[index];
   const domain = cert.domains.find((d) => d.id === current.question.domainId);
@@ -88,16 +99,10 @@ export default function StudyClient({ cert, questions }: Props) {
   const totalCount = cards.length;
 
   // Persistent mastery: streak ≥ 2
-  const persistentMastered = (() => {
-    const records = loadFlashcardRecords();
-    return questions.filter((q) => (records[q.id]?.streak ?? 0) >= 2).length;
-  })();
+  const persistentMastered = questions.filter((q) => (records[q.id]?.streak ?? 0) >= 2).length;
 
   // Streak badge for current card
-  const currentStreak = (() => {
-    const records = loadFlashcardRecords();
-    return records[current.question.id]?.streak ?? 0;
-  })();
+  const currentStreak = records[current.question.id]?.streak ?? 0;
 
   function toggleFlag(questionId: string) {
     setFlaggedIds((prev) => {
@@ -113,6 +118,7 @@ export default function StudyClient({ cert, questions }: Props) {
 
   function rate(rating: Rating) {
     updateCard(current.question.id, rating === "mastered");
+    setRecords(loadFlashcardRecords());
     const newCards = [...cards];
     newCards[index] = { ...newCards[index], rating };
     setCards(newCards);
@@ -139,7 +145,7 @@ export default function StudyClient({ cert, questions }: Props) {
   }
 
   function restart() {
-    setCards(prioritizedDeck(questions));
+    setCards(prioritizedDeck(questions, loadFlashcardRecords()));
     setIndex(0);
     setFlipped(false);
     setPhase("cards");
